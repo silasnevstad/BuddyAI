@@ -44,7 +44,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style }) => {
             <div className="input-buttons-container-left">
                 <button className="transparent-button" onClick={handleClear} disabled={isLoading}>Clear</button>
                 <button className="transparent-button" onClick={handleFormalize} disabled={isLoading}>Formalize</button>
-                <button className="transparent-button" onClick={handleNiceify} disabled={isLoading}>Niceify</button>
+                <button className="transparent-button" onClick={handleNiceify} disabled={isLoading}>Improve</button>
                 <button className="transparent-button" onClick={handleAsk} disabled={isLoading}>Ask</button>
             </div>
 

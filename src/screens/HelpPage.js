@@ -16,7 +16,7 @@ const HelpPage = () => {
                 <main className="App-main">
                     <div className="help-container">
                         <div className="help-inner-container">
-                            <h1 className="help-header-text"> Welcome to Buddy! 🚀 </h1>
+                            <h1 className="help-header-text"> Welcome to Buddy! </h1>
                             <p className="help-header-desc-text"> Buddy is your friendly writing assistant tool, here to make your text generation experience a breeze. Whether you're crafting an essay 📝, composing an email 📧, or brainstorming ideas 💡, our AI-powered auto-complete feature is here to help you find the perfect words and phrases effortlessly. </p>
                             <h2 className="help-sub-header-text"> Getting Started </h2>
                             <ul className="help-list">

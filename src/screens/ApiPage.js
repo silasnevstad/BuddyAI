@@ -54,9 +54,8 @@ const ApiPage = () => {
                     <h1 className="api-title">API</h1>
                     <p className="api-description">The Buddy API provides text completion suggestions and text refinements. The API is currently in <span className="green">beta</span> and is subject to change.</p>
                     <div className="api-info-container">
+                    <p className="api-info"><span className="semibold green">Status</span> <span className="green">Online</span></p>
                         <p className="api-info"><span className="semibold green">Base URL</span> buddyai.herokuapp.com </p>
-                        {/* status below */}
-                        <p className="api-info"><span className="semibold green">Status</span> <span className="green">Online</span></p>
                     </div>
 
                     <div className="api-endpoints-container">

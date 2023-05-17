@@ -28,3 +28,35 @@
     justify-content: space-between;
     gap: 1em;
 }
+
+@media (max-width: 768px) {
+    .api-info-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        margin-top: 0em;
+    }
+
+    .api-endpoints-container {
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1em;
+        gap: 1em;
+    }
+
+    .api-title {
+        font-size: 2em;
+        margin-top: .1em;
+        color: #fff;
+    }
+
+    .api-description {
+        font-size: 1.1em;
+        max-width: 80%;
+        color: #eee;
+    }
+}

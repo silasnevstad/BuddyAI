@@ -146,14 +146,14 @@
     border-radius: 5%;
 }
 
-.chevron {
+.api-endpoint-container .chevron {
     color: #fff;
     font-size: 1.5em;
     margin-right: .5em;
     transform: rotate(-180deg);
 }
 
-.chevron.open {
+.api-endpoint-container .chevron.open {
     transform: rotate(0deg);
 }
 
@@ -179,7 +179,7 @@
         margin-top: -1em;
     }
 
-    .chevron {
+    .api-endpoint-container .chevron {
         position: absolute;
         top: .1em;
         right: 0em;

@@ -48,4 +48,9 @@
         margin-top: -20px;
         margin-bottom: 20px;
     }
+
+    .chevron {
+        width: 20px;
+        height: 20px;
+    }
 }

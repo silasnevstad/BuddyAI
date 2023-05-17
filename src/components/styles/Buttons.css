@@ -11,6 +11,19 @@
     text-decoration: none;
 }
 
+.transparent-button-large {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    color: #eee;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none;
+}
+
 .transparent-button:hover {
     transform: scale(1.02);
 }
