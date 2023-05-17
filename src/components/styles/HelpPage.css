@@ -1,0 +1,147 @@
+.help-container {
+    width: 70%;
+    margin: auto;
+    margin-top: 0em;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    line-height: 1.5em;
+}
+
+.help-inner-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 0em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.help-header-text {
+    font-size: 1.9em;
+    margin-bottom: 1em;
+}
+
+.help-header-desc-text {
+    font-size: 1.3em;
+    margin-bottom: 2em;
+}
+
+.help-sub-header-text-center {
+    font-size: 1.8em;
+    margin-bottom: 2em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.help-sub-header-text {
+    font-size: 1.7em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.help-list {
+    margin-left: -2em;
+    margin-bottom: 2em;
+    list-style-type: none;
+    font-size: 1.2em;
+}
+
+.help-list-item {
+    margin-bottom: 2em;
+}
+
+.help-list-item-bold {
+    margin-right: .1em;
+    font-size: 1.3em;
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto auto;
+    gap: 3em 1em;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 5em;
+}
+
+.help-grid-item {
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+    grid-column-end: span 2;
+}
+
+.help-grid-item:nth-child(4) {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+.help-grid-item:nth-child(5) {
+    grid-column-start: 4;
+    grid-row-start: 2;
+}
+
+.help-grid-item-bold {
+    font-size: 1.8em;
+    margin-right: .1em;
+}
+
+@media (max-width: 768px) {
+    .help-container {
+        width: 90%;
+    }
+
+    .help-inner-container {
+        width: 90%;
+    }
+
+    .help-header-text {
+        font-size: 1.8em;
+        margin-bottom: .6em;
+    }
+
+    .help-header-desc-text {
+        font-size: 1.2em;
+        margin-bottom: 1.5em;
+    }
+
+    .help-sub-header-text-center {
+        font-size: 1.6em;
+    }
+
+    .help-sub-header-text {
+        font-size: 1.5em;
+    }
+
+    .help-list {
+        font-size: 1.1em;
+    }
+
+    .help-list-item-bold {
+        margin-right: .1em;
+        font-size: 1.2em;
+    }
+
+    .help-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .help-grid-item {
+        font-size: 1.1em;
+    }
+
+    .help-grid-item-bold {
+        font-size: 1.6em;
+        margin-right: .1em;
+    }
+}

@@ -1,0 +1,10 @@
+.text-input-info-text {
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .text-input-info-container {
+        width: 90%;
+    }
+}

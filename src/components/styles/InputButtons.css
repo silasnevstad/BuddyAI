@@ -1,0 +1,32 @@
+.input-buttons-container {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.input-buttons-container-left {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+}
+
+.input-buttons-container-right {
+    justify-content: flex-end;
+}
+
+.input-buttons-text {
+    font-size: 1em;
+    /* border: 1px solid blue; */
+}
+
+@media (max-width: 768px) {
+    .input-buttons-container {
+        width: 90%;
+        margin: 1em 0;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

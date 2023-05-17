@@ -1,0 +1,16 @@
+.title-container {
+    margin: 1em;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #eee;
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+}

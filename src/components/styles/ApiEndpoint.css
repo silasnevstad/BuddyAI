@@ -1,0 +1,193 @@
+.api-endpoint-container {
+    display: flex;
+    width: 60vw;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .25em .5em;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+}
+
+.api-endpoint-container.open {
+    border: 1px solid #777;
+}
+
+.api-endpoint-container-open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+}
+
+.api-endpoint-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: center;
+    width: 97%;
+
+    padding: .25em .5em;
+    line-height: .1;
+    background-color: #111;
+    border-radius: 15px;
+    margin-top: .5em;
+    margin-bottom: 1em;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.api-endpoint-container-closed {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+    /* Add these lines */
+    width: 100%;
+    padding: 0.1em;
+}
+
+.api-endpoint-title {
+    font-size: 1.2em;
+    margin-left: .5em;
+    margin-right: 0.5em;
+    width: 10%;
+    color: #fff;
+}
+
+.api-endpoint-description-closed {
+    font-size: 1em;
+    margin-left: .5em;
+    flex-grow: 1;
+    text-align: justify;
+    color: #eee;
+}
+
+.api-endpoint-description {
+    font-size: 1.1em;
+    margin-left: .5em;
+    margin-top: .5em;
+    color: #eee;
+}
+
+.api-endpoint-response {
+    font-size: 1.1em;
+    margin-left: .5em;
+    margin-top: 2.2em;
+    color: #eee;
+}
+
+.api-endpoint-request {
+    font-size: 1.1em;
+    margin-left: .5em;
+    color: #eee;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #777;
+    margin-bottom: .5em;
+}
+
+.bold {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.semibold {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.orange {
+    color: #f5722f;
+}
+
+.green {
+    color: #77d970;
+}
+
+.red {
+    color: #ff3f5c;
+}
+
+.api-endpoint-code {
+    font-size: 1.2em;
+    margin-left: .5em;
+    line-height: 1;
+    color: #eee;
+    white-space: pre-wrap; /* Wrapping */
+    word-break: break-word; /* Break the word */
+}
+
+.api-endpoint-code.indent {
+    margin-left: 1.5em;
+}
+
+.string {
+    color: #77d970;
+}
+
+.number {
+    color: #f5722f;
+}
+
+.api-endpoint-type {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-left: .5em;
+    color: #333;
+    padding: .2em .5em;
+    /* background-image: linear-gradient(120deg, #77d970, #adbe32, #d79c0d, #f5722f); */
+    background-color: #77d970;
+    /* background-color: #ccc; */
+    border-radius: 5%;
+}
+
+.chevron {
+    color: #fff;
+    font-size: 1.5em;
+    margin-right: .5em;
+    transform: rotate(-180deg);
+}
+
+.chevron.open {
+    transform: rotate(0deg);
+}
+
+@media screen and (max-width: 768px) {
+    .api-endpoint-container {
+        width: 80%; 
+    }
+
+    .api-endpoint-container-closed {
+        position: relative;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0em;
+    }
+
+    .api-endpoint-title {
+        margin-top: -1.8em; 
+        margin-bottom: 0em;
+    }
+
+    .api-endpoint-description-closed {
+        margin-bottom: .8em; 
+        margin-top: -1em;
+    }
+
+    .chevron {
+        position: absolute;
+        top: .1em;
+        right: 0em;
+    }
+
+    .api-endpoint-code-container {
+        margin-top: .5em;
+        margin-bottom: .5em;
+        width: 90%;
+    }
+}

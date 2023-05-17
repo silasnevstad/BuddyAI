@@ -1,0 +1,51 @@
+.style-slider {
+    width: 300px;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: -60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.style-slider-header {
+    display: flex;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #eee;
+    align-items: center;
+}
+  
+.style-slider-header h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+  
+.chevron {
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(180deg);
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 23px;
+    height: 23px;
+}
+  
+.chevron.chevron-open {
+    transform: rotate(0deg);
+}
+  
+.chevron.chevron-closed {
+    transform: rotate(-180deg);
+}
+
+.slider-container {
+    transition: max-height 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .style-slider {
+        margin-top: -20px;
+        margin-bottom: 20px;
+    }
+}
