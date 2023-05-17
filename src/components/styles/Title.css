@@ -7,6 +7,16 @@
     font-size: 2rem;
     font-weight: 700;
     color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0em;
+}
+
+.buddy-logo {
+    width: 1em;
+    height: 1.5em;
+    margin-right: .3em;
 }
 
 @media screen and (max-width: 768px) {
