@@ -4,6 +4,7 @@ import Background from '../components/Background';
 import Title from '../components/Title';
 import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
+import VenmoIcon from '../components/images/venmo.svg';
 
 const HelpPage = () => {
     return (
@@ -27,8 +28,8 @@ const HelpPage = () => {
                                 <span className="help-list-item-bold">3️⃣</span>
                                 <li className="help-list-item">Once the debounce period ends, our AI system generates tailored suggestions for you. These appear in a dropdown menu below the text box. Click on a suggestion or continue typing as needed. </li>
                             </ul>
-                            <h2 className="help-sub-header-text-center"> Plus, more features! </h2>
                         </div>
+                        <h2 className="help-sub-header-text-center"> Plus, more features! </h2>
                         <div className="help-grid">
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> 🖌️ </span>  Choose from five different writing styles, ranging from formal to casual, using the slider provided. </div>
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> 🎩 </span> Formalize Text: Instantly transform your writing into a more formal style, ideal for professional or academic purposes. </div>
@@ -36,6 +37,10 @@ const HelpPage = () => {
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> ❓ </span> Ask: Quickly get answers to your queries or seek clarification on any aspect of your writing. </div>
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> 🗑️  </span> Clear Input: Start afresh by clearing the text box, giving you a clean canvas to work on. </div>
                         </div>
+
+                        <h2 className="help-sub-header-text-center small"> Enjoy using Buddy? Consider buying me a coffee? </h2>
+                        {/* get venmo logo and link to https://account.venmo.com/u/buddyai */}
+                        <img src={VenmoIcon} alt="Venmo Icon" className="venmo-icon" onClick={() => window.open("https://account.venmo.com/u/buddyai", "_blank")} />
                     </div>
                 </main>
                 <footer className="App-footer">

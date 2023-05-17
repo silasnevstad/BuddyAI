@@ -4,6 +4,7 @@
     margin-top: 0em;
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100%;
     line-height: 1.5em;
 }
@@ -34,6 +35,11 @@
     margin-bottom: 2em;
     margin-top: 1em;
     text-align: center;
+}
+
+.small {
+    font-size: 1.3em;
+    margin-top: .5em;
 }
 
 .help-sub-header-text {
@@ -93,6 +99,17 @@
 .help-grid-item-bold {
     font-size: 1.8em;
     margin-right: .1em;
+}
+
+.venmo-icon {
+    width: 2.5em;
+    height: 2.5em;
+    margin-bottom: 2.5em;
+    margin-top: -1em;
+}
+
+.venmo-icon:hover {
+    transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
