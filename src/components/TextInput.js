@@ -9,9 +9,11 @@ const TextInput = ({ text, setText, style, prompt }) => {
     const lastStyleRef = useRef('');
     const lastPromptRef = useRef('');
     const [aiSuggestion, setAiSuggestion] = useState('');
+    const [selectedWord, setSelectedWord] = useState('');
+    const [synonyms, setSynonyms] = useState([]);
     const textareaRef = useRef(null);
     const placeholder = 'Type here...';
-    const { aiComplete } = Api();
+    const { aiComplete, synonym } = Api();
 
     useEffect(() => {
         setInput(text);
@@ -29,6 +31,25 @@ const TextInput = ({ text, setText, style, prompt }) => {
             setAiSuggestion('');
         }
     };
+
+    const handleDoubleClick = async (e) => {
+        const text = e.target.value;
+        const start = e.target.selectionStart;
+        const end = e.target.selectionEnd;
+        const clickedWord = text.substring(start, end);
+        setSelectedWord({word: clickedWord, start, end});
+        const syns = await synonym(clickedWord);
+        console.log(syns);
+        setSynonyms(syns.synonyms);
+    };
+    
+    const replaceWithSynonym = (synonym) => {
+        const beforeWord = input.substring(0, selectedWord.start);
+        const afterWord = input.substring(selectedWord.end);
+        setInput(beforeWord + synonym + afterWord);
+        setSynonyms([]);
+    };
+    
 
     const handleChange = (e) => {
         setInput(e.target.value);
@@ -87,6 +108,7 @@ const TextInput = ({ text, setText, style, prompt }) => {
                     className="text-input__textarea"
                     onKeyDown={handleKeyDown}
                     onChange={handleChange}
+                    onDoubleClick={handleDoubleClick}
                     value={input}
                     placeholder={placeholder}
                     minRows={1}
@@ -99,6 +121,13 @@ const TextInput = ({ text, setText, style, prompt }) => {
                         setAiSuggestion('');
                     }}>
                         {aiSuggestion}
+                    </div>
+                )}
+                {synonyms.length > 0 && (
+                    <div className="synonym-box">
+                        {synonyms.map(syn => (
+                            <div key={syn} onClick={() => replaceWithSynonym(syn)} className="synonym-text">{syn}</div>
+                        ))}
                     </div>
                 )}
             </div>

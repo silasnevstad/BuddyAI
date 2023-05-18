@@ -57,6 +57,40 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
+.synonym-box-outer {
+
+}
+
+.synonym-box {
+    padding: 5px;
+    background-color: #333;
+    border-radius: 5px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.synonym-text {
+    font-size: 1.2em;
+    color: #eee;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: #444;
+}
+
+.synonym-text:hover {
+    background-color: #61965d;
+}
+
 @media (max-width: 768px) {
     .text-input {
         width: 90%;

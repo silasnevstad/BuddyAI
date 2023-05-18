@@ -34,8 +34,16 @@ const ApiPage = () => {
             response: '{response: \'string\'}'
         },
         {
-            endpoint: '/v1/auto',
-            description: 'Automatically determines the best way to assist with the user\'s text.',
+            endpoint: '/v1/synonym',
+            description: 'Returns synonyms of the word provided.',
+            inputDescription: 'Receives a JSON with a word key.',
+            outputDescription: 'Returns a response object with the generated text.',
+            example: '{word: \'string\'}',
+            response: '{synonyms: \'string\'}'
+        },
+        {
+            endpoint: '/v1/ask',
+            description: 'Ask buddy a question and receive a response',
             inputDescription: 'Receives a JSON with text and style for input text and writing style of response. Style (0-4), while optional, defines the response\'s style.',
             outputDescription: 'Returns a response object with the generated text.',
             example: '{text: \'string\', style: 2}',
