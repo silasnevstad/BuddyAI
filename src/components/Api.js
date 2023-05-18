@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 const Api = () => {
     const BASE_URL = 'https://buddyai.herokuapp.com/';
-    const adminKey = "buddySilasAdminKey1107";
+    const adminKey = process.env.REACT_APP_BUDDYAI_ADMIN_KEY;
     const configuration = new Configuration({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
     const openai = new OpenAIApi(configuration);
     // const { abortController } = useContext(AbortContext);
