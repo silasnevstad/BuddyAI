@@ -3,7 +3,7 @@
     width: 60vw;
     flex-direction: column;
     justify-content: space-between;
-    padding: .25em .5em;
+    padding: .5em 1em;
     background-color: #1a1a1a;
     border-radius: 15px;
 }
@@ -66,6 +66,7 @@
 
 .api-endpoint-description {
     font-size: 1.1em;
+    line-height: 1.5;
     margin-left: .5em;
     margin-top: .5em;
     color: #eee;

@@ -12,34 +12,34 @@ const ApiPage = () => {
         {
             endpoint: '/v1/buddy',
             description: 'Returns text completion suggestions based on the text provided.',
-            inputDescription: 'Takes in a JSON with text and style keys for the input text and style of suggestions.',
+            inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
             outputDescription: 'Returns a suggestion object.',
-            example: '{text: \"The quick brown fox jumps over the \", style: 2}',
+            example: '{text: \"The quick brown fox jumps over the \", prompt: \"\", style: 2}',
             response: '{suggestion:\'lazy dog\'}'
         },
         {
             endpoint: '/v1/formalize',
             description: 'Returns a more formal version of the text provided.',
-            inputDescription: 'Takes in a JSON with text and style keys for the input text and style of formalization.',
+            inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
             outputDescription: 'Returns a response object with the formalized text.',
-            example: '{text: \"Hey! whats up \", style: 2}',
-            response: '{response: \'Hello, how are you?\' }'
+            example: '{text: \"string\", prompt: \"string\", style: 2}',
+            response: '{response: \'string\' }'
         },
         {
             endpoint: '/v1/niceify',
             description: 'Returns a more refined version of the text provided.',
-            inputDescription: 'Takes in a JSON with text and style keys for the input text and style of refinement.',
+            inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
             outputDescription: 'Returns a response object with the refined text.',
-            example: '{text: \"Hey Prof, sorry I missed \', style: 2}',
-            response: '{response: \'Dear Professor, I sincerely apologize for my absence.\'}'
+            example: '{text: \"string\', prompt: \"string\", style: 2}',
+            response: '{response: \'string\'}'
         },
         {
             endpoint: '/v1/auto',
             description: 'Automatically determines the best way to assist with the user\'s text.',
-            inputDescription: 'Takes in a JSON with text and style keys for the input text and style of the desired response.',
+            inputDescription: 'Receives a JSON with text and style for input text and writing style of response. Style (0-4), while optional, defines the response\'s style.',
             outputDescription: 'Returns a response object with the generated text.',
-            example: '{text: \'Write 100 words in the style of Tarantino\', style: 2}',
-            response: '{response: \'The diner was empty, except for me and the old man sitting...\'}'
+            example: '{text: \'string\', style: 2}',
+            response: '{response: \'string\'}'
         }
     ];
 

@@ -3,7 +3,7 @@ import './styles/Buttons.css';
 import TextInputInfo from './TextInputInfo';
 import Api from './Api';
 
-const InputButtons = ({ text, setText, isLoading, setIsLoading, style }) => {
+const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt }) => {
     const { formalizeText, niceifyText, autoText } = Api();
 
     const handleClear = () => {
@@ -14,7 +14,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style }) => {
     const handleFormalize = () => {
         if (isLoading || !text) return;
         setIsLoading(true);
-        formalizeText(text, style).then((data) => {
+        formalizeText(text, style, prompt).then((data) => {
             setText(data.response);
             setIsLoading(false);
         });
@@ -23,7 +23,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style }) => {
     const handleNiceify = () => {
         if (isLoading || !text) return;
         setIsLoading(true);
-        niceifyText(text, style).then((data) => {
+        niceifyText(text, style, prompt).then((data) => {
             setText(data.response);
             setIsLoading(false);
         });

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './styles/ApiEndpoint.css';
+import SliderOpen from './SliderOpen';
 import downChevron from './images/chevron-down.svg';
 
 const parseStringToJSON = (str) => {
@@ -10,13 +11,20 @@ const parseStringToJSON = (str) => {
     }
 }
 
-const CodeContainer = ({ data }) => {
+const CodeContainer = ({ data, value }) => {
     return (
         <>
             <p className="api-endpoint-code">{'{'}</p>
-            {Object.entries(data).map(([key, value], index) => (
+            {Object.entries(data).map(([key, val], index) => (
+                console.log(key, val),
                 <p key={index} className="api-endpoint-code indent">
-                    {`"${key}": `} <span className={typeof value === 'string' ? "string" : "number"}> {JSON.stringify(value)}</span>
+                    {key === 'style' ? (
+                        <>{`"${key}": `} <span className={typeof val === 'string' ? "string" : "number"}>{value}</span></>
+                    ) : 
+                    (
+                        <>{`"${key}": `} <span className={typeof val === 'string' ? "string" : "number"}> {JSON.stringify(val)}</span></>
+                    )}
+                    
                 </p>
             ))}
             <p className="api-endpoint-code">{'}'}</p>
@@ -29,6 +37,7 @@ const ApiEndpoint = ({ endpoint, description, inputDescription, outputDescriptio
     const [parsedExample, setParsedExample] = useState(null);
     const [parsedResponse, setParsedResponse] = useState(null);
     const [parsedBadRequest, setParsedBadRequest] = useState(null);
+    const [value, setValue] = useState(2);
     const badRequest = "{error: \"string\"}";
 
     useEffect(() => {
@@ -58,20 +67,53 @@ const ApiEndpoint = ({ endpoint, description, inputDescription, outputDescriptio
                     <p className="api-endpoint-description">{inputDescription}</p>
                     {parsedExample &&
                         <div className="api-endpoint-code-container">
-                            <CodeContainer data={parsedExample} />
+                            <CodeContainer data={parsedExample} value={value} />
                         </div>
                     }
+                    {/* table of text and style to explain them */}
+                    {/* explain the style, 1-5, 1 is casual and 5 is formal */}
+                    <SliderOpen value={value} setValue={setValue} />
+                    {/* <table className="api-endpoint-table">
+                        <thead>
+                            <tr>
+                                <th>Style</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Playful</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Relaxed</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Balanced</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Formal</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Academic</td>
+                            </tr>
+                        </tbody>
+                    </table> */}
                     <p className="api-endpoint-response"><span className="bold">Response</span></p>
                     <p className="api-endpoint-description"><span className="semibold green">200</span> {outputDescription}</p>
                     {parsedResponse &&
                         <div className="api-endpoint-code-container">
-                            <CodeContainer data={parsedResponse} />
+                            <CodeContainer data={parsedResponse} value={value} />
                         </div>
                     }
                     <p className="api-endpoint-description semibold"><span className="red">400</span> Bad request</p>
                     {parsedResponse &&
                         <div className="api-endpoint-code-container">
-                            <CodeContainer data={parsedBadRequest} />
+                            <CodeContainer data={parsedBadRequest} value={value} />
                         </div>
                     }
                 </div>

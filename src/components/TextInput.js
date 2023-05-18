@@ -3,12 +3,13 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
 
-const TextInput = ({ text, setText, style }) => {
+const TextInput = ({ text, setText, style, prompt }) => {
     const [input, setInput] = useState(text);
     const [rows, setRows] = useState(1);
     const [lineWidth, setLineWidth] = useState(1);
     const lastRequestRef = useRef('');
     const lastStyleRef = useRef('');
+    const lastPromptRef = useRef('');
     const [aiSuggestion, setAiSuggestion] = useState('');
     const textareaRef = useRef(null);
     const placeholder = 'Type here...';
@@ -70,19 +71,17 @@ const TextInput = ({ text, setText, style }) => {
             setAiSuggestion('');
             return;
         }
-        if (debouncedInput === lastRequestRef.current) {
-            return;
-        }
-        if (style === lastStyleRef.current) {
+        if (debouncedInput === lastRequestRef.current && style === lastStyleRef.current && prompt === lastPromptRef.current) {
             return;
         }
         lastRequestRef.current = debouncedInput;
         lastStyleRef.current = style;
-    
+        lastPromptRef.current = prompt;
+
         const abortController = new AbortController();
         const signal = abortController.signal;
     
-        aiComplete(debouncedInput, style, signal).then(res => {
+        aiComplete(debouncedInput, style, prompt, signal).then(res => {
             if (res) {
                 setAiSuggestion(res.suggestion);
             }
@@ -92,7 +91,8 @@ const TextInput = ({ text, setText, style }) => {
         return () => {
             abortController.abort();
         }
-    }, [debouncedInput, aiComplete, style]);
+    }, [debouncedInput, aiComplete, style, prompt]);
+
     
 
     useEffect(() => {

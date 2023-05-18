@@ -1,0 +1,39 @@
+.prompt-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.prompt-input {
+    font-size: 1.3em;
+    padding: 0.3em .3em;
+    backdrop-filter: blur(500px);
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid #666;
+    color: #ddd;
+    overflow: hidden;
+    resize: none;
+    width: 30vw;
+    height: 1.1em;
+    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.prompt-input:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 768px) {
+    .prompt-input {
+        width: 70vw;
+        font-size: 1.2em;
+    }
+
+    .prompt-input-container {
+        margin-bottom: 15px;
+    }
+}
