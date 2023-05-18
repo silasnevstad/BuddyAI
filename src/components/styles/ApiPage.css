@@ -4,6 +4,19 @@
     color: #fff;
 }
 
+.api-sub-title-btn {
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+    color: #222;
+    background-color: #77d970;
+    border: none;
+    border-radius: 5px;
+    padding: .7em 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .api-description {
     font-size: 1.2em;
     margin-top: -1em;
@@ -28,6 +41,29 @@
     justify-content: space-between;
     gap: 1em;
 }
+
+.api-info-button {
+    background-color: #77d970;
+    color: #222;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: .7em 1em;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .2em;
+}
+
+.lock-icon {
+    font-size: 1.5em;
+    /* padding-top: .2em; */
+}
+
+
 
 @media (max-width: 768px) {
     .api-info-container {

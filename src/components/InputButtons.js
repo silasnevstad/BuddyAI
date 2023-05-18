@@ -1,10 +1,13 @@
+import React, { useContext } from 'react';
 import './styles/InputButtons.css';
 import './styles/Buttons.css';
 import TextInputInfo from './TextInputInfo';
 import Api from './Api';
+import { AbortContext } from './AbortContext';
 
 const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt }) => {
     const { formalizeText, niceifyText, autoText } = Api();
+    // const { resetAbortController } = useContext(AbortContext);
 
     const handleClear = () => {
         if (isLoading || !text) return;
@@ -13,6 +16,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt })
 
     const handleFormalize = () => {
         if (isLoading || !text) return;
+        // resetAbortController();
         setIsLoading(true);
         formalizeText(text, style, prompt).then((data) => {
             setText(data.response);
@@ -22,6 +26,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt })
 
     const handleNiceify = () => {
         if (isLoading || !text) return;
+        // resetAbortController();
         setIsLoading(true);
         niceifyText(text, style, prompt).then((data) => {
             setText(data.response);
@@ -31,9 +36,10 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt })
 
     const handleAsk = () => {
         if (isLoading || !text) return;
+        // resetAbortController();
         setIsLoading(true);
         autoText(text, style).then((data) => {
-            setText(data.response);
+            setText(data);
             setIsLoading(false);
         });
     };

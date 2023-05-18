@@ -13,7 +13,9 @@ const TextInputInfo = ({ text }) => {
     };
 
     return (
-        <p className="text-input-info-text">{getWordCountString(text)}</p>
+        <>
+            {text && <p className="text-input-info-text">{getWordCountString(text)}</p>}
+        </>
     );
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import '../components/styles/ApiPage.css'
 import Background from '../components/Background';
@@ -6,8 +6,14 @@ import Title from '../components/Title';
 import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import ApiEndpoint from '../components/ApiEndpoint';
+import Api from '../components/Api';
+import LockIcon from '../components/images/lock.svg';
 
 const ApiPage = () => {
+    const [apiKey, setApiKey] = useState('');
+    const [showKey, setShowKey] = useState(true);
+    const [showPythonCode, setShowPythonCode] = useState(true);
+    const { createAPIKey } = Api();
     const endpoints = [
         {
             endpoint: '/v1/buddy',
@@ -51,6 +57,11 @@ const ApiPage = () => {
         }
     ];
 
+    const handleCreateAPIKey = async () => {
+        const response = await createAPIKey();
+        setApiKey(response.api_key);
+    }
+
     return (
         <Background>
             <div className="App">
@@ -62,8 +73,13 @@ const ApiPage = () => {
                     <h1 className="api-title">API</h1>
                     <p className="api-description">The Buddy API provides text completion suggestions and text refinements. The API is currently in <span className="green">beta</span> and is subject to change.</p>
                     <div className="api-info-container">
-                    <p className="api-info"><span className="semibold green">Status</span> <span className="green">Online</span></p>
+                        <p className="api-info" onClick={() => setShowKey(!showKey)}><span className="semibold green">Status</span> <span className="green">Online</span></p>
                         <p className="api-info"><span className="semibold green">Base URL</span> buddyai.herokuapp.com </p>
+                        {apiKey ? <p className="api-info"><span className="semibold green">API Key</span> {showKey ? apiKey : '•'.repeat(apiKey.length)}</p> 
+                            : (
+                                <button className="api-info-button" onClick={handleCreateAPIKey}>Authorize <img src={LockIcon} alt="lock icon" className="lock-icon" /></button>
+                            )
+                        }
                     </div>
 
                     <div className="api-endpoints-container">
@@ -79,6 +95,44 @@ const ApiPage = () => {
                             />
                         ))}
                     </div>
+
+                    <button className="api-sub-title-btn" onClick={() => setShowPythonCode(!showPythonCode)}>{showPythonCode ? 'Hide' : 'Show'} Python Example</button>
+                    {showPythonCode && 
+                        <div className="api-endpoint-code-container-python">
+                            <p className="api-endpoint-code">{'import requests'}</p>
+                            <p className="api-endpoint-code">{''}</p>
+                            <p className="api-endpoint-code">{'class BuddyAPI:'}</p>
+                            <p className="api-endpoint-code indent">{'def __init__(self, api_key):'}</p>
+                            <p className="api-endpoint-code double-indent">{'self.api_key = api_key'}</p>
+                            <p className="api-endpoint-code double-indent">{'self.base_url = \'https://buddyai.herokuapp.com/v1\''}</p>
+                            <p className="api-endpoint-code">{''}</p>
+                            <p className="api-endpoint-code indent">{'def text_suggest(self, text):'}</p>
+                            <p className="api-endpoint-code double-indent">{'url = f\'{self.base_url}/buddy\''}</p>
+                            <p className="api-endpoint-code double-indent">{'headers = {'}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'Content-Type\': \'application/json\''}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'Authorization\':  f\'Bearer {self.api_key}\','}</p>
+                            <p className="api-endpoint-code double-indent">{'}'}</p>
+                            <p className="api-endpoint-code double-indent">{'data = {'}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'text\': text'}</p>
+                            <p className="api-endpoint-code double-indent">{'}'}</p>
+                            <p className="api-endpoint-code double-indent">{'response = requests.post(url, headers=headers, json=data)'}</p>
+                            <p className="api-endpoint-code double-indent">{'return response.json()'}</p>
+                            <p className="api-endpoint-code">{''}</p>
+                            <p className="api-endpoint-code indent">{'def formalize_text(self, text, prompt, style):'}</p>
+                            <p className="api-endpoint-code double-indent">{'url = f\'{self.base_url}/formalize\''}</p>
+                            <p className="api-endpoint-code double-indent">{'headers = {'}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'Content-Type\': \'application/json\''}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'Authorization\':  f\'Bearer {self.api_key}\','}</p>
+                            <p className="api-endpoint-code double-indent">{'}'}</p>
+                            <p className="api-endpoint-code double-indent">{'data = {'}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'text\': text'}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'style\': style'}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'prompt\': prompt'}</p>
+                            <p className="api-endpoint-code double-indent">{'}'}</p>
+                            <p className="api-endpoint-code double-indent">{'response = requests.post(url, headers=headers, json=data)'}</p>
+                            <p className="api-endpoint-code double-indent">{'return response.json()'}</p>
+                        </div>
+                    }
                 </main>
                 <footer className="App-footer">
                     <Footer />

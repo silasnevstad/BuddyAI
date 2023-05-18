@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../App.css';
 import '../components/styles/HomePage.css';
 import PromptInput from '../components/PromptInput';
@@ -9,6 +9,7 @@ import Title from '../components/Title';
 import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
+import { AbortContext } from '../components/AbortContext';
 // import StyleSlider from '../components/Slider';
 
 function HomePage() {
@@ -16,27 +17,36 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [style, setStyle] = useState(2);
   const [prompt, setPrompt] = useState('');
+  const abortControllerRef = useRef(new AbortController());
+  
+  const resetAbortController = () => {
+    abortControllerRef.current.abort();
+    abortControllerRef.current = new AbortController();
+  };
+
   return (
-    <Background>
-      <div className="App">
-        <header className="App-header">
-          <Title />
-          <HeaderNav currentPage={'/'} />
-        </header>
-        <main className="App-main">
-          <div className="custom-container">
-            <PromptInput prompt={prompt} setPrompt={setPrompt} />
-            {/* <StyleSlider value={style} setValue={setStyle} /> */}
-          </div>
-          <TextInput text={text} setText={setText} style={style} prompt={prompt} />
-          <InputButtons text={text} setText={setText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} prompt={prompt} />
-        </main>
-        <footer className="App-footer">
-          {isLoading && <Loader />}
-          <Footer />
-        </footer>
-      </div>
-    </Background>
+    <AbortContext.Provider value={{ abortController: abortControllerRef.current, resetAbortController }}>
+      <Background>
+        <div className="App">
+          <header className="App-header">
+            <Title />
+            <HeaderNav currentPage={'/'} />
+          </header>
+          <main className="App-main">
+            <div className="custom-container">
+              <PromptInput prompt={prompt} setPrompt={setPrompt} />
+              {/* <StyleSlider value={style} setValue={setStyle} /> */}
+            </div>
+            <TextInput text={text} setText={setText} style={style} prompt={prompt} isLoading={isLoading} />
+            <InputButtons text={text} setText={setText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} prompt={prompt} />
+          </main>
+          <footer className="App-footer">
+            {isLoading && <Loader />}
+            <Footer />
+          </footer>
+        </div>
+      </Background>
+    </AbortContext.Provider>
   );
 }
 

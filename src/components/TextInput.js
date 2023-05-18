@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
+// import { AbortContext } from './AbortContext';
 
-const TextInput = ({ text, setText, style, prompt }) => {
+const TextInput = ({ text, setText, style, prompt, isLoading }) => {
     const [input, setInput] = useState(text);
     const lastRequestRef = useRef('');
     const lastStyleRef = useRef('');
@@ -39,7 +40,7 @@ const TextInput = ({ text, setText, style, prompt }) => {
         const clickedWord = text.substring(start, end);
         setSelectedWord({word: clickedWord, start, end});
         const syns = await synonym(clickedWord);
-        console.log(syns);
+        if (!syns) return;
         setSynonyms(syns.synonyms);
     };
     
@@ -53,6 +54,7 @@ const TextInput = ({ text, setText, style, prompt }) => {
 
     const handleChange = (e) => {
         setInput(e.target.value);
+        setSynonyms([]);
     };
     
     const useDebounce = (value, delay) => {
@@ -81,23 +83,19 @@ const TextInput = ({ text, setText, style, prompt }) => {
         if (debouncedInput === lastRequestRef.current && style === lastStyleRef.current && prompt === lastPromptRef.current) {
             return;
         }
+        if (isLoading) {
+            return;
+        }
         lastRequestRef.current = debouncedInput;
         lastStyleRef.current = style;
         lastPromptRef.current = prompt;
-
-        const abortController = new AbortController();
-        const signal = abortController.signal;
     
-        aiComplete(debouncedInput, style, prompt, signal).then(res => {
+        aiComplete(debouncedInput, style, prompt).then(res => {
             if (res) {
                 setAiSuggestion(res.suggestion);
             }
         });
-    
-        // cancel the previous request before making a new request
-        return () => {
-            abortController.abort();
-        }
+
     }, [debouncedInput, aiComplete, style, prompt]);
 
     return (
