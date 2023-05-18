@@ -39,7 +39,7 @@ const Api = () => {
 
     const niceifyText = async (text, style, prompt) => {
         if (!text) return '';
-        const response = await fetch(`${BASE_URL}v1/niceify`, {
+        const response = await fetch(`${BASE_URL}v1/improve`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

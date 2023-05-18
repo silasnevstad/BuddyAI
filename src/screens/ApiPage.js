@@ -12,7 +12,7 @@ import LockIcon from '../components/images/lock.svg';
 const ApiPage = () => {
     const [apiKey, setApiKey] = useState('');
     const [showKey, setShowKey] = useState(true);
-    const [showPythonCode, setShowPythonCode] = useState(true);
+    const [showPythonCode, setShowPythonCode] = useState(false);
     const { createAPIKey } = Api();
     const endpoints = [
         {
@@ -32,7 +32,7 @@ const ApiPage = () => {
             response: '{response: \'string\' }'
         },
         {
-            endpoint: '/v1/niceify',
+            endpoint: '/v1/improve',
             description: 'Returns a more refined version of the text provided.',
             inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
             outputDescription: 'Returns a response object with the refined text.',
