@@ -19,7 +19,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt })
         // resetAbortController();
         setIsLoading(true);
         formalizeText(text, style, prompt).then((data) => {
-            setText(data.response);
+            setText((prev) => prev + '\n' + data.response);
             setIsLoading(false);
         });
     };
@@ -29,7 +29,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt })
         // resetAbortController();
         setIsLoading(true);
         niceifyText(text, style, prompt).then((data) => {
-            setText(data.response);
+            setText((prev) => prev + '\n' + data.response);
             setIsLoading(false);
         });
     };
@@ -39,7 +39,7 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style, prompt })
         // resetAbortController();
         setIsLoading(true);
         autoText(text, style).then((data) => {
-            setText(data);
+            setText((prev) => prev + '\n' + data.response);
             setIsLoading(false);
         });
     };
