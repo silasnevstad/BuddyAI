@@ -18,7 +18,7 @@ const HelpPage = () => {
                     <div className="help-container">
                         <div className="help-inner-container">
                             <h1 className="help-header-text"> Welcome to Buddy! </h1>
-                            <p className="help-header-desc-text"> Buddy is your friendly writing assistant tool, here to make your text generation experience a breeze. Whether you're crafting an essay 📝, composing an email 📧, or brainstorming ideas 💡, our AI-powered auto-complete feature is here to help you find the perfect words and phrases effortlessly. </p>
+                            <p className="help-header-desc-text"> Buddy is your friendly writing assistant tool, here to make your text generation experience a breeze. Whether you're crafting an essay, composing an email, or brainstorming ideas, our AI-powered auto-complete feature is here to help you find the perfect words and phrases effortlessly. </p>
                             <h2 className="help-sub-header-text"> Getting Started </h2>
                             <ul className="help-list">
                                 <span className="help-list-item-bold">0️⃣</span>
@@ -41,7 +41,7 @@ const HelpPage = () => {
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> 🗑️  </span> Clear Input: Start afresh by clearing the text box, giving you a clean canvas to work on. </div>
                         </div>
 
-                        <h2 className="help-sub-header-text-center small"> Enjoy using Buddy? Buy me a coffee ☕️ 😉 </h2>
+                        <h2 className="help-sub-header-text-center small"> Enjoy using Buddy? Buy me a coffee ☕️ </h2>
                         {/* get venmo logo and link to https://account.venmo.com/u/buddyai */}
                         <img src={VenmoIcon} alt="Venmo Icon" className="venmo-icon" onClick={() => window.open("https://account.venmo.com/u/buddyai", "_blank")} />
                     </div>
