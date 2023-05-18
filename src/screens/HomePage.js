@@ -9,8 +9,7 @@ import Title from '../components/Title';
 import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
-import StyleSlider from '../components/Slider';
-
+// import StyleSlider from '../components/Slider';
 
 function HomePage() {
   const [text, setText] = useState('');
@@ -29,8 +28,8 @@ function HomePage() {
             <PromptInput prompt={prompt} setPrompt={setPrompt} />
             {/* <StyleSlider value={style} setValue={setStyle} /> */}
           </div>
-          <TextInput text={text} setText={setText} style={style} />
-          <InputButtons text={text} setText={setText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} />
+          <TextInput text={text} setText={setText} style={style} prompt={prompt} />
+          <InputButtons text={text} setText={setText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} prompt={prompt} />
         </main>
         <footer className="App-footer">
           {isLoading && <Loader />}

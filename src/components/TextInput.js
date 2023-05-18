@@ -5,8 +5,6 @@ import './styles/TextInput.css';
 
 const TextInput = ({ text, setText, style, prompt }) => {
     const [input, setInput] = useState(text);
-    const [rows, setRows] = useState(1);
-    const [lineWidth, setLineWidth] = useState(1);
     const lastRequestRef = useRef('');
     const lastStyleRef = useRef('');
     const lastPromptRef = useRef('');
@@ -22,18 +20,6 @@ const TextInput = ({ text, setText, style, prompt }) => {
     useEffect(() => {
         setText(input);
     }, [input, setText]);
-
-    useEffect(() => {
-        const textareaWidth = textareaRef.current.offsetWidth;
-        const characterWidth = textareaRef.current.scrollWidth / input.length;
-        setLineWidth(Math.floor(textareaWidth / characterWidth));
-    }, [input]);
-
-    useEffect(() => {
-        const newlineCount = input.split('\n').length;
-        const wrapCount = Math.ceil(input.length / lineWidth);
-        setRows(Math.max(newlineCount, wrapCount));
-    }, [input, lineWidth]);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Tab' && aiSuggestion) {
@@ -92,12 +78,6 @@ const TextInput = ({ text, setText, style, prompt }) => {
             abortController.abort();
         }
     }, [debouncedInput, aiComplete, style, prompt]);
-
-    
-
-    useEffect(() => {
-        setRows(input.split('\n').length);
-    }, [input]);
 
     return (
         <div className="text-input">

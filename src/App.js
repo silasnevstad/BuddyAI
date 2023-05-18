@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './screens/HomePage';
 import HelpPage from './screens/HelpPage';
 import ApiPage from './screens/ApiPage';
-import Title from './components/Title';
 // import SignUpPage from './screens/SignUpPage';
-import HeaderNav from './components/HeaderNav';
 import './App.css';
 
 

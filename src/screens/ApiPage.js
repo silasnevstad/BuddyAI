@@ -14,7 +14,7 @@ const ApiPage = () => {
             description: 'Returns text completion suggestions based on the text provided.',
             inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
             outputDescription: 'Returns a suggestion object.',
-            example: '{text: \"The quick brown fox jumps over the \", prompt: \"\", style: 2}',
+            example: '{text: "The quick brown fox jumps over the ", prompt: "", style: 2}',
             response: '{suggestion:\'lazy dog\'}'
         },
         {
@@ -22,7 +22,7 @@ const ApiPage = () => {
             description: 'Returns a more formal version of the text provided.',
             inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
             outputDescription: 'Returns a response object with the formalized text.',
-            example: '{text: \"string\", prompt: \"string\", style: 2}',
+            example: '{text: "string", prompt: "string", style: 2}',
             response: '{response: \'string\' }'
         },
         {
@@ -30,7 +30,7 @@ const ApiPage = () => {
             description: 'Returns a more refined version of the text provided.',
             inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
             outputDescription: 'Returns a response object with the refined text.',
-            example: '{text: \"string\', prompt: \"string\", style: 2}',
+            example: '{text: "string", prompt: "string", style: 2}',
             response: '{response: \'string\'}'
         },
         {

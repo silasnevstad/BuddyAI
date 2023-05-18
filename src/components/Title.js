@@ -1,7 +1,7 @@
 import './styles/Title.css';
 import { Link } from 'react-router-dom';
 import './styles/Buttons.css'
-import BuddyLogo from './images/buddyLogo.png';
+// import BuddyLogo from './images/buddyLogo.png';
 
 const Title = () => {
     const title = 'Buddy';
