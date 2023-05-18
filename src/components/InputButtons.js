@@ -33,7 +33,6 @@ const InputButtons = ({ text, setText, isLoading, setIsLoading, style }) => {
         if (isLoading || !text) return;
         setIsLoading(true);
         autoText(text, style).then((data) => {
-            console.log('auto response', data.response);
             setText(data.response);
             setIsLoading(false);
         });

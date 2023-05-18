@@ -7,8 +7,8 @@ const TextInput = ({ text, setText, style }) => {
     const [input, setInput] = useState(text);
     const [rows, setRows] = useState(1);
     const [lineWidth, setLineWidth] = useState(1);
-    const [lastRequest, setLastRequest] = useState('');
-    const [lastStyle, setLastStyle] = useState(0);
+    const lastRequestRef = useRef('');
+    const lastStyleRef = useRef('');
     const [aiSuggestion, setAiSuggestion] = useState('');
     const textareaRef = useRef(null);
     const placeholder = 'Type here...';
@@ -70,24 +70,30 @@ const TextInput = ({ text, setText, style }) => {
             setAiSuggestion('');
             return;
         }
-        if (debouncedInput === lastRequest) return;
-        if (style === lastStyle) return;
-        setLastRequest(debouncedInput);
-        setLastStyle(style);
-
-        // create an abort controller instance
+        if (debouncedInput === lastRequestRef.current) {
+            return;
+        }
+        if (style === lastStyleRef.current) {
+            return;
+        }
+        lastRequestRef.current = debouncedInput;
+        lastStyleRef.current = style;
+    
         const abortController = new AbortController();
         const signal = abortController.signal;
     
         aiComplete(debouncedInput, style, signal).then(res => {
-            setAiSuggestion(res.response);
+            if (res) {
+                setAiSuggestion(res.suggestion);
+            }
         });
-
+    
         // cancel the previous request before making a new request
         return () => {
             abortController.abort();
         }
-    }, [debouncedInput, aiComplete, lastRequest]);
+    }, [debouncedInput, aiComplete, style]);
+    
 
     useEffect(() => {
         setRows(input.split('\n').length);
@@ -107,7 +113,13 @@ const TextInput = ({ text, setText, style }) => {
                     maxRows={20}
                 />
                 {aiSuggestion && (
-                    <div className="suggestion">{aiSuggestion}</div>
+                    <div className="suggestion" onClick={() => {
+                        const addedInput = input + aiSuggestion;
+                        setInput(addedInput);
+                        setAiSuggestion('');
+                    }}>
+                        {aiSuggestion}
+                    </div>
                 )}
             </div>
         </div>

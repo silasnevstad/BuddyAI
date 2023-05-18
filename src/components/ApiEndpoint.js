@@ -6,7 +6,6 @@ const parseStringToJSON = (str) => {
     try {
         return JSON.parse(str.replace(/(\w+):/g, '"$1":').replace(/'/g, '"'));
     } catch(err) {
-        console.error(err);
         return null;
     }
 }

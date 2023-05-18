@@ -16,8 +16,8 @@ const Background = ({ children }) => {
             } else {
                 // Desktop (horizontal) layout
                 setViewBox("0 0 800 4800");
-                setEllipse1({cx: "760.7990667557181", cy: "447.28090669500347"});
-                setEllipse2({cx: "18.406416504717754", cy: "2.343650526774155"});
+                setEllipse1({cx: "750.7990667557181", cy: "447.28090669500347"});
+                setEllipse2({cx: "28.406416504717754", cy: "12.343650526774155"});
             }
         }
 
@@ -37,8 +37,28 @@ const Background = ({ children }) => {
                         </filter>
                     </defs>
                     <g filter="url(#bbblurry-filter)">
-                        <ellipse id="ellipse1" rx="96" ry="90" cx={ellipse1.cx} cy={ellipse1.cy} fill="#fb2576ff"></ellipse>
-                        <ellipse id="ellipse2" rx="96" ry="90" cx={ellipse2.cx} cy={ellipse2.cy} fill="#77d970ff"></ellipse>
+                        <ellipse id="ellipse1" rx="96" ry="90" cx={ellipse1.cx} cy={ellipse1.cy} fill="#fb2576ff">
+                            <animateTransform 
+                                attributeName="transform" 
+                                type="translate" 
+                                from="760,1047" 
+                                to="760.343650526774155,447.28090669500347"
+                                begin="0s" 
+                                dur="1.5s" 
+                                repeatCount="1"
+                            />
+                        </ellipse>
+                        <ellipse id="ellipse2" rx="96" ry="90" cx={ellipse2.cx} cy={ellipse2.cy} fill="#77d970ff">
+                            <animateTransform 
+                                attributeName="transform" 
+                                type="translate" 
+                                from="0,600" 
+                                to="0,0.343650526774155"
+                                begin="0s" 
+                                dur="1s" 
+                                repeatCount="1"
+                            />
+                        </ellipse>
                     </g>
                 </svg>
             </div>
