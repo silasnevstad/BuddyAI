@@ -1,11 +1,6 @@
 .text-input {
     position: relative;
     width: 70%;
-    /* max-width: 70%; */
-    /* max-height: 80vh; */
-    /* margin: 0 auto; */
-    /* border-radius: 5px; */
-    /* overflow: auto; */
 
     display: flex;
     flex-direction: row;
@@ -143,8 +138,10 @@
 
 @media (max-width: 768px) {
     .text-input {
-        width: 90%;
-        max-width: 90%;
+        width: 85%;
+        /* max-width: 90%; */
+        margin-top: -1.5em;
+        flex-direction: column;
     }
 
     .input-container {
@@ -156,5 +153,17 @@
     .suggestion {
         font-size: 1.2em;
         margin-left: 2px;
+    }
+
+    .close-btn {
+        top: -2.8em;
+    }
+    
+    .replace-btn {
+        top: -2.8em;
+    }
+
+    .input-container {
+        margin-top: 1.8em;
     }
 }
