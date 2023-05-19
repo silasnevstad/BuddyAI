@@ -8,6 +8,7 @@ const HeaderNav = ({ currentPage }) => {
             {currentPage !== "/help" && <Link to="/help" className="transparent-button">Help</Link>}
             {currentPage !== "/api" && <Link to="/api" className="transparent-button">API</Link>}
             {currentPage !== "/" && <Link to="/" className="transparent-button">Home</Link>}
+            {currentPage !== "/side" && <Link to="/side" className="transparent-button">Side</Link>}
             {/* {window.innerWidth > 600 && currentPage !== "/signup" && <Link to="/signup" className="full-button">Sign Up</Link>} */}
         </div>
     );

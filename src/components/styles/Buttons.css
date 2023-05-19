@@ -39,7 +39,7 @@
 }
 
 .transparent-button:hover::before {
-    width: 70%;
+    width: 90%;
 }
 
 .full-button {

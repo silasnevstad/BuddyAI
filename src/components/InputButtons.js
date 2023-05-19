@@ -50,7 +50,7 @@ const InputButtons = ({ text, responseText, setText, setResponseText, isLoading,
                 <button className="transparent-button" onClick={handleClear} disabled={isLoading}>Clear</button>
                 <button className="transparent-button" onClick={handleFormalize} disabled={isLoading}>Formalize</button>
                 <button className="transparent-button" onClick={handleNiceify} disabled={isLoading}>Improve</button>
-                <button className="transparent-button" onClick={handleAsk} disabled={isLoading}>Ask</button>
+                <button className="transparent-button" onClick={handleAsk} disabled={isLoading}>Ask Buddy</button>
                 {/* show a synoym button if its on mobile */}
                 {window.innerWidth <= 768 && <button className="transparent-button" onClick={() => { }} disabled={isLoading}>Synonym</button>}
             </div>

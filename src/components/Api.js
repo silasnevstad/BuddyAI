@@ -31,6 +31,30 @@ const Api = () => {
         return data;
     }
 
+    const aiComplete2 = async (text, style, prompt, signal) => {
+        if (!text) return '';
+        let data;
+        try {
+            const response = await fetch(`${BASE_URL}v2/buddy`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${adminKey}`,
+                },
+                body: JSON.stringify({ text, style, prompt }),
+                signal: signal
+            });
+            data = await response.json();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                // console.log('Fetch aborted'); // ignore the error or handle it in a way that doesn't affect UX
+            } else {
+                throw error; // re-throw the error if it's not an AbortError
+            }
+        }
+        return data;
+    }
+
     const formalizeText = async (text, style, prompt) => {
         if (!text) return '';
         const response = await fetch(`${BASE_URL}v1/formalize`, {
@@ -102,7 +126,7 @@ const Api = () => {
         return data;
     }
 
-    return { aiComplete, formalizeText, niceifyText, autoText, synonym, createAPIKey };
+    return { aiComplete, aiComplete2, formalizeText, niceifyText, autoText, synonym, createAPIKey };
 };
 
 export default Api;
