@@ -9,5 +9,6 @@
 @media screen and (max-width: 768px) {
     .header-nav-container {
         gap: 1em;
+        margin: 1em;
     }
 }
