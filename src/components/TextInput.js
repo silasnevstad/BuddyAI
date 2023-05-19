@@ -129,6 +129,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
                         setInput(addedInput);
                         setAiSuggestion('');
                     }}>
+                        <div className="tab"> Tab </div>
                         {aiSuggestion}
                     </div>
                 )}

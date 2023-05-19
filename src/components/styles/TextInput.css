@@ -96,8 +96,22 @@
     position: relative;
     display: inline-block;
 }
+
+.tab {
+    font-size: .8em;
+    font-weight: bold;
+    color: #eee;
+    background-color: #444;
+    padding: 6px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
   
 .suggestion {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-size: 1.2em;
     color: rgba(255, 255, 255, 0.5);
 }
