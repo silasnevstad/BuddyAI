@@ -156,6 +156,7 @@
         /* max-width: 90%; */
         margin-top: -1.5em;
         flex-direction: column;
+        margin-left: -1em;
     }
 
     .input-container {

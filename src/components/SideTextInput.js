@@ -111,7 +111,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     }, [debouncedInput, aiComplete2, style, prompt]);
 
     return (
-        <div className="text-input" style={{ width: '90%' }}>
+        <div className="text-input" style={window.innerWidth < 600 ? {width: '85%'} : {width: '90%'}}>
             <div className="input-container">
                 <TextareaAutosize
                     ref={textareaRef}
