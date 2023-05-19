@@ -29,4 +29,12 @@
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .input-buttons-text {
+        font-size: .8em;
+    }
+
+    .input-buttons-container-left {
+        gap: .5em;
+    }
 }
