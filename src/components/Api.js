@@ -7,18 +7,27 @@ const Api = () => {
     const openai = new OpenAIApi(configuration);
     // const { abortController } = useContext(AbortContext);
 
-    const aiComplete = async (text, style, prompt) => {
+    const aiComplete = async (text, style, prompt, signal) => {
         if (!text) return '';
-        const response = await fetch(`${BASE_URL}v1/buddy`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${adminKey}`,
-            },
-            body: JSON.stringify({ text, style, prompt }),
-            // signal: abortController.signal
-        });
-        const data = await response.json();
+        let data;
+        try {
+            const response = await fetch(`${BASE_URL}v1/buddy`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${adminKey}`,
+                },
+                body: JSON.stringify({ text, style, prompt }),
+                signal: signal
+            });
+            data = await response.json();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                // console.log('Fetch aborted'); // ignore the error or handle it in a way that doesn't affect UX
+            } else {
+                throw error; // re-throw the error if it's not an AbortError
+            }
+        }
         return data;
     }
 

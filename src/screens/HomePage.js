@@ -14,6 +14,7 @@ import { AbortContext } from '../components/AbortContext';
 
 function HomePage() {
   const [text, setText] = useState('');
+  const [responseText, setResponseText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [style, setStyle] = useState(2);
   const [prompt, setPrompt] = useState('');
@@ -37,8 +38,8 @@ function HomePage() {
               <PromptInput prompt={prompt} setPrompt={setPrompt} />
               {/* <StyleSlider value={style} setValue={setStyle} /> */}
             </div>
-            <TextInput text={text} setText={setText} style={style} prompt={prompt} isLoading={isLoading} />
-            <InputButtons text={text} setText={setText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} prompt={prompt} />
+            <TextInput text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} style={style} prompt={prompt} isLoading={isLoading} />
+            <InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} prompt={prompt} />
           </main>
           <footer className="App-footer">
             {isLoading && <Loader />}

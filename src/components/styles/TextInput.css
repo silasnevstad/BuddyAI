@@ -1,16 +1,24 @@
 .text-input {
     position: relative;
     width: 70%;
-    max-width: 70%;
-    max-height: 80vh;
-    margin: 0 auto;
-    border: 1px solid #444;
-    border-radius: 5px;
-    overflow: auto
+    /* max-width: 70%; */
+    /* max-height: 80vh; */
+    /* margin: 0 auto; */
+    /* border-radius: 5px; */
+    /* overflow: auto; */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1em;
 }
 
-
 .input-container {
+    position: relative;
+    border: 1px solid #444;
+    width: 100%;
+    border-radius: 5px;
     font-size: 1.2em;
     font-weight: 500;
     background-color: transparent;
@@ -19,11 +27,49 @@
     z-index: 1;
     padding: 10px;
     line-height: 1;
-    overflow: hidden;
+    /* overflow: hidden; */
     min-height: 20px;
     white-space: pre-wrap;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
+}
+
+.close-btn {
+    position: absolute;
+    top: -2.5em;
+    right: 0em;
+    padding: 4px 6px;
+    border: none;
+    color: #eee;
+    cursor: pointer;
+    font-size: .7em;
+    font-weight: bold;
+    background-color: #ff3f5c;
+    border-radius: 50%;
+}
+
+.replace-btn {
+    position: absolute;
+    top: -2.5em;
+    right: 2.9em;
+    padding: 4px 6px;
+    border: none;
+    color: #eee;
+    cursor: pointer;
+    font-size: .7em;
+    font-weight: bold;
+    background-color: #77d970;
+    border-radius: 50%;
+}
+
+.arrow-icon {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.x-icon {
+    width: 1.2em;
+    height: 1.2em;
 }
   
 .text-input__textarea {
@@ -35,6 +81,10 @@
     border: none;
     resize: none;
     overflow: hidden;
+}
+
+.request-textarea {
+    font-size: 1.1em;
 }
 
 .text-input__textarea:focus {
