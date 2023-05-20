@@ -59,4 +59,12 @@
 
 
 @media (max-width: 768px) {
+
+}
+
+/* light color scheme */
+@media (prefers-color-scheme: light) {
+    .background-svg {
+        background-color: #eee;
+    }
 }

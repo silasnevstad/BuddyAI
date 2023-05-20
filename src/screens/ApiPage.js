@@ -9,7 +9,7 @@ import ApiEndpoint from '../components/ApiEndpoint';
 import Api from '../components/Api';
 import LockIcon from '../components/images/lock.svg';
 
-const ApiPage = () => {
+const ApiPage = ({ loggedIn }) => {
     const [apiKey, setApiKey] = useState('');
     const [showKey, setShowKey] = useState(true);
     const [showPythonCode, setShowPythonCode] = useState(false);
@@ -67,13 +67,13 @@ const ApiPage = () => {
             <div className="App">
                 <header className="App-header">
                     <Title />
-                    <HeaderNav currentPage={'/api'} />
+                    <HeaderNav currentPage={'/api'} loggedIn={loggedIn} />
                 </header>
                 <main className="App-main">
                     <h1 className="api-title">API</h1>
-                    <p className="api-description">The Buddy API provides text completion suggestions and text refinements. The API is currently in <span className="green">beta</span> and is subject to change.</p>
+                    <p className="api-description">The Buddy API provides text completion suggestions and text refinements. The API is currently in <span className="semibold green">beta</span> and is subject to change.</p>
                     <div className="api-info-container">
-                        <p className="api-info" onClick={() => setShowKey(!showKey)}><span className="semibold green">Status</span> <span className="green">Online</span></p>
+                        <p className="api-info" onClick={() => setShowKey(!showKey)}><span className="semibold green">Status:</span> <span className="semibold green">Online</span></p>
                         <p className="api-info"><span className="semibold green">Base URL</span> buddyai.herokuapp.com </p>
                         {apiKey ? <p className="api-info"><span className="semibold green">API Key</span> {showKey ? apiKey : '•'.repeat(apiKey.length)}</p> 
                             : (

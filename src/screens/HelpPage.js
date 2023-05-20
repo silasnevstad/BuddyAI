@@ -6,30 +6,48 @@ import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import VenmoIcon from '../components/images/venmo.svg';
 
-const HelpPage = () => {
+const HelpPage = ({ loggedIn }) => {
     return (
         <Background>
             <div className="App">
                 <header className="App-header">
                     <Title />
-                    <span style={{marginRight: "10px"}}><HeaderNav currentPage={"/help"} /></span>
+                    <span style={{marginRight: "10px"}}><HeaderNav currentPage={"/help"} loggedIn={loggedIn}/></span>
                 </header>
                 <main className="App-main">
                     <div className="help-container">
                         <div className="help-inner-container">
                             <h1 className="help-header-text"> Welcome to Buddy! </h1>
                             <p className="help-header-desc-text"> Buddy is your friendly writing assistant tool, here to make your text generation experience a breeze. Whether you're crafting an essay, composing an email, or brainstorming ideas, our AI-powered auto-complete feature is here to help you find the perfect words and phrases effortlessly. </p>
+                            
                             <h2 className="help-sub-header-text"> Getting Started </h2>
                             <ul className="help-list">
-                                <span className="help-list-item-bold">1️⃣</span>
-                                <li className="help-list-item">Optionally, give Buddy context on what you'd like to write.</li>
-                                <span className="help-list-item-bold">2️⃣</span>
-                                <li className="help-list-item">Start typing in the text box provided, whether it's a few words, a sentence, or even a whole paragraph!</li>
-                                <span className="help-list-item-bold">3️⃣</span>
-                                <li className="help-list-item">Buddy monitors your input as you type. After a 750ms debounce effect ⏱️, if no typing is detected, Buddy uses it's AI to suggest the best continuation for your text.</li>
-                                <span className="help-list-item-bold">4️⃣</span>
-                                <li className="help-list-item">Buddy's AI system generates tailored suggestions for you. These appear in a dropdown below the text box. You can accept a suggestion by pressing Tab, clicking on it, or just continue typing.</li>
+                                <li className="help-list-item step1">
+                                    <div className="help-step">1</div>
+                                    <div className="help-instruction">
+                                        Optionally, tell Buddy what you're writing to give context and help guide its suggestions.
+                                    </div>
+                                </li>
+                                <li className="help-list-item step2">
+                                    <div className="help-step">2</div>
+                                    <div className="help-instruction">
+                                        Start typing, whether it's a few words, a sentence, or even a whole paragraph!
+                                    </div>
+                                </li>
+                                <li className="help-list-item step3">
+                                    <div className="help-step">3</div>
+                                    <div className="help-instruction">
+                                        Buddy monitors your input as you type. After a 750ms debounce effect, if no typing is detected, Buddy uses its AI to suggest the best continuation for your text.
+                                    </div>
+                                </li>
+                                <li className="help-list-item step4">
+                                    <div className="help-step">4</div>
+                                    <div className="help-instruction">
+                                        Buddy's AI system generates tailored suggestions for you. These appear in a dropdown below the text box. You can accept a suggestion by pressing Tab, clicking on it, or just continue typing.
+                                    </div>
+                                </li>
                             </ul>
+
                         </div>
                         <h2 className="help-sub-header-text-center"> Plus, more features! </h2>
                         <div className="help-grid">

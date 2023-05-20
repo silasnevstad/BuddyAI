@@ -41,7 +41,7 @@ const SliderOpen = ({ value, setValue }) => {
                 />
             </div>
             <button className="style-slider-header">
-                <h3>{modes[value]}</h3>
+                <h3><span className="faded-subheader">Style</span>{modes[value]}</h3>
             </button>
         </div>
     );

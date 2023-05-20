@@ -222,3 +222,73 @@
         width: 90%;
     }
 }
+
+@media (prefers-color-scheme: light) {
+    .api-endpoint-container {
+        background-color: #fff;
+    }
+
+    .api-endpoint-container-closed {
+        background-color: #fff;
+    }
+
+    .api-endpoint-title {
+        color: #000;
+    }
+
+    .api-endpoint-description-closed {
+        color: #000;
+    }
+
+    .api-endpoint-description {
+        color: #000;
+    }
+
+    .api-endpoint-response {
+        color: #000;
+    }
+
+    .api-endpoint-request {
+        color: #000;
+    }
+
+    .api-endpoint-code {
+        color: #fff;
+    }
+
+    .api-endpoint-type {
+        color: #000;
+    }
+
+    .api-endpoint-container .chevron {
+        color: #000;
+    }
+
+    .api-endpoint-container .chevron.open {
+        color: #000;
+    }
+
+    .line {
+        background-color: #000;
+    }
+
+    .string {
+        color: #f5722f;
+    }
+
+    .number {
+        color: #77d970;
+    }
+
+    .orange {
+        color: #f5722f;
+    }
+    
+    .green {
+        color: #44db3a;
+    }
+    
+    .red {
+        color: #ff3f5c;
+    }
+}

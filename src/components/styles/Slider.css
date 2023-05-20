@@ -15,6 +15,14 @@
     border: none;
     color: #ccc;
     align-items: center;
+    font-size: 1em;
+}
+
+.faded-subheader {
+    color: #999;
+    font-size: 1.2rem;
+    font-weight: medium;
+    margin-right: .5rem;
 }
   
 .style-slider-header h3 {
@@ -50,5 +58,13 @@
     .chevron {
         width: 20px;
         height: 20px;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .style-slider-header {
+        color: #333;
+        font-weight: bold;
+        font-size: 1em;
     }
 }

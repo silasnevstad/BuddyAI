@@ -61,13 +61,86 @@
     transform: scale(1.05);
 }
 
+.flat-small-btn {
+    /* position: absolute; */
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1px;
+    border: none;
+    cursor: pointer;
+    font-size: .9em;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #eee;
+}
+
+.flat-small-btn:hover {
+    transform: scale(1.03);
+    color: #222;
+}
+
+.close-btn:hover {
+    background-color: #ff3f5c;
+}
+
+
+.refresh-btn:hover {
+    background-color: #f5c542;
+}
+
+.use-btn {
+    top: 0em;
+    right: 5.9em;
+}
+
+.use-btn:hover {
+    background-color: #77d970;
+}
+
 @media screen and (max-width: 768px) {
     .full-button {
-        padding: .6em 1.6em;
-        font-size: 0.8rem;
+        padding: .8em 1.9em;
+        font-size: 0.9rem;
     }
 
     .transparent-button {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .flat-small-btn {
+        padding: 6px 8px;
+        font-size: 1em;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .transparent-button {
+        color: #222;
+    }
+
+    .transparent-button::before {
+        background-color: #222;
+    }
+
+    .transparent-button-large {
+        color: #222;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+    }
+
+    .full-button {
+        background-color: #222;
+        color: #eee;
+    }
+
+    .full-button:hover {
+        background-color: #111;
+    }
+
+    .flat-small-btn {
+        color: #222;
     }
 }

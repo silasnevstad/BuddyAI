@@ -37,7 +37,7 @@ const StyleSlider = ({ value, setValue }) => {
         <div className="style-slider" style={{ marginBottom: isOpen ? 16 : 45, width: isOpen ? 300 : 250 }}>
             <button onClick={toggleSlider} className="style-slider-header">
                 <img src={chevron} alt="chevron" className={`chevron ${isOpen ? 'chevron-open' : 'chevron-closed'}`} />
-                {isOpen && <h3>{modes[value]}</h3> }
+                {isOpen && <h3><span className="faded-subheader">Style</span>{modes[value]}</h3> }
             </button>
             {isOpen && (
                 <div className="slider-container">

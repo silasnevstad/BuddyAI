@@ -10,7 +10,7 @@ const Title = () => {
         <div className="title-container">
             <div className="title">
                 {/* <img src={BuddyLogo} alt="Buddy Logo" className="buddy-logo" /> */}
-                <Link to="/" className="transparent-button-large"> {title.toLocaleUpperCase()} </Link>
+                {window.innerWidth > 600 ? <Link to="/" className="transparent-button-large"> {title.toLocaleUpperCase()} </Link> : <Link to="/signup" className="full-button">Sign Up</Link>}
             </div>
         </div>
     );

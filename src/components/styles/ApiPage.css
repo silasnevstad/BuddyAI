@@ -33,6 +33,12 @@
     gap: 5em;
 }
 
+.api-info {
+    font-size: 1.2em;
+    color: #eee;
+    font-weight: 500;
+}
+
 .api-endpoints-container {
     margin-top: 2em;
     display: flex;
@@ -94,5 +100,24 @@
         font-size: 1.1em;
         max-width: 80%;
         color: #eee;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .api-title {
+        color: #222;
+    }
+
+    .api-description {
+        color: #222;
+    }
+
+    .api-info-button {
+        background-color: #77d970;
+        color: #222;
+    }
+
+    .api-info {
+        color: #222;
     }
 }

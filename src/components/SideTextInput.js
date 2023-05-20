@@ -3,10 +3,10 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
 import ArrowRight from './images/arrow-right.svg';
-import X from './images/x.svg';
+import Refresh from './images/rotate-cw.svg';
 import { AbortContext } from './AbortContext';
 
-const TextInput = ({ text, responseText, setText, setResponseText, style, prompt, isLoading }) => {
+const TextInput = ({ text, responseText, setText, setResponseText, style, prompt, isLoading, setIsLoading }) => {
     const [input, setInput] = useState(text);
     const lastRequestRef = useRef('');
     const lastStyleRef = useRef('');
@@ -68,6 +68,17 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
         setResponseText(e.target.value);
     };
     
+    const handleRefresh = () => {
+        setIsLoading(true);
+        aiComplete2(debouncedInput, style, prompt, abortController.signal).then((res) => {
+            if (res) {
+                setAiSuggestion(res.text);
+            }
+        }).finally(() => {
+            setIsLoading(false);
+        });
+    };
+
     const useDebounce = (value, delay) => {
         const [debouncedValue, setDebouncedValue] = useState(value);
       
@@ -101,18 +112,24 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
         lastStyleRef.current = style;
         lastPromptRef.current = prompt;
     
+        setIsLoading(true);
         aiComplete2(debouncedInput, style, prompt, abortController.signal).then(res => {
             console.log(res);
             if (res) {
                 setResponseText(res.text);
             }
+        }).finally(() => {
+            setIsLoading(false);
         });
 
     }, [debouncedInput, aiComplete2, style, prompt]);
 
     return (
-        <div className="text-input" style={window.innerWidth < 600 ? {width: '85%'} : {width: '90%'}}>
+        <div className="text-input">
             <div className="input-container">
+                <div className="input-header"> 
+                    <p className="input-header__text">You</p>
+                </div>
                 <TextareaAutosize
                     ref={textareaRef}
                     className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`} // Add class for request textarea
@@ -124,16 +141,6 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
                     minRows={1}
                     maxRows={20}
                 />
-                {aiSuggestion && (
-                    <div className="suggestion" onClick={() => {
-                        const addedInput = input + aiSuggestion;
-                        setInput(addedInput);
-                        setAiSuggestion('');
-                    }}>
-                        <div className="tab"> Tab </div>
-                        {aiSuggestion}
-                    </div>
-                )}
                 {synonyms.length > 0 && (
                     <div className="synonym-box">
                         {synonyms.map(syn => (
@@ -142,11 +149,27 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
                     </div>
                 )}
             </div>
+            {/* <div className="button-container">
+                <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}}><img src={Refresh} alt="Refresh response" className="refresh-icon"/></button>
+                <button className="flat-small-btn use-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}>Use <img src={ArrowRight} alt="Replace with response" className="arrow-icon"/></button>
+            </div> */}
+
             <div className="input-container">
                 {/* <button className="close-btn" onClick={() => setResponseText('')}><img src={X} alt="Close response" className="x-icon"/></button> */}
-                <button className="replace-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}><img src={ArrowRight} alt="Replace with response" className="arrow-icon"/></button>
+                <div className="input-header"> 
+                    <p className="input-header__text">{isLoading ? 'Thinking' : 'Buddy'}</p>
+                    <div className="button-container">
+                        <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                        </button>
+                        <button className="flat-small-btn use-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-right arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+
+                    </div>
+                </div>
                 <TextareaAutosize
-                    className="text-input__textarea request-textarea" // Add class for response textarea
+                    className="text-input__textarea request-textarea"
                     value={responseText}
                     onChange={handleResponseChange}
                     placeholder="Buddy will type here..."

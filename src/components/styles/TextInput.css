@@ -1,7 +1,7 @@
 .text-input {
     position: relative;
-    width: 70%;
-
+    width: 80%;
+    margin-top: 1.5em;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -9,12 +9,36 @@
     gap: 1em;
 }
 
+.button-container {
+    display: flex;
+    gap: 1em;
+}
+
+.input-header {
+    /* border: 1px solid red; */
+    position: absolute;
+    top: -3em;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    /* justify-content: baseline; */
+    width: 100%;
+}
+
+.input-header__text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #eee;
+    opacity: .8;
+}
+
 .input-container {
     position: relative;
     border: 1px solid #444;
     width: 100%;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 500;
     background-color: transparent;
     resize: none;
@@ -22,42 +46,36 @@
     z-index: 1;
     padding: 10px;
     line-height: 1;
-    /* overflow: hidden; */
+    margin-top: .5em;
     min-height: 20px;
     white-space: pre-wrap;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
 }
 
-.close-btn {
-    position: absolute;
-    top: -2.5em;
-    right: 0em;
-    padding: 4px 6px;
-    border: none;
-    color: #eee;
-    cursor: pointer;
-    font-size: .7em;
-    font-weight: bold;
-    background-color: #ff3f5c;
-    border-radius: 50%;
-}
-
-.replace-btn {
-    position: absolute;
-    top: -2.5em;
-    right: 2.9em;
-    padding: 4px 6px;
-    border: none;
-    color: #eee;
-    cursor: pointer;
-    font-size: .7em;
-    font-weight: bold;
-    background-color: #77d970;
-    border-radius: 50%;
+.input-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
 }
 
 .arrow-icon {
+    width: 1.2em;
+    height: 1.2em;
+    color: #eee;
+}
+
+.feather {
+    color: #fff;
+}
+
+.feather:hover {
+    color: #222;
+}
+
+.refresh-icon {
     width: 1.2em;
     height: 1.2em;
 }
@@ -68,7 +86,7 @@
 }
   
 .text-input__textarea {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-family: 'Montserrat', sans-serif;
     width: 100%;
     color: #eee;
@@ -116,10 +134,6 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
-.synonym-box-outer {
-
-}
-
 .synonym-box {
     padding: 5px;
     background-color: #333;
@@ -150,16 +164,52 @@
     background-color: #61965d;
 }
 
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 50%;
+    }
+}
+
+.input-container.shrink {
+    width: 50%;
+    animation: shrink 0.5s forwards;
+    transition: width 0.5s ease-in-out;
+}
+
+.input-container.slide-in {
+    width: 50%;
+    animation: slide-in 0.5s forwards;
+}
+
+
 @media (max-width: 768px) {
     .text-input {
-        width: 85%;
-        /* max-width: 90%; */
-        margin-top: -1.5em;
+        width: 100%;
         flex-direction: column;
-        margin-left: -1em;
+        align-items: center;
+        margin-top: -.1em;
+    }
+
+    .input-header {
+        width: 100%;
     }
 
     .input-container {
+        width: 90%;
         font-size: 1em;
         padding: 8px;
         line-height: 1;
@@ -168,17 +218,51 @@
     .suggestion {
         font-size: 1.2em;
         margin-left: 2px;
-    }
-
-    .close-btn {
-        top: -2.8em;
-    }
-    
-    .replace-btn {
-        top: -2.8em;
+        margin-top: 0px;
     }
 
     .input-container {
-        margin-top: 1.8em;
+        margin-top: 2.2em;
+    }
+
+    .text-input {
+        flex-direction: column-reverse;
+    }
+
+    .input-container.shrink {
+        width: 90%;
+        animation: none;
+    }
+
+    .input-container.slide-in {
+        width: 90%;
+        animation: none;
+        margin-top: 1.5em;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .input-container {
+        border: 1px solid #ccc;
+    }
+
+    .text-input__textarea {
+        color: #222;
+    }
+
+    .input-header__text {
+        color: #222;
+    }
+
+    .suggestion {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .synonym-text {
+        color: #222;
+    }
+
+    .feather {
+        color: #222;
     }
 }

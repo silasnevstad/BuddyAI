@@ -1,5 +1,5 @@
 .header-nav-container {
-    margin: 2em;
+    margin: 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -10,5 +10,11 @@
     .header-nav-container {
         gap: 1em;
         margin: 1em;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .header-nav-container {
+        color: #333;
     }
 }

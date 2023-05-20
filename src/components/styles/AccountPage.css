@@ -1,0 +1,159 @@
+.account-page {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.account-page-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    /* justify-content: space-between; */
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.account-page-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.account-page-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+}
+
+.account-page-header-icon {
+    width: 4rem;
+    height: 5rem;
+    margin-left: 1rem;
+    transform: rotate(20deg);
+}
+
+.account-page-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: .3rem;
+}
+
+.header-nickname {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.header-email {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    margin-top: -.1rem;
+    color: #ff3f5c;
+}
+
+.account-page-subheader {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.profile-details {
+    font-size: 1.2rem;
+    font-weight: medium;
+    color: #999;
+}
+
+.profile-text {
+    font-size: 1.2rem;
+    font-weight: medium;
+    color: #fff;
+    margin-bottom: 1rem;
+    margin-top: -.5rem;
+}
+
+.select-language {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 1.2rem;
+    font-weight: medium;
+    color: #fff;
+    background-color: #333;
+    border-radius: 5px;
+    border: 1px solid #666;
+    padding: 10px;
+    margin-bottom: 1rem;
+    width: 200px;
+}
+
+.select-language:focus {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .account-page {
+        width: 90%;
+        margin-top: -2rem;
+    }
+
+    .account-page-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 0rem;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .account-page {
+    }
+
+    .account-page-header-icon {
+        filter: invert(1);
+    }
+
+    .account-page-header-right {
+        color: #000;
+    }
+
+    .account-page-subheader {
+        color: #000;
+    }
+
+    .header-email {
+        color: #ff3f5c;
+    }
+
+    .profile-details {
+        color: #999;
+    }
+
+    .profile-text {
+        color: #000;
+    }
+
+    .select-language {
+        color: #000;
+        background-color: #fff;
+    }
+
+    .select-language:focus {
+        outline: none;
+    }
+
+    .select-language option {
+        color: #000;
+    }
+
+    .select-language {
+        color: #000;
+        background-color: #fff;
+    }
+}
