@@ -12,7 +12,7 @@ const firebaseConfig = {
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-console.log(firebaseConfig);
+// console.log(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -122,7 +122,7 @@ async function createNewDoc(userId, initialContent = '') {
         title: '',
         content: initialContent
     });
-    console.log("New document created with ID: ", docRef.id);
+    // console.log("New document created with ID: ", docRef.id);
     return docRef.id;
 }
 // async function addNewDocument(userId, id) {

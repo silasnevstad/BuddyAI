@@ -23,13 +23,11 @@ function App() {
         // User is signed in
         currentUser = user;
         setUserId(user.uid);
-        console.log("User signed in: ", user.uid);
       
       } else {
         // User is signed out
         currentUser = null;
         setUserId('');
-        console.log("User signed out");
       }
     });
   }, []);
@@ -39,11 +37,8 @@ function App() {
       return;
     }
 
-    console.log("Fetching documents for user: ", userId);
-
     const fetchDocuments = async () => {
       getUserDocs(userId).then(documentList => {
-        console.log("Documents: ", documentList);
         setDocuments(documentList);
       });
     };

@@ -114,7 +114,6 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     
         setIsLoading(true);
         aiComplete2(debouncedInput, style, prompt, abortController.signal).then(res => {
-            console.log(res);
             if (res) {
                 setResponseText(res.text);
             }

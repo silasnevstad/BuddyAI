@@ -94,7 +94,7 @@ const Api = () => {
             });
             return response.data.choices[0].message.content;
         } catch (error) {
-            console.error("Error in askGPT:", error);
+            // console.error("Error in askGPT:", error);
             throw error;
         }
     }
