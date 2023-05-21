@@ -6,7 +6,7 @@ import Api from './Api';
 import { AbortContext } from './AbortContext';
 
 const InputButtons = ({ text, responseText, setText, setResponseText, isLoading, setIsLoading, style, prompt }) => {
-    const { formalizeText, niceifyText, autoText } = Api();
+    const { formalizeText, niceifyText, askText } = Api();
     const { resetAbortController } = useContext(AbortContext);
 
     const handleClear = () => {
@@ -38,7 +38,7 @@ const InputButtons = ({ text, responseText, setText, setResponseText, isLoading,
         if (isLoading || !text) return;
         resetAbortController();
         setIsLoading(true);
-        autoText(text, style).then((data) => {
+        askText(text, style).then((data) => {
             setResponseText(data);
             setIsLoading(false);
         });
