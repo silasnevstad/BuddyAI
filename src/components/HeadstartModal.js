@@ -5,44 +5,6 @@ import Api from './Api';
 import Loader from './Loader';
 
 const HeadstartModal = ({ open, close, text, setText }) => {
-    const placeholders = [
-        'Essay about bitcoin',
-        'Poem about the ocean',
-        'Story about a dog',
-        'Email in Tarantino style',
-        'Letter to future self',
-        'Tree\'s monologue',
-        'Time machine user manual',
-        'Argument between raindrops',
-        'Mystery in a library',
-        'Email to a teacher',
-        'Martian\'s first speech on Earth',
-        'AI\'s societal impacts essay',
-        'Spring beauty song',
-        'Letter to a character',
-        'Quantum mechanics for kids',
-        'Santa’s elf job application',
-        'Advice for writer\'s block',
-        'Cat and mouse dialogue',
-        'Detective story in ancient Rome',
-        'Script about a singing robot',
-        'Restaurant review',
-        'Letter to future you',
-        'New fairytale creation',
-        'Broccoli comedy routine',
-        'Climate change & polar bears',
-        'Sonnet about the moon',
-        'Alien’s guide to humans',
-        'Pet’s view of a famous figure',
-        'Magical potion recipe',
-        'Space exploration essay',
-        'Intergalactic peace treaty',
-        'News from a parallel universe',
-        'Autobiography of a pencil',
-        'Villain’s apology letter',
-        'Trip to Earth\'s center',
-    ];
-
     const [prompt, setPrompt] = useState('');
     const [headstart, setHeadstart] = useState('');
     const [placeholder, setPlaceholder] = useState('');
@@ -54,6 +16,43 @@ const HeadstartModal = ({ open, close, text, setText }) => {
     const { askText } = Api();
 
     useEffect(() => {
+        const placeholders = [
+            'Essay about bitcoin',
+            'Poem about the ocean',
+            'Story about a dog',
+            'Email in Tarantino style',
+            'Letter to future self',
+            'Tree\'s monologue',
+            'Time machine user manual',
+            'Argument between raindrops',
+            'Mystery in a library',
+            'Email to a teacher',
+            'Martian\'s first speech on Earth',
+            'AI\'s societal impacts essay',
+            'Spring beauty song',
+            'Letter to a character',
+            'Quantum mechanics for kids',
+            'Santa’s elf job application',
+            'Advice for writer\'s block',
+            'Cat and mouse dialogue',
+            'Detective story in ancient Rome',
+            'Script about a singing robot',
+            'Restaurant review',
+            'Letter to future you',
+            'New fairytale creation',
+            'Broccoli comedy routine',
+            'Climate change & polar bears',
+            'Sonnet about the moon',
+            'Alien’s guide to humans',
+            'Pet’s view of a famous figure',
+            'Magical potion recipe',
+            'Space exploration essay',
+            'Intergalactic peace treaty',
+            'News from a parallel universe',
+            'Autobiography of a pencil',
+            'Villain’s apology letter',
+            'Trip to Earth\'s center',
+        ];
         let timeout;
         if (isWaiting) {
             timeout = setTimeout(() => {
@@ -85,7 +84,7 @@ const HeadstartModal = ({ open, close, text, setText }) => {
         }
 
         return () => clearTimeout(timeout);
-    }, [charIndex, placeholderIndex, placeholders, isTyping, isWaiting]);
+    }, [charIndex, placeholderIndex, isTyping, isWaiting]);
 
     const handleAsk = async () => {
         setLoading(true);

@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
-import ArrowRight from './images/arrow-right.svg';
-import X from './images/x.svg';
-import Refresh from './images/rotate-cw.svg';
 import { AbortContext } from './AbortContext';
 
 const TextInput = ({ text, responseText, setText, setResponseText, style, prompt, isLoading, setIsLoading }) => {
@@ -117,7 +114,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
             }
         });
 
-    }, [debouncedInput, aiComplete, style, prompt]);
+    }, [debouncedInput, aiComplete, style, prompt, isLoading, abortController.signal]);
 
     return (
         <div className="text-input">
