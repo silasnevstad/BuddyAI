@@ -8,7 +8,7 @@ import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import { createNewDoc, deleteUserDoc } from '../components/firebase';
 
-function DocumentPage({ userId, documents, setDocuments, setCurrentDocument, loggedIn }) {
+function DocumentPage({ userId, documents, setDocuments, setCurrentDocument }) {
     const addDocument = async () => {
         const docId = await createNewDoc(userId);
         console.log(docId);
@@ -23,8 +23,8 @@ function DocumentPage({ userId, documents, setDocuments, setCurrentDocument, log
         <Background>
             <div className="App">
                 <header className="App-header">
-                    <Title />
-                    <HeaderNav currentPage={'/'} loggedIn={loggedIn} />
+                    <Title loggedIn={userId !== ''} />
+                    <HeaderNav currentPage={'/'} loggedIn={userId !== ''} />
                 </header>
                 <main className="App-main">
                     <DocumentGrid documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} addDocument={addDocument} deleteDocument={deleteDocument} />

@@ -46,7 +46,7 @@ const SignUpButton = ({ isLoading, handleSignUp}) => {
     );
 };       
 
-function SignUpPage({ setUserId, setLoggedIn }) {
+function SignUpPage({ setUserId }) {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [error, setError] = useState('');
@@ -81,7 +81,6 @@ function SignUpPage({ setUserId, setLoggedIn }) {
         if (response.success) {
             window.location.href = '/';
             setUserId(response.user.uid);
-            setLoggedIn(true);
         } else {
             setIsError(true);
             setError(firebaseCodeToMessage(response.error.code));

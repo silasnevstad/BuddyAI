@@ -34,7 +34,7 @@ const LoginButton = ({ isLoading, handleSignIn }) => {
     );
 };       
 
-function LoginPage({ setUserId, setLoggedIn }) {
+function LoginPage({ setUserId }) {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [error, setError] = useState('');
@@ -50,7 +50,6 @@ function LoginPage({ setUserId, setLoggedIn }) {
         } else {
             window.location.href = '/';
             setUserId(response.user.uid);
-            setLoggedIn(true);
         }
         setIsLoading(false);
     };

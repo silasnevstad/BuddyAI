@@ -11,7 +11,7 @@ const HelpPage = ({ loggedIn }) => {
         <Background>
             <div className="App">
                 <header className="App-header">
-                    <Title />
+                    <Title loggedIn={loggedIn} />
                     <span style={{marginRight: "10px"}}><HeaderNav currentPage={"/help"} loggedIn={loggedIn}/></span>
                 </header>
                 <main className="App-main">

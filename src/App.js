@@ -14,19 +14,15 @@ function App() {
   const [documents, setDocuments] = useState([]);
   const [currentDocument, setCurrentDocument] = useState(0);
   const [userId, setUserId] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
-  let currentUser = null;
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User is signed in
-        currentUser = user;
         setUserId(user.uid);
       
       } else {
         // User is signed out
-        currentUser = null;
         setUserId('');
       }
     });
@@ -48,13 +44,13 @@ function App() {
   return (
       <Router>
         <Routes>
-          <Route path="/" element={<DocumentPage userId={userId} documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} loggedIn={userId !== ''} />} />
+          <Route path="/" element={<DocumentPage userId={userId} documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} />} />
           <Route path="/home" element={<HomePage userId={userId}  documents={documents} setDocuments={setDocuments}  currentDocument={currentDocument} />} />
           <Route path="/account" element={<AccountPage userId={userId} loggedIn={userId !== ''} />} />
           <Route path="/help" element={<HelpPage loggedIn={userId !== ''} />} />
           <Route path="/api" element={<ApiPage userId={userId} />} />
-          <Route path="/signup" element={<SignUpPage setUserId={setUserId} setLoggedIn={setLoggedIn}  />} />
-          <Route path="/login" element={<LoginPage setUserId={setUserId} setLoggedIn={setLoggedIn} />} />
+          <Route path="/signup" element={<SignUpPage setUserId={setUserId}  />} />
+          <Route path="/login" element={<LoginPage setUserId={setUserId} />} />
         </Routes>
     </Router>
   );
