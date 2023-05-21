@@ -82,6 +82,10 @@
     color: #222;
 }
 
+.flat-small-btn:hover .feather {
+    color: #222;
+}
+
 .close-btn:hover {
     background-color: #ff3f5c;
 }

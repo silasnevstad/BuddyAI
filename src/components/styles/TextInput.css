@@ -61,30 +61,14 @@
     gap: 1em;
 }
 
-.arrow-icon {
-    width: 1.2em;
-    height: 1.2em;
-    color: #eee;
-}
-
 .feather {
-    color: #fff;
+    color: #ddd;
 }
 
 .feather:hover {
     color: #222;
 }
 
-.refresh-icon {
-    width: 1.2em;
-    height: 1.2em;
-}
-
-.x-icon {
-    width: 1.2em;
-    height: 1.2em;
-}
-  
 .text-input__textarea {
     font-size: 1.1em;
     font-family: 'Montserrat', sans-serif;

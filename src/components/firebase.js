@@ -71,6 +71,36 @@ async function getUserData(uid) {
     }
 }
 
+// a function for adding an api key to a user's account
+async function addApiKey(uid, apiKey) {
+    if (!uid || !apiKey) {
+        return { success: false, error: 'missing-fields' };
+    }
+    const userDocRef = doc(db, `users/${uid}`);
+    return updateDoc(userDocRef, {
+        apiKey: apiKey
+    }).then(() => {
+        return { success: true };
+    }).catch((error) => {
+        const errorCode = error.code;
+        return { success: false, error: errorCode };
+    });
+}
+
+// a function for retrieving an api key from a user's account
+async function getApiKey(uid) {
+    if (!uid) {
+        return { success: false, error: 'missing-fields' };
+    }
+    const userDocRef = doc(db, `users/${uid}`);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+        return userDoc.data().apiKey;
+    } else {
+        return { success: false, error: 'user-not-found' };
+    }
+}
+
 // A function for retrieving all a user's documents and returning them as a list.
 async function getUserDocs(userId) {
     if (!userId) {
@@ -153,4 +183,4 @@ async function createNewDoc(userId, initialContent = '') {
 // }
 
 
-export { signUp, signIn, signOut, createNewDoc, getUserData, getUserDocs, updateUserDoc, deleteUserDoc, auth, onAuthStateChanged };
+export { signUp, signIn, signOut, createNewDoc, getUserData, getUserDocs, addApiKey, getApiKey, updateUserDoc, deleteUserDoc, auth, onAuthStateChanged };

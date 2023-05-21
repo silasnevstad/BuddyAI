@@ -2,6 +2,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 const Api = () => {
     const BASE_URL = 'https://buddyai.herokuapp.com/';
+    const PUBLIC_BASE_URL = 'https://apibuddy.herokuapp.com/v1/';
     const adminKey = process.env.REACT_APP_BUDDYAI_ADMIN_KEY;
     const configuration = new Configuration({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
     const openai = new OpenAIApi(configuration);
@@ -115,7 +116,7 @@ const Api = () => {
     }
 
     async function createAPIKey() {
-        const response = await fetch(`${BASE_URL}v1/create_api_key`, {
+        const response = await fetch(`${PUBLIC_BASE_URL}create_api_key`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

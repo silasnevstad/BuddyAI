@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 import '../components/styles/ApiPage.css'
 import Background from '../components/Background';
@@ -8,11 +8,13 @@ import Footer from '../components/Footer';
 import ApiEndpoint from '../components/ApiEndpoint';
 import Api from '../components/Api';
 import LockIcon from '../components/images/lock.svg';
+import { addApiKey, getApiKey } from '../components/firebase';
 
 const ApiPage = ({ userId }) => {
     const [apiKey, setApiKey] = useState('');
     const [showKey, setShowKey] = useState(true);
     const [showPythonCode, setShowPythonCode] = useState(false);
+    const [copyStatus, setCopyStatus] = useState('');
     const { createAPIKey } = Api();
     const endpoints = [
         {
@@ -57,6 +59,17 @@ const ApiPage = ({ userId }) => {
         }
     ];
 
+    //  check if user has api key when page loads (only if logged in)
+    useEffect(() => {
+        if (userId !== '') {
+            getApiKey(userId).then((key) => {
+                if (key !== '') {
+                    setApiKey(key);
+                }
+            });
+        }
+    }, [userId]);
+
     const handleCreateAPIKey = async () => {
         if (apiKey !== '') {
             return;
@@ -65,13 +78,24 @@ const ApiPage = ({ userId }) => {
             window.location.href = '/signup';
             return;
         }
-        const response = await createAPIKey();
-        setApiKey(response.api_key);
+        const createResponse = await createAPIKey();
+        setApiKey(createResponse.api_key);
+        addApiKey(userId, createResponse.api_key);
     }
 
     const handleCopyToClipboard = () => {
         navigator.clipboard.writeText(apiKey);
+        setCopyStatus('Copied!');
     }
+    
+    useEffect(() => {
+        if (copyStatus === 'Copied!') {
+            const timer = setTimeout(() => {
+                setCopyStatus('');
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [copyStatus]);
 
     return (
         <Background>
@@ -85,8 +109,14 @@ const ApiPage = ({ userId }) => {
                     <p className="api-description">The Buddy API provides text completion suggestions and text refinements. The API is currently in <span className="semibold green">beta</span> and is subject to change.</p>
                     <div className="api-info-container">
                         <p className="api-info" onClick={() => setShowKey(!showKey)}><span className="semibold green">Status:</span> <span className="semibold green">Online</span></p>
-                        <p className="api-info"><span className="semibold green">Base URL</span> buddyai.herokuapp.com </p>
-                        {apiKey ? <p className="api-info" onClick={handleCopyToClipboard}><span className="semibold green">API Key</span> {showKey ? apiKey : '•'.repeat(apiKey.length)}</p> 
+                        <p className="api-info"><span className="semibold green">Base URL</span> apibuddy.herokuapp.com </p>
+                        {apiKey ? 
+                            <p className="api-info" onClick={handleCopyToClipboard} style={{cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px'}}>
+                                <span className="semibold green">API Key</span> 
+                                {showKey ? apiKey : '•'.repeat(apiKey.length)} 
+                                {!copyStatus && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLineCap="round" strokeLineJoin="round" className="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>}
+                                {copyStatus && <p className="copy-status">{copyStatus}</p>}
+                            </p>
                             : (
                                 <button className="api-info-button" onClick={handleCreateAPIKey}>Authorize <img src={LockIcon} alt="lock icon" className="lock-icon" /></button>
                             )
