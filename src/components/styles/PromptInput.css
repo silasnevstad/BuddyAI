@@ -37,3 +37,10 @@
         align-items: flex-start;
     }
 }
+
+@media (prefers-color-scheme: light) {
+    .prompt-input {
+        color: #222;
+        border: 1px solid #ccc;
+    }
+}

@@ -210,7 +210,7 @@
     }
 
     .text-input {
-        flex-direction: column-reverse;
+        /* flex-direction: column-reverse; */
     }
 
     .input-container.shrink {
@@ -248,5 +248,13 @@
 
     .feather {
         color: #222;
+    }
+
+    .synonym-box {
+        background-color: #ccc;
+    }
+
+    .synonym-text {
+        background-color: #ddd;
     }
 }

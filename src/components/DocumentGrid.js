@@ -13,7 +13,7 @@ const CreateDocumentButton = ({ handleClick }) => {
     );
 }
 
-const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocument }) => {
+const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocument, searchTerm }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -23,6 +23,16 @@ const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocumen
 
     const handleMouseLeave = () => {
         setIsHovered(false);
+    };
+
+    const highlightSearchTerm = (text) => {
+        if (!searchTerm) return text;
+        let parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+        return <span> { parts.map((part, i) => 
+            <span key={i} className={part.toLowerCase() === searchTerm.toLowerCase() ? 'highlight' : ''}>
+                { part }
+            </span>)
+        } </span>;
     };
 
     return (
@@ -55,10 +65,10 @@ const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocumen
                     <Link to={`/home`} className="document-item-link" onClick={() => setCurrentDocument(index)}>
                         <div className="document-item">
                             <div className="document-item-title">
-                                {document.title ? document.title : "Untitled"}
+                                {document.title ? highlightSearchTerm(document.title) : "Untitled"}
                             </div>
                             <div className="document-item-content">
-                                {document.content ? document.content : "No content"}
+                                {document.content ? highlightSearchTerm(document.content) : "No content"}
                             </div>
                         </div>
                     </Link>
@@ -69,7 +79,7 @@ const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocumen
     );
 };
 
-const DocumentGrid = ({ documents, setDocuments, setCurrentDocument, addDocument, deleteDocument }) => {
+const DocumentGrid = ({ searchTerm, documents, setDocuments, setCurrentDocument, addDocument, deleteDocument }) => {
     const handleNewDocument = async () => {
         const docId = await addDocument();
 
@@ -88,14 +98,20 @@ const DocumentGrid = ({ documents, setDocuments, setCurrentDocument, addDocument
         setDocuments(newDocuments);
     }
 
+    const filteredDocuments = documents.filter((doc) => {
+        return (doc.title.toLowerCase().includes(searchTerm.toLowerCase()) || doc.content.toLowerCase().includes(searchTerm.toLowerCase()));
+    });
+
     return (
         <div className="document-grid-container">
             <div className="document-grid">
-                <Link to="/home" className="document-item-link">
-                    <CreateDocumentButton handleClick={handleNewDocument} />
-                </Link>
-                {documents.map((document, index) => {
-                    return <DocumentItem key={document.id} document={document} index={index} setCurrentDocument={setCurrentDocument} handleDeleteDocument={handleDeleteDocument} />
+                {searchTerm === "" && (
+                    <Link to="/home" className="document-item-link">
+                        <CreateDocumentButton handleClick={handleNewDocument} />
+                    </Link>
+                )}
+                {filteredDocuments.map((document, index) => {
+                    return <DocumentItem key={document.id} document={document} index={index} setCurrentDocument={setCurrentDocument} handleDeleteDocument={handleDeleteDocument} searchTerm={searchTerm} />
                 })}
             </div>
         </div>

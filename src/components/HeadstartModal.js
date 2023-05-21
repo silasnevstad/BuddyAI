@@ -131,7 +131,7 @@ const HeadstartModal = ({ open, close, text, setText }) => {
                                 <>
                                     <TextareaAutosize className="headstart-modal-content-textbox" placeholder={placeholder} rows="1" value={prompt} onChange={e => setPrompt(e.target.value)} maxRows={10}></TextareaAutosize>
                                     <div className="headstart-content-editor-buttons">
-                                        <button className="full-button" onClick={handleAsk}>Ask</button>
+                                        <button className="full-button" onClick={handleAsk}>Go</button>
                                         <button className="full-button" onClick={close}>Cancel</button>
                                     </div>
                                 </>

@@ -13,6 +13,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     const [selectedWord, setSelectedWord] = useState('');
     const [synonyms, setSynonyms] = useState([]);
     const textareaRef = useRef(null);
+    const touchTimerRef = useRef(null);
     const placeholder = 'Type here...';
     const { aiComplete, synonym } = Api();
     const { abortController } = useContext(AbortContext);
@@ -43,6 +44,15 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
         const syns = await synonym(clickedWord);
         if (!syns) return;
         setSynonyms(syns.synonyms);
+    };
+    
+    // New methods
+    const handleTouchStart = (e) => {
+        touchTimerRef.current = setTimeout(() => handleDoubleClick(e), 500);  // 500ms delay for long press
+    };
+    
+    const handleTouchEnd = () => {
+        clearTimeout(touchTimerRef.current);
     };
     
     const replaceWithSynonym = (synonym) => {
@@ -121,10 +131,12 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
             <div className={`input-container ${responseText ? 'shrink' : ''}`}>
                 <TextareaAutosize
                     ref={textareaRef}
-                    className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`} // Add class for request textarea
+                    className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`}
                     onKeyDown={handleKeyDown}
                     onChange={handleChange}
                     onDoubleClick={handleDoubleClick}
+                    onTouchStart={handleTouchStart}   // Add touch start event
+                    onTouchEnd={handleTouchEnd}       // Add touch end event
                     value={input}
                     placeholder={placeholder}
                     minRows={1}

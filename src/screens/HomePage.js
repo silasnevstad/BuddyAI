@@ -23,7 +23,8 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
   const [style, setStyle] = useState(2);
   const [modalOpen, setModalOpen] = useState(false);
   const [prompt, setPrompt] = useState('');
-  const [sideView, setSideView] = useState(false);
+  // randomly choose whether to show the side view or not
+  const [sideView, setSideView] = useState(Math.random() < 0.5);
   const [isModified, setIsModified] = useState(false);
   const abortControllerRef = useRef(new AbortController());
 
