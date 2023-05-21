@@ -26,6 +26,7 @@ const Api = () => {
             if (error.name === 'AbortError') {
                 // console.log('Fetch aborted'); // ignore the error or handle it in a way that doesn't affect UX
             } else {
+                console.log(error);
                 throw error; // re-throw the error if it's not an AbortError
             }
         }
@@ -86,7 +87,7 @@ const Api = () => {
         return data;
     }
 
-    const autoText = async (text) => {
+    const askText = async (text) => {
         if (!text) return '';
         try {
             const response = await openai.createChatCompletion({
@@ -127,7 +128,7 @@ const Api = () => {
         return data;
     }
 
-    return { aiComplete, aiComplete2, formalizeText, niceifyText, autoText, synonym, createAPIKey };
+    return { aiComplete, aiComplete2, formalizeText, niceifyText, askText, synonym, createAPIKey };
 };
 
 export default Api;

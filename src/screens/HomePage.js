@@ -3,7 +3,7 @@ import '../App.css';
 import '../components/styles/HomePage.css';
 import PromptInput from '../components/PromptInput';
 import ViewSwitcher from '../components/ViewSwitcher';
-import SourceButton from '../components/SourceButton';
+import HeadstartModal from '../components/HeadstartModal';
 import TextInput from '../components/TextInput';
 import SideTextInput from '../components/SideTextInput';
 import InputButtons from '../components/InputButtons';
@@ -14,7 +14,6 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import { AbortContext } from '../components/AbortContext';
 import { updateUserDoc } from '../components/firebase';
-// import StyleSlider from '../components/Slider';
 
 function HomePage({ userId, documents, setDocuments, currentDocument }) {
   const [text, setText] = useState('');
@@ -22,6 +21,7 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [style, setStyle] = useState(2);
+  const [modalOpen, setModalOpen] = useState(false);
   const [prompt, setPrompt] = useState('');
   const [sideView, setSideView] = useState(false);
   const [isModified, setIsModified] = useState(false);
@@ -50,9 +50,8 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
       updateUserDoc(userId, docId, updatedContent)
           .then(response => {
               if (response.success) {
-                  console.log(`Document ${docId} updated successfully.`);
               } else {
-                  console.error(`Failed to update document ${docId}: `, response.error);
+                  // console.error(`Failed to update document ${docId}: `, response.error);
               }
           });
   
@@ -101,16 +100,15 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
           </header>
           <main className="App-main">
             <div className="custom-container">
-                  <PromptInput prompt={prompt} setPrompt={setPrompt} />
-                  <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} />
-                  {/* <SourceButton /> */}
-              {/* <StyleSlider value={style} setValue={setStyle} /> */}
+              <button className="transparent-button save-button" onClick={() => setModalOpen(true)}>Headstart</button>
+              <PromptInput prompt={prompt} setPrompt={setPrompt} />
+              <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} />
             </div>
             {sideView ? 
               <SideTextInput text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} style={style} prompt={prompt} isLoading={isLoading} setIsLoading={setIsLoading} />
             : <TextInput text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} style={style} prompt={prompt} isLoading={isLoading} setIsLoading={setIsLoading} />}
-            {/* <TextInput text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} style={style} prompt={prompt} isLoading={isLoading} /> */}
             {!sideView && <InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} prompt={prompt} />}
+            <HeadstartModal open={modalOpen} close={() => setModalOpen(false)} text={text} setText={setText} />
           </main>
           <footer className="App-footer">
             {isLoading && <Loader />}

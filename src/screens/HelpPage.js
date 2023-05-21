@@ -18,7 +18,7 @@ const HelpPage = ({ loggedIn }) => {
                     <div className="help-container">
                         <div className="help-inner-container">
                             <h1 className="help-header-text"> Welcome to Buddy! </h1>
-                            <p className="help-header-desc-text"> Buddy is your friendly writing assistant tool, here to make your text generation experience a breeze. Whether you're crafting an essay, composing an email, or brainstorming ideas, our AI-powered auto-complete feature is here to help you find the perfect words and phrases effortlessly. </p>
+                            <p className="help-header-desc-text"> Buddy is your friendly writing assistant tool, here to make your text generation experience a breeze. Whether you're crafting an essay, composing an email, or brainstorming ideas, our AI-powered buddy is here to help you find the perfect words and phrases effortlessly. </p>
                             <p className="help-header-desc-text"> Buddy is an AI co-writer that interacts with you in two modes: Side by Side and Regular. Side by Side lets you type with Buddy restructuring and enhancing your text in real-time. Regular mode shows suggestions as you type, which you can accept by clicking or using the tab key. Both modes provide access to synonyms, and Regular mode adds tools for text formalization, enhancement, and AI content queries.</p>
                             
                             <h2 className="help-sub-header-text"> Getting Started </h2>
@@ -38,7 +38,7 @@ const HelpPage = ({ loggedIn }) => {
                                 <li className="help-list-item step3">
                                     <div className="help-step">3</div>
                                     <div className="help-instruction">
-                                        Buddy monitors your input as you type. After a 750ms debounce effect, if no typing is detected, Buddy uses its AI to suggest the best continuation for your text.
+                                        Buddy monitors your input as you type. After a 750ms debounce effect, if no typing is detected, Buddy uses its AI to suggest the best continuation or version for your text.
                                     </div>
                                 </li>
                                 <li className="help-list-item step4">

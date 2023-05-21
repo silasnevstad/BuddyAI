@@ -77,7 +77,7 @@
     background-color: transparent;
     border: none;
     resize: none;
-    overflow: hidden;
+    overflow: auto; /* Changed from 'hidden' to 'auto' */
 }
 
 .request-textarea {

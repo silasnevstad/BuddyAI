@@ -162,7 +162,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
                             <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                             </button>
-                            <button className="flat-small-btn use-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}> 
+                            <button className="flat-small-btn green-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}> 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-right arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             </button>
 
