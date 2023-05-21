@@ -45,9 +45,7 @@ const Welcome = ({ userId, onSearch }) => {
                     <SearchBar onSearch={onSearch} />
                 </div>
                 <h3>
-                    Writing Buddy is a simple app that helps you write. You can use it to
-                    write a book, a blog post, or anything else you can think of. Just
-                    start typing!
+                    Documents
                 </h3>
             </div>
         )
