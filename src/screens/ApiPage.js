@@ -9,7 +9,7 @@ import ApiEndpoint from '../components/ApiEndpoint';
 import Api from '../components/Api';
 import LockIcon from '../components/images/lock.svg';
 
-const ApiPage = ({ loggedIn }) => {
+const ApiPage = ({ userId }) => {
     const [apiKey, setApiKey] = useState('');
     const [showKey, setShowKey] = useState(true);
     const [showPythonCode, setShowPythonCode] = useState(false);
@@ -58,8 +58,19 @@ const ApiPage = ({ loggedIn }) => {
     ];
 
     const handleCreateAPIKey = async () => {
+        if (apiKey !== '') {
+            return;
+        }
+        if (userId === '') {
+            window.location.href = '/signup';
+            return;
+        }
         const response = await createAPIKey();
         setApiKey(response.api_key);
+    }
+
+    const handleCopyToClipboard = () => {
+        navigator.clipboard.writeText(apiKey);
     }
 
     return (
@@ -67,7 +78,7 @@ const ApiPage = ({ loggedIn }) => {
             <div className="App">
                 <header className="App-header">
                     <Title />
-                    <HeaderNav currentPage={'/api'} loggedIn={loggedIn} />
+                    <HeaderNav currentPage={'/api'} loggedIn={userId !== ''} />
                 </header>
                 <main className="App-main">
                     <h1 className="api-title">API</h1>
@@ -75,7 +86,7 @@ const ApiPage = ({ loggedIn }) => {
                     <div className="api-info-container">
                         <p className="api-info" onClick={() => setShowKey(!showKey)}><span className="semibold green">Status:</span> <span className="semibold green">Online</span></p>
                         <p className="api-info"><span className="semibold green">Base URL</span> buddyai.herokuapp.com </p>
-                        {apiKey ? <p className="api-info"><span className="semibold green">API Key</span> {showKey ? apiKey : '•'.repeat(apiKey.length)}</p> 
+                        {apiKey ? <p className="api-info" onClick={handleCopyToClipboard}><span className="semibold green">API Key</span> {showKey ? apiKey : '•'.repeat(apiKey.length)}</p> 
                             : (
                                 <button className="api-info-button" onClick={handleCreateAPIKey}>Authorize <img src={LockIcon} alt="lock icon" className="lock-icon" /></button>
                             )

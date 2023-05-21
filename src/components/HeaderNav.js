@@ -2,7 +2,7 @@ import './styles/HeaderNav.css';
 import './styles/Buttons.css'
 import { Link } from 'react-router-dom';
 
-const HeaderNav = ({ currentPage, handleSave, loggedIn }) => {
+const HeaderNav = ({ handleSave, loggedIn }) => {
     return (
         <div className="header-nav-container" onClick={handleSave}>
             {/* {currentPage !== "/help" && <Link to="/help" className="transparent-button">Help</Link>}
@@ -14,7 +14,7 @@ const HeaderNav = ({ currentPage, handleSave, loggedIn }) => {
             <Link to="/" className="transparent-button">Home</Link>
             {/* {currentPage !== "/home" && <Link to="/home" className="transparent-button">Home</Link>} */}
             {/* {currentPage !== "/side" && <Link to="/side" className="transparent-button">Side</Link>} */}
-            {window.innerWidth > 600  && !loggedIn && <Link to="/signup" className="full-button">Sign Up</Link>}
+            {window.innerWidth > 600 && !loggedIn && <Link to="/signup" className="full-button">Sign Up</Link>}
         </div>
     );
 }

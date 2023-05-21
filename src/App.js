@@ -52,7 +52,7 @@ function App() {
           <Route path="/home" element={<HomePage userId={userId}  documents={documents} setDocuments={setDocuments}  currentDocument={currentDocument} />} />
           <Route path="/account" element={<AccountPage userId={userId} loggedIn={userId !== ''} />} />
           <Route path="/help" element={<HelpPage loggedIn={userId !== ''} />} />
-          <Route path="/api" element={<ApiPage loggedIn={userId !== ''} />} />
+          <Route path="/api" element={<ApiPage userId={userId} />} />
           <Route path="/signup" element={<SignUpPage setUserId={setUserId} setLoggedIn={setLoggedIn}  />} />
           <Route path="/login" element={<LoginPage setUserId={setUserId} setLoggedIn={setLoggedIn} />} />
         </Routes>

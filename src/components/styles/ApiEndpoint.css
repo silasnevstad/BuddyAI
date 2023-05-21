@@ -8,6 +8,10 @@
     border-radius: 15px;
 }
 
+.api-endpoint-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+}
+
 .api-endpoint-container.open {
     border: 1px solid #777;
 }
@@ -59,7 +63,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 2em;
-    /* Add these lines */
     width: 100%;
     padding: 0.1em;
 }
@@ -226,6 +229,10 @@
 @media (prefers-color-scheme: light) {
     .api-endpoint-container {
         background-color: #fff;
+    }
+
+    .api-endpoint-container:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     }
 
     .api-endpoint-container-closed {

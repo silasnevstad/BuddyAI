@@ -96,8 +96,8 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
       <Background>
         <div className="App">
           <header className="App-header">
-            <Title />
-            <HeaderNav currentPage={'/home'} handleSave={handleSave} loggedIn={userId !== ''} />
+            <Title hideMobile={true} />
+            <HeaderNav handleSave={handleSave} loggedIn={userId !== ''} />
           </header>
           <main className="App-main">
             <div className="custom-container">

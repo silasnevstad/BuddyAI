@@ -64,6 +64,10 @@
     gap: .2em;
 }
 
+.api-info-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+}
+
 .lock-icon {
     font-size: 1.5em;
     /* padding-top: .2em; */
@@ -116,6 +120,11 @@
         background-color: #77d970;
         color: #222;
     }
+
+    .api-info-button:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+    
 
     .api-info {
         color: #222;

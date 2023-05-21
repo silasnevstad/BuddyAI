@@ -139,6 +139,10 @@
         background-color: #fff;
     }
 
+    .document-item-container:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
     .document-item-close-icon {
         color: #333;
         background-color: #ff3f5c;
