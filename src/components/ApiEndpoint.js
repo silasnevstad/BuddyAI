@@ -17,7 +17,7 @@ const CodeContainer = ({ data, value }) => {
             <p className="api-endpoint-code">{'{'}</p>
             {Object.entries(data).map(([key, val], index) => (
                 <p key={index} className="api-endpoint-code indent">
-                    <>{`"${key}": `} <span className={typeof val === 'string' ? "string" : "number"}>{key === 'style' ? value : key === 'synonyms' ? `["${val}"]` : `"${val}"`}</span>{index !== Object.entries(data).length - 1 ? ',' : ''}</>
+                    <>{`"${key}": `} <span className={typeof value === 'string' ? "string" : "number"}>{key === 'style' ? value : key === 'synonyms' ? `["${val}"]` : key === 'sources' ? `[${val}]` : `"${val}"`}</span>{index !== Object.entries(data).length - 1 ? ',' : ''}</>
                 </p>
             ))}
             <p className="api-endpoint-code">{'}'}</p>

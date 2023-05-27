@@ -22,7 +22,7 @@ const ApiPage = ({ userId }) => {
             description: 'Returns text completion suggestions based on the text provided.',
             inputDescription: 'Receives a JSON with text, prompt, and sources keys. Sources and prompt are both optional. The prompt guides AI text generation.',
             outputDescription: 'Returns a suggestion object.',
-            example: '{text: "The quick brown fox jumps over the ", prompt: ""}',
+            example: '{text: "The quick brown fox jumps over the ", prompt: "", sources: []}',
             response: '{suggestion:\'lazy dog\'}'
         },
         {
@@ -159,7 +159,7 @@ const ApiPage = ({ userId }) => {
                             <p className="api-endpoint-code double-indent">{'response = requests.post(url, headers=headers, json=data)'}</p>
                             <p className="api-endpoint-code double-indent">{'return response.json()'}</p>
                             <p className="api-endpoint-code">{''}</p>
-                            <p className="api-endpoint-code indent">{'def formalize_text(self, text, prompt, style):'}</p>
+                            <p className="api-endpoint-code indent">{'def formalize_text(self, text, sources, style):'}</p>
                             <p className="api-endpoint-code double-indent">{'url = f\'{self.base_url}/formalize\''}</p>
                             <p className="api-endpoint-code double-indent">{'headers = {'}</p>
                             <p className="api-endpoint-code triple-indent">{'\'Content-Type\': \'application/json\''}</p>
@@ -168,7 +168,7 @@ const ApiPage = ({ userId }) => {
                             <p className="api-endpoint-code double-indent">{'data = {'}</p>
                             <p className="api-endpoint-code triple-indent">{'\'text\': text'}</p>
                             <p className="api-endpoint-code triple-indent">{'\'style\': style'}</p>
-                            <p className="api-endpoint-code triple-indent">{'\'prompt\': prompt'}</p>
+                            <p className="api-endpoint-code triple-indent">{'\'sources\': sources'}</p>
                             <p className="api-endpoint-code double-indent">{'}'}</p>
                             <p className="api-endpoint-code double-indent">{'response = requests.post(url, headers=headers, json=data)'}</p>
                             <p className="api-endpoint-code double-indent">{'return response.json()'}</p>
