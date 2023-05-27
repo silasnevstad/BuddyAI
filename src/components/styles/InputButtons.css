@@ -24,23 +24,32 @@
 }
 
 .input-buttons-text {
-    font-size: 1em;
+    font-size: 1.2em;
     /* border: 1px solid blue; */
 }
 
 @media (max-width: 768px) {
     .input-buttons-container {
         width: 95%;
-        margin: 1em 0;
-        flex-direction: column;
-        /* align-items: flex-start; */
+        margin: 0em;
+        flex-direction: row;
+        gap: .1em;
+    }
+
+    .input-buttons-container-right {
+        /* width: 100%; */
+        text-align: right;
     }
 
     .input-buttons-text {
-        font-size: .8em;
+        font-size: 1em;
+        justify-content: flex-end;
     }
 
     .input-buttons-container-left {
         gap: .5em;
+        margin: 0em;
+        width: 100%;
+        align-items: flex-start;
     }
 }

@@ -5,8 +5,9 @@
 
 .document-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-gap: 2rem;
+    margin: 0 auto;
 }
 
 .document-item-container {
@@ -17,6 +18,7 @@
     padding: 1rem;
     background-color: #1a1a1a;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 .document-item-container-editing {
@@ -46,11 +48,12 @@
 
 .document-item-link {
     text-decoration: none;
-    
+    /* border: 1px solid red; */
 }
 
 .document-item-link:hover {
     text-decoration: none;
+    /* border: 1px solid #555; */
 }
 
 .document-item {
@@ -103,6 +106,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
 }
 
 .document-item-delete {
@@ -166,7 +170,7 @@
 @media (max-width: 768px) {
     .document-grid-container {
         width: 90%;
-        /* margin-left: -.1rem; */
+        margin-left: 0.5rem;
         /* border: 1px solid #666; */
     }
 

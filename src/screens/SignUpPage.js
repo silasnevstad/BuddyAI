@@ -101,7 +101,7 @@ function SignUpPage({ setUserId }) {
                         <InputFields nickname={nickname} setNickname={setNickname} email={email} setEmail={setEmail} password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} />
                         <div className="signup-buttons">
                             <SignUpButton isLoading={isLoading} handleSignUp={handleSignUp} />
-                            <button className="transparent-button" onClick={() => window.location.href = '/login'}>
+                            <button className="transparent-button login-btn" onClick={() => window.location.href = '/login'}>
                                 Already have an account?
                             </button>
                         </div>

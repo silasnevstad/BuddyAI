@@ -1,6 +1,5 @@
 import './styles/SourceModal.css'
-import React, { useState, useEffect } from 'react';
-import { updateUserDoc } from '../components/firebase';
+import React, { useState } from 'react';
 
 const SourceModal = ({ open, close, sources, addSource, deleteSource }) => {
     const [addingSource, setAddingSource] = useState(false);
@@ -22,6 +21,7 @@ const SourceModal = ({ open, close, sources, addSource, deleteSource }) => {
     }
 
     const handleAddSource = () => {
+        if (title === '' || text === '') return;
         const newSource = {
             title: title,
             text: text

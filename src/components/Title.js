@@ -12,7 +12,9 @@ const Title = ({ hideMobile, loggedIn }) => {
                 {/* <img src={BuddyLogo} alt="Buddy Logo" className="buddy-logo" /> */}
                 {window.innerWidth > 600 ? 
                     <Link to="/" className="transparent-button-large">{title.toLocaleUpperCase()}</Link> 
-                :   !loggedIn && <Link to="/signup" className="full-button" style={hideMobile ? {display: "none"} : {}}>Sign Up</Link>}
+                :   !loggedIn ? <Link to="/signup" className="full-button" style={hideMobile ? {display: "none"} : {}}>Sign Up</Link> 
+                    : <Link to="/" className="transparent-button-large">{title.toLocaleUpperCase()}</Link>
+                }
             </div>
         </div>
     );

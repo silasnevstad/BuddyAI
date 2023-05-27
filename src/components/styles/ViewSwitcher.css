@@ -57,7 +57,7 @@
     .view-switcher-container {
         position: absolute;
         top: .6em;
-        left: .6em;
+        right: .6em;
         height: 30px;
         width: 80px;
         padding: 5px 10px;

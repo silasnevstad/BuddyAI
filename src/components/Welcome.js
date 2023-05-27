@@ -1,6 +1,6 @@
 import './styles/Welcome.css'
-import React, { useState, useEffect} from 'react'
-import { getUserData } from './firebase'
+import React, { useState } from 'react'
+// import { getUserData } from './firebase'
 
 const SearchBar = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -27,21 +27,22 @@ const SearchBar = ({ onSearch }) => {
   
 
 const Welcome = ({ userId, onSearch, editing, setEditing }) => {
-    const [nickName, setNickName] = useState('')
+    // const [nickName, setNickName] = useState('')
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await getUserData(userId)
-            setNickName(data.nickname)
-        }
-        fetchData()
-    }, [userId])
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const data = await getUserData(userId)
+    //         setNickName(data.nickname)
+    //     }
+    //     fetchData()
+    // }, [userId])
 
     if (userId === '') {
         return (
             <div className="welcome">
-                <div className="welcome-top-bar">
-                    <h1 className="welcome-header">Welcome to Writing Buddy!</h1>
+                <div className="welcome-bar-top">
+                    {/* <h1 className="welcome-header">Welcome to Writing Buddy!</h1> */}
+                    <h1 className="welcome-header"></h1>
                     <SearchBar onSearch={onSearch} />
                 </div>
                 <h3>
@@ -54,7 +55,7 @@ const Welcome = ({ userId, onSearch, editing, setEditing }) => {
     return (
         <div className="welcome">
             <div className="welcome-bar-top">
-                <h1 className="welcome-header">Welcome back, {nickName}!</h1>
+                {/* <h1 className="welcome-header">Welcome back, {nickName}!</h1> */}
                 <h1 className="welcome-header"></h1>
                 <SearchBar onSearch={onSearch} />
             </div>

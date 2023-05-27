@@ -78,30 +78,13 @@
 }
 
 .flat-small-btn:hover {
-    transform: scale(1.03);
+    transform: scale(1.15);
     color: #222;
-}
-
-.flat-small-btn:hover .feather {
-    color: #222;
-}
-
-.close-btn:hover {
-    background-color: #ff3f5c;
-}
-
-
-.refresh-btn:hover {
-    background-color: #f5c542;
 }
 
 .green-btn {
     top: 0em;
     right: 5.9em;
-}
-
-.green-btn:hover {
-    background-color: #77d970;
 }
 
 @media screen and (max-width: 768px) {

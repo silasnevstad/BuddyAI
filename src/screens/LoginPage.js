@@ -67,7 +67,7 @@ function LoginPage({ setUserId }) {
                         <InputFields email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
                         <div className="signup-buttons">
                             <LoginButton isLoading={isLoading} handleSignIn={handleSignIn} />
-                            <button className="transparent-button" onClick={() => window.location.href = '/signup'}>
+                            <button className="transparent-button login-btn" onClick={() => window.location.href = '/signup'}>
                                 Don't have an account?
                             </button>
                         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
@@ -10,6 +10,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
     const [aiSuggestion, setAiSuggestion] = useState('');
     const [selectedWord, setSelectedWord] = useState('');
     const [synonyms, setSynonyms] = useState([]);
+    const [definitions, setDefinitions] = useState([]);
     const textareaRef = useRef(null);
     const touchTimerRef = useRef(null);
     const placeholder = 'Type here...';
@@ -33,14 +34,40 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
     };
 
     const handleDoubleClick = async (e) => {
+        console.log('double click');
         const text = e.target.value;
         const start = e.target.selectionStart;
         const end = e.target.selectionEnd;
         const clickedWord = text.substring(start, end);
         setSelectedWord({word: clickedWord, start, end});
+    
+        // Fetch synonyms
         const syns = await synonym(clickedWord);
         if (!syns) return;
         setSynonyms(syns.synonyms);
+        
+        // Fetch definitions
+        const url = `https://wordsapiv1.p.rapidapi.com/words/${clickedWord}/definitions`;
+        const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '77edf1b16amsh759d0470e8eda0ap16065djsn7244fa304a7a',
+            'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+        }
+        };
+
+        fetch(url, options)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // data.results contains the definitions
+            const definitions = data.definitions.map(result => result.definition);
+            setDefinitions(definitions);
+            console.log(definitions);
+        })
+        .catch(err => {
+            console.log(err);
+        });
     };
     
     // New methods
@@ -74,11 +101,14 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
     };
 
     const handleRefresh = () => {
+        setAiSuggestion('');
+        setIsLoading(true);
         aiComplete(input, sources, prompt, signal).then(res => {
             if (res) {
                 setAiSuggestion(res.suggestion);
             }
         });
+        setIsLoading(false);
     };
 
     
@@ -124,13 +154,18 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
             setIsLoading(false);
         });
 
-    }, [debouncedInput, aiComplete, prompt, isLoading]);
+    }, [debouncedInput, aiComplete, prompt, isLoading, signal, sources, setIsLoading]);
 
     return (
         <div className="text-input">
             <div className={`input-container ${responseText ? 'shrink' : ''}`}>
                 <div className="input-header"> 
                     <p className="input-header__text">{isLoading ? 'Thinking' : ''}</p>
+                    <div className="button-container">
+                        <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}} disabled={isLoading}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                        </button>
+                    </div>
                 </div>
                 <TextareaAutosize
                     ref={textareaRef}
@@ -156,10 +191,14 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
                     </div>
                 )}
                 {synonyms.length > 0 && (
-                    <div className="synonym-box">
-                        {synonyms.map(syn => (
-                            <div key={syn} onClick={() => replaceWithSynonym(syn)} className="synonym-text">{syn}</div>
-                        ))}
+                    <div className="definition-box">
+                        <p className="definition-text">{definitions[0]}</p>
+                        <div className="synonym-box">
+                            
+                            {synonyms.map(syn => (
+                                <div key={syn} onClick={() => replaceWithSynonym(syn)} className="synonym-text">{syn}</div>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>

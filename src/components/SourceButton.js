@@ -8,7 +8,7 @@ const SourceButton = ({ setSourceModalOpen }) => {
 
     return (
         <div className="source-button-container">
-            <button className="full-button" onClick={handleClick}>Sources</button>
+            <button className={window.innerWidth > 768 ? "full-button" : "transparent-button"} onClick={handleClick}>Sources</button>
         </div>
     );
 }

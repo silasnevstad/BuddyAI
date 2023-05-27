@@ -16,10 +16,11 @@
     color: #ddd;
     overflow: hidden;
     resize: none;
-    width: 30vw;
+    width: 40vw;
     height: 1.1em;
     line-height: 1.2;
     font-family: 'Montserrat', sans-serif;
+    white-space: nowrap; /* add this line */
 }
 
 .prompt-input:focus {

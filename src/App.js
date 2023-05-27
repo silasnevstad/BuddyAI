@@ -20,7 +20,6 @@ function App() {
       if (user) {
         // User is signed in
         setUserId(user.uid);
-      
       } else {
         // User is signed out
         setUserId('');
@@ -28,16 +27,17 @@ function App() {
     });
   }, []);
 
+  const fetchDocuments = async () => {
+    getUserDocs(userId).then(documentList => {
+      setDocuments(documentList);
+    });
+  };
+
   useEffect(() => {
     if (userId === '') {
       return;
     }
 
-    const fetchDocuments = async () => {
-      getUserDocs(userId).then(documentList => {
-        setDocuments(documentList);
-      });
-    };
     fetchDocuments();
   }, [userId]);
 
@@ -51,6 +51,7 @@ function App() {
           <Route path="/api" element={<ApiPage userId={userId} />} />
           <Route path="/signup" element={<SignUpPage setUserId={setUserId}  />} />
           <Route path="/login" element={<LoginPage setUserId={setUserId} />} />
+          <Route path="/docs/:id" element={<HomePage userId={userId} documents={documents} setDocuments={setDocuments} fetchDocuments={fetchDocuments} />} />
         </Routes>
     </Router>
   );

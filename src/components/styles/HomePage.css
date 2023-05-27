@@ -18,8 +18,13 @@
     .custom-container {
         /* width: 90%; */
         flex-direction: column;
-        align-items: center;
-        margin-top: 1em;
-        margin-bottom: 0;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: -.1em;
+        margin-left: 1em;
+    }
+
+    .custom-button-container {
+        margin-top: -1em;
     }
 }

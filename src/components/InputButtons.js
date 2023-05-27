@@ -47,10 +47,10 @@ const InputButtons = ({ text, responseText, setText, setResponseText, isLoading,
     return (
         <div className="input-buttons-container">
             <div className="input-buttons-container-left">
-                <button className="transparent-button" onClick={handleClear} disabled={isLoading}>Clear</button>
-                <button className="transparent-button" onClick={handleFormalize} disabled={isLoading}>Formalize</button>
-                <button className="transparent-button" onClick={handleNiceify} disabled={isLoading}>Improve</button>
-                <button className="transparent-button" onClick={handleAsk} disabled={isLoading}>Ask Buddy</button>
+                {window.innerWidth > 600 && <button className="transparent-button" onClick={handleClear} disabled={isLoading}>Clear</button>}
+                <button className="transparent-button input-buttons-text" onClick={handleFormalize} disabled={isLoading}>Formalize</button>
+                <button className="transparent-button input-buttons-text" onClick={handleNiceify} disabled={isLoading}>Improve</button>
+                <button className="transparent-button input-buttons-text" onClick={handleAsk} disabled={isLoading}>Ask Buddy</button>
                 {/* show a synoym button if its on mobile */}
                 {/* {window.innerWidth <= 768 && <button className="transparent-button" onClick={() => { }} disabled={isLoading}>Synonym</button>} */}
             </div>

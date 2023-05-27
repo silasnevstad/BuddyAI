@@ -11,7 +11,13 @@
 
 .button-container {
     display: flex;
-    gap: 1em;
+    gap: .1em;
+    margin-bottom: -1em;
+}
+
+.button-container .refresh-btn {
+    background-color: transparent;
+    border: none;
 }
 
 .input-header {
@@ -69,6 +75,39 @@
     color: #222;
 }
 
+.feather-rotate-cw {
+    width: 1.4em;
+    height: 1.4em;
+}
+
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+  
+
+.feather-rotate-cw:hover {
+    color: #f5c542;
+    animation: rotate .4s ease-in-out;
+}
+
+.feather-rotate-cw:active {
+    color: #f5c542;
+    animation: rotate .4s ease-in-out;
+}
+
+.feather-x:hover {
+    color: #f54242;
+}
+
+.feather-arrow-right:hover {
+    color: #77d970;
+}
+
 .text-input__textarea {
     font-size: 1.1em;
     font-family: 'Montserrat', sans-serif;
@@ -118,11 +157,32 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
-.synonym-box {
+.definition-text {
+    font-size: 1.1em;
+    color: #eee;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #444;
+}
+
+.definition-box {
     padding: 5px;
     background-color: #333;
     border-radius: 5px;
     margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.synonym-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -185,7 +245,7 @@
         width: 100%;
         flex-direction: column;
         align-items: center;
-        margin-top: -.1em;
+        margin-top: -1.5em;
     }
 
     .input-header {
@@ -207,10 +267,6 @@
 
     .input-container {
         margin-top: 2.2em;
-    }
-
-    .text-input {
-        /* flex-direction: column-reverse; */
     }
 
     .input-container.shrink {
@@ -250,8 +306,13 @@
         color: #222;
     }
 
-    .synonym-box {
+    .definition-box {
         background-color: #ccc;
+    }
+
+    .definition-text {
+        background-color: #ddd;
+        color: #222;
     }
 
     .synonym-text {

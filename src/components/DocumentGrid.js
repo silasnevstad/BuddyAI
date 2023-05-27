@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './styles/DocumentGrid.css'
 import { Link } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocumen
         >
             {editing && <button className="document-item-delete" onClick={() => handleDeleteDocument(index)}>x</button>}
             <div className="document-item-inner">
-                <Link to={`/home`} className="document-item-link" onClick={() => setCurrentDocument(index)}>
+                <Link to={`/docs/${document.id}`} className="document-item-link">
                     <div className="document-item">
                         <div className="document-item-title">
                             {document.title ? highlightSearchTerm(document.title) : "Untitled"}

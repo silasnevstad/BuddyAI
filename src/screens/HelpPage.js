@@ -53,7 +53,7 @@ const HelpPage = ({ loggedIn }) => {
                         <h2 className="help-sub-header-text-center"> Plus, more features! </h2>
                         <div className="help-grid">
                             {/* <div className="help-grid-item"> <span className="help-grid-item-bold"> 🖌️ </span>  Choose from five different writing styles, ranging from formal to casual, using the slider provided. </div> */}
-                            <div className="help-grid-item"> <span className="help-grid-item-bold"> 🔄 </span>  Synonym, double click on any word and buddy will suggest synonyms for you. </div>
+                            <div className="help-grid-item"> <span className="help-grid-item-bold"> 🔄 </span>  Synonym, double click on any word and buddy will suggest synonyms for you (on mobile hold any word). </div>
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> 🖋️ </span> Formalize text, instantly transform your writing into a more formal style, ideal for professional or academic purposes. </div>
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> ✨ </span> Improve the overall quality of your text with grammar corrections, enhanced sentence structures, and a polished touch. </div>
                             <div className="help-grid-item"> <span className="help-grid-item-bold"> ❓ </span> Quickly get answers to your queries or seek clarification on any aspect of your writing. </div>
