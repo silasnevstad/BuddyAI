@@ -6,9 +6,9 @@ const Api = () => {
     const adminKey = process.env.REACT_APP_BUDDYAI_ADMIN_KEY;
     const configuration = new Configuration({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
     const openai = new OpenAIApi(configuration);
-    // const { abortController } = useContext(AbortContext);
 
-    const aiComplete = async (text, style, prompt, signal) => {
+    const aiComplete = async (text, sources, prompt, signal) => {
+        console.log('aiComplete', text, sources, prompt, signal);
         if (!text) return '';
         let data;
         try {
@@ -18,8 +18,8 @@ const Api = () => {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${adminKey}`,
                 },
-                body: JSON.stringify({ text, style, prompt }),
-                signal: signal
+                body: JSON.stringify({ text, sources, prompt }),
+                signal: signal,
             });
             data = await response.json();
         } catch (error) {
@@ -33,7 +33,8 @@ const Api = () => {
         return data;
     }
 
-    const aiComplete2 = async (text, style, prompt, signal) => {
+    const aiComplete2 = async (text, sources, prompt, signal) => {
+        console.log('aiComplete2', text, sources, prompt, signal);
         if (!text) return '';
         let data;
         try {
@@ -43,8 +44,8 @@ const Api = () => {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${adminKey}`,
                 },
-                body: JSON.stringify({ text, style, prompt }),
-                signal: signal
+                body: JSON.stringify({ text, sources, prompt }),
+                signal: signal,
             });
             data = await response.json();
         } catch (error) {
@@ -57,7 +58,7 @@ const Api = () => {
         return data;
     }
 
-    const formalizeText = async (text, style, prompt) => {
+    const formalizeText = async (text, sources, prompt) => {
         if (!text) return '';
         const response = await fetch(`${BASE_URL}v1/formalize`, {
             method: 'POST',
@@ -65,14 +66,14 @@ const Api = () => {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${adminKey}`,
             },
-            body: JSON.stringify({ text, style, prompt }),
+            body: JSON.stringify({ text, sources, prompt }),
             // signal: abortController.signal
         });
         const data = await response.json();
         return data;
     }
 
-    const niceifyText = async (text, style, prompt) => {
+    const niceifyText = async (text, sources, prompt) => {
         if (!text) return '';
         const response = await fetch(`${BASE_URL}v1/improve`, {
             method: 'POST',
@@ -80,7 +81,7 @@ const Api = () => {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${adminKey}`,
             },
-            body: JSON.stringify({ text, style, prompt }),
+            body: JSON.stringify({ text, sources, prompt }),
             // signal: abortController.signal
         });
         const data = await response.json();
@@ -96,7 +97,6 @@ const Api = () => {
             });
             return response.data.choices[0].message.content;
         } catch (error) {
-            // console.error("Error in askGPT:", error);
             throw error;
         }
     }
@@ -110,7 +110,6 @@ const Api = () => {
                 "Authorization": `Bearer ${adminKey}`,
             },
             body: JSON.stringify({ word }),
-            // signal: abortController.signal
         });
         const data = await response.json();
         return data;

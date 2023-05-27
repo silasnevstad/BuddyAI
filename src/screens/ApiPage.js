@@ -20,30 +20,30 @@ const ApiPage = ({ userId }) => {
         {
             endpoint: '/v1/buddy',
             description: 'Returns text completion suggestions based on the text provided.',
-            inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
+            inputDescription: 'Receives a JSON with text, prompt, and sources keys. Sources and prompt are both optional. The prompt guides AI text generation.',
             outputDescription: 'Returns a suggestion object.',
-            example: '{text: "The quick brown fox jumps over the ", prompt: "", style: 2}',
+            example: '{text: "The quick brown fox jumps over the ", prompt: ""}',
             response: '{suggestion:\'lazy dog\'}'
         },
         {
             endpoint: '/v1/formalize',
             description: 'Returns a more formal version of the text provided.',
-            inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
+            inputDescription: 'Receives a JSON with text, prompt, and sources keys. Sources and prompt are both optional. The prompt guides AI text generation.',
             outputDescription: 'Returns a response object with the formalized text.',
-            example: '{text: "string", prompt: "string", style: 2}',
+            example: '{text: "string", prompt: "string"}',
             response: '{response: \'string\' }'
         },
         {
             endpoint: '/v1/improve',
             description: 'Returns a more refined version of the text provided.',
-            inputDescription: 'Receives a JSON with text, prompt, and style. Prompt guides AI text generation direction and style defines its writing style (0-4). Both are optional.',
+            inputDescription: 'Receives a JSON with text, prompt, and sources keys. Sources and prompt are both optional. The prompt guides AI text generation.',
             outputDescription: 'Returns a response object with the refined text.',
-            example: '{text: "string", prompt: "string", style: 2}',
+            example: '{text: "string", prompt: "string"}',
             response: '{response: \'string\'}'
         },
         {
             endpoint: '/v1/synonym',
-            description: 'Returns synonyms of the word provided.',
+            description: 'Returns synonyms of the given word.',
             inputDescription: 'Receives a JSON with a word key.',
             outputDescription: 'Returns a response object with the generated text.',
             example: '{word: \'string\'}',
@@ -52,9 +52,9 @@ const ApiPage = ({ userId }) => {
         {
             endpoint: '/v1/ask',
             description: 'Ask buddy a question and receive a response',
-            inputDescription: 'Receives a JSON with text and style for input text and writing style of response. Style (0-4), while optional, defines the response\'s style.',
+            inputDescription: 'Receives a JSON with only a text key. The text is the question you want to ask.',
             outputDescription: 'Returns a response object with the generated text.',
-            example: '{text: \'string\', style: 2}',
+            example: '{text: \'string\'}',
             response: '{response: \'string\'}'
         }
     ];
@@ -108,13 +108,13 @@ const ApiPage = ({ userId }) => {
                     <h1 className="api-title">API</h1>
                     <p className="api-description">The Buddy API provides text completion suggestions and text refinements. The API is currently in <span className="semibold green">beta</span> and is subject to change.</p>
                     <div className="api-info-container">
-                        <p className="api-info" onClick={() => setShowKey(!showKey)}><span className="semibold green">Status:</span> <span className="semibold green">Online</span></p>
+                        <p className="api-info"><span className="semibold green">Status:</span> <span className="semibold green">Online</span></p>
                         <p className="api-info"><span className="semibold green">Base URL</span> apibuddy.herokuapp.com </p>
                         {apiKey ? 
-                            <p className="api-info" onClick={handleCopyToClipboard} style={{cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px'}}>
+                            <p className="api-info" style={{cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px'}} onClick={() => setShowKey(!showKey)}>
                                 <span className="semibold green">API Key</span> 
                                 {showKey ? apiKey : '•'.repeat(apiKey.length)} 
-                                {!copyStatus && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>}
+                                {!copyStatus && <svg onClick={handleCopyToClipboard} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>}
                                 {copyStatus && <p className="copy-status">{copyStatus}</p>}
                             </p>
                             : (

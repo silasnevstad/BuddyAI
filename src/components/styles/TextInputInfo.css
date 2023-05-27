@@ -8,3 +8,9 @@
         width: 90%;
     }
 }
+
+@media (prefers-color-scheme: light) {
+    .text-input-info-text {
+        color: rgba(0, 0, 0, 0.5);
+    }
+}

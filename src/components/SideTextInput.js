@@ -4,10 +4,9 @@ import Api from './Api';
 import './styles/TextInput.css';
 import { AbortContext } from './AbortContext';
 
-const TextInput = ({ text, responseText, setText, setResponseText, style, prompt, isLoading, setIsLoading }) => {
+const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, isLoading, setIsLoading, signal, sources }) => {
     const [input, setInput] = useState(text);
     const lastRequestRef = useRef('');
-    const lastStyleRef = useRef('');
     const lastPromptRef = useRef('');
     const [aiSuggestion, setAiSuggestion] = useState('');
     const [selectedWord, setSelectedWord] = useState('');
@@ -15,7 +14,6 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     const textareaRef = useRef(null);
     const placeholder = 'Type here...';
     const { aiComplete2, synonym } = Api();
-    const { abortController } = useContext(AbortContext);
 
     useEffect(() => {
         setInput(text);
@@ -68,7 +66,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     
     const handleRefresh = () => {
         setIsLoading(true);
-        aiComplete2(debouncedInput, style, prompt, abortController.signal).then((res) => {
+        aiComplete2(debouncedInput, sources, prompt, signal).then((res) => {
             if (res) {
                 setAiSuggestion(res.text);
             }
@@ -100,18 +98,17 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
             setAiSuggestion('');
             return;
         }
-        if (debouncedInput === lastRequestRef.current && style === lastStyleRef.current && prompt === lastPromptRef.current) {
+        if (debouncedInput === lastRequestRef.current && prompt === lastPromptRef.current) {
             return;
         }
         if (isLoading) {
             return;
         }
         lastRequestRef.current = debouncedInput;
-        lastStyleRef.current = style;
         lastPromptRef.current = prompt;
     
         setIsLoading(true);
-        aiComplete2(debouncedInput, style, prompt, abortController.signal).then(res => {
+        aiComplete2(debouncedInput, sources, prompt, signal).then((res) => {
             if (res) {
                 setResponseText(res.text);
             }
@@ -119,7 +116,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
             setIsLoading(false);
         });
 
-    }, [debouncedInput, aiComplete2, style, prompt, setIsLoading, responseText, setResponseText, isLoading, abortController]);
+    }, [debouncedInput, aiComplete2, sources, prompt, setIsLoading, responseText, setResponseText, isLoading]);
 
     return (
         <div className="text-input">
@@ -178,4 +175,4 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     );
 };
 
-export default TextInput;
+export default SideTextInput;

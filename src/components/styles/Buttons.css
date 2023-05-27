@@ -32,14 +32,14 @@
     content: "";
     position: absolute;
     bottom: 0;
-    width: 0;
+    width: 0%;
     height: 2px;
-    background-color: #eee;
+    background-color: #77d970be;
     transition: width 0.3s ease-in-out;
 }
 
 .transparent-button:hover::before {
-    width: 90%;
+    width: 100%;
 }
 
 .full-button {

@@ -91,4 +91,12 @@
     right: 15%;
     animation-delay: .15s;
 }
-  
+
+@media (prefers-color-scheme: light) {
+    .circle {
+        background-color: #333;
+    }
+    .shadow {
+        background-color: rgba(0,0,0,0.0);
+    }
+}

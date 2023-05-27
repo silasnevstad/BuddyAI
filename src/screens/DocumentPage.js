@@ -11,6 +11,7 @@ import { createNewDoc, deleteUserDoc } from '../components/firebase';
 
 function DocumentPage({ userId, documents, setDocuments, setCurrentDocument }) {
     const [searchTerm, setSearchTerm] = useState("");
+    const [editing, setEditing] = useState(false);
 
     const addDocument = async () => {
         const docId = await createNewDoc(userId);
@@ -33,8 +34,8 @@ function DocumentPage({ userId, documents, setDocuments, setCurrentDocument }) {
                     <HeaderNav currentPage={'/'} loggedIn={userId !== ''} />
                 </header>
                 <main className="App-main">
-                    <Welcome userId={userId} onSearch={onSearch} />
-                    <DocumentGrid searchTerm={searchTerm} documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} addDocument={addDocument} deleteDocument={deleteDocument} />
+                    <Welcome userId={userId} onSearch={onSearch} editing={editing} setEditing={setEditing} />
+                    <DocumentGrid searchTerm={searchTerm} documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} addDocument={addDocument} deleteDocument={deleteDocument} editing={editing} />
                 </main>
                 <footer className="App-footer">
                     <Footer />

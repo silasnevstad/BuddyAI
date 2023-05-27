@@ -8,9 +8,15 @@
 }
 
 .input-buttons-container-left {
+    margin: 1em;
     display: flex;
     flex-direction: row;
-    gap: 1.5em;
+    align-items: center;
+    gap: 2em;
+}
+
+.input-buttons-container-left button:hover::before {
+    width: 85%;
 }
 
 .input-buttons-container-right {

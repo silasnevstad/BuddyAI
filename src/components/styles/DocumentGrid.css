@@ -17,7 +17,26 @@
     padding: 1rem;
     background-color: #1a1a1a;
     border-radius: 5px;
+}
+
+.document-item-container-editing {
+    animation: wiggle 1.3s ease-in-out infinite;
+    transform-origin: center;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    overflow: visible;
+}
+
+.document-item-inner {
     overflow: hidden;
+    padding-bottom: .8rem;
+    height: 100%;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-1deg); }
+    20%, 40%, 60%, 80% { transform: rotate(1deg); }
 }
 
 .document-item-container:hover {
@@ -27,6 +46,7 @@
 
 .document-item-link {
     text-decoration: none;
+    
 }
 
 .document-item-link:hover {
@@ -50,13 +70,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    /* gap: 1rem; */
-    /* border-radius: 4px; */
     color: #eee;
-}
-
-.document-item-center:hover {
-    border: 1px solid #555;
 }
 
 .document-item-bottom {
@@ -89,6 +103,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.document-item-delete {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0rem 0.6rem;
+    padding-bottom: 0.3rem;
+    border-radius: 50%;
+    background-color: #ff3f5c;
+    border: none;
+    color: #fff;
 }
 
 .document-item-title {
@@ -151,7 +179,7 @@
 
 @media (prefers-color-scheme: light) {
     .document-item-container {
-        background-color: #fff;
+        background-color: #e8e8e8;
     }
 
     .document-item-container:hover {

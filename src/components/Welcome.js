@@ -26,7 +26,7 @@ const SearchBar = ({ onSearch }) => {
 };
   
 
-const Welcome = ({ userId, onSearch }) => {
+const Welcome = ({ userId, onSearch, editing, setEditing }) => {
     const [nickName, setNickName] = useState('')
 
     useEffect(() => {
@@ -53,14 +53,17 @@ const Welcome = ({ userId, onSearch }) => {
 
     return (
         <div className="welcome">
-            <div className="welcome-top-bar">
+            <div className="welcome-bar">
                 <h1 className="welcome-header">Welcome back, {nickName}!</h1>
+                <h1 className="welcome-header"></h1>
                 <SearchBar onSearch={onSearch} />
             </div>
-            
-            <h3>
-                Recent Documents
-            </h3>
+            <div className="welcome-bar">
+                <h3>
+                    Recent Documents
+                </h3>
+                <button className="transparent-button" style={{ opacity: 0.7 }} onClick={() => setEditing(!editing)}>{editing ? 'Done' : 'Edit'}</button>
+            </div>
         </div>
     )
 }

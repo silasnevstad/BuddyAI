@@ -228,7 +228,7 @@
 
 @media (prefers-color-scheme: light) {
     .api-endpoint-container {
-        background-color: #fff;
+        background-color: #efefef;
     }
 
     .api-endpoint-container:hover {
@@ -236,7 +236,7 @@
     }
 
     .api-endpoint-container-closed {
-        background-color: #fff;
+        background-color: #efefef;
     }
 
     .api-endpoint-title {

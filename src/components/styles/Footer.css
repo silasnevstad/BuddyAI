@@ -5,3 +5,9 @@
     font-family: 'Montserrat', sans-serif;
     color: #eee;
 }
+
+@media (prefers-color-scheme: light) {
+    .footer-text {
+        color: #333;
+    }
+}

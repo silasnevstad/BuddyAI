@@ -9,7 +9,6 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    /* justify-content: space-between; */
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -56,7 +55,7 @@
     font-weight: bold;
     margin-bottom: 1.5rem;
     margin-top: -.1rem;
-    color: #ff3f5c;
+    color: #ff3f5c;     /* #77d970 */
 }
 
 .account-page-subheader {
@@ -112,9 +111,6 @@
 }
 
 @media (prefers-color-scheme: light) {
-    .account-page {
-    }
-
     .account-page-header-icon {
         filter: invert(1);
     }
@@ -128,7 +124,7 @@
     }
 
     .header-email {
-        color: #ff3f5c;
+        color: #77d970; /* #ff3f5c; */
     }
 
     .profile-details {

@@ -120,7 +120,8 @@ async function updateUserDoc(userId, docId, updatedContent) {
     const userDocRef = doc(db, `users/${userId}/docs/${docId}`);
     return updateDoc(userDocRef, {
         title: updatedContent.title,
-        content: updatedContent.content
+        content: updatedContent.content,
+        sources: updatedContent.sources
     }).then(() => {
         return { success: true };
     }).catch((error) => {
@@ -150,37 +151,11 @@ async function createNewDoc(userId, initialContent = '') {
     const userDocsCollection = collection(db, `users/${userId}/docs`);
     const docRef = await addDoc(userDocsCollection, {
         title: '',
-        content: initialContent
+        content: initialContent,
+        sources: []
     });
     // console.log("New document created with ID: ", docRef.id);
     return docRef.id;
 }
-// async function addNewDocument(userId, id) {
-//     return await addDoc(collection(db, 'users', userId, 'documents'), {
-//         id: id,
-//         title: '',
-//         content: '',
-//     }).then((docRef) => {
-//         return { success: true, docRef: docRef };
-//     }).catch((error) => {
-//         return { success: false, error: error };
-//     });
-// }
-
-// async function getUserDocuments(userId) {
-//     const userDocumentCollection = collection(db, 'users', userId, 'documents');
-//     const snapshot = await getDocs(userDocumentCollection);
-//     const documentList = [];
-
-//     snapshot.forEach(doc => {
-//         documentList.push({
-//             id: doc.id,
-//             ...doc.data()
-//         });
-//     });
-
-//     return documentList;
-// }
-
 
 export { signUp, signIn, signOut, createNewDoc, getUserData, getUserDocs, addApiKey, getApiKey, updateUserDoc, deleteUserDoc, auth, onAuthStateChanged };

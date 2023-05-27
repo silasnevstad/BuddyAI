@@ -5,10 +5,10 @@
     align-items: flex-start;
     justify-content: center;
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
-.welcome-top-bar {
+.welcome-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,10 +16,14 @@
     width: 100%;
 }
 
+.welcome-bar button:hover::before {
+    width: 75%;
+}
+
 .welcome-header {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: .1rem;
 }
 
 .search-bar {

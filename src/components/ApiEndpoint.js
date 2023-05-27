@@ -63,39 +63,7 @@ const ApiEndpoint = ({ endpoint, description, inputDescription, outputDescriptio
                             <CodeContainer data={parsedExample} value={value} />
                         </div>
                     }
-                    {/* table of text and style to explain them */}
-                    {/* explain the style, 1-5, 1 is casual and 5 is formal */}
-                    <SliderOpen value={value} setValue={setValue} />
-                    {/* <table className="api-endpoint-table">
-                        <thead>
-                            <tr>
-                                <th>Style</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Playful</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Relaxed</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Balanced</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Formal</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Academic</td>
-                            </tr>
-                        </tbody>
-                    </table> */}
+                    {/* <SliderOpen value={value} setValue={setValue} /> */}
                     <p className="api-endpoint-response"><span className="bold">Response</span></p>
                     <p className="api-endpoint-description"><span className="semibold green">200</span> {outputDescription}</p>
                     {parsedResponse &&

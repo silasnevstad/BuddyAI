@@ -7,6 +7,8 @@ import HeadstartModal from '../components/HeadstartModal';
 import TextInput from '../components/TextInput';
 import SideTextInput from '../components/SideTextInput';
 import InputButtons from '../components/InputButtons';
+import SourceButton from '../components/SourceButton';
+import SourceModal from '../components/SourceModal';
 import Background from '../components/Background';
 import Title from '../components/Title';
 import HeaderNav from '../components/HeaderNav';
@@ -18,12 +20,12 @@ import { updateUserDoc } from '../components/firebase';
 function HomePage({ userId, documents, setDocuments, currentDocument }) {
   const [text, setText] = useState('');
   const [responseText, setResponseText] = useState('');
+  const [sources, setSources] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [style, setStyle] = useState(2);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [headstartModalOpen, setHeadstartModalOpen] = useState(false);
+  const [sourceModalOpen, setSourceModalOpen] = useState(false);
   const [prompt, setPrompt] = useState('');
-  // randomly choose whether to show the side view or not
   const [sideView, setSideView] = useState(Math.random() < 0.5);
   const [isModified, setIsModified] = useState(false);
   const abortControllerRef = useRef(new AbortController());
@@ -32,27 +34,30 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
     if (documents.length > 0) {
       setText(documents[currentDocument].content);
       setPrompt(documents[currentDocument].title);
+      setSources(documents[currentDocument].sources || []);
     }
   }, [documents, currentDocument]);
 
   useEffect(() => {
     setIsModified(true);
-  }, [text, prompt]);
+  }, [text, prompt, documents]);
 
   const handleSave = () => {
     if (documents.length > 0 && isModified) {
       const docId = documents[currentDocument].id;
+      const sources = documents[currentDocument].sources || [];
       const updatedContent = {
-          id: docId, // Keep the id here
+          id: docId,
           title: prompt,
           content: text,
+          sources: sources
       };
   
       updateUserDoc(userId, docId, updatedContent)
           .then(response => {
               if (response.success) {
               } else {
-                  // console.error(`Failed to update document ${docId}: `, response.error);
+                console.error(`Failed to update document ${docId}: `, response.error);
               }
           });
   
@@ -64,6 +69,56 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
       setIsModified(false);
     }
   };
+
+  const addSource = (source) => {
+    console.log(source);
+    const docId = documents[currentDocument].id;
+    const sources = documents[currentDocument].sources || [];
+    const updatedContent = {
+        id: docId,
+        title: prompt,
+        content: text,
+        sources: [...sources, source]
+    };
+    
+    updateUserDoc(userId, docId, updatedContent)
+      .then(response => {
+        if (response.success) {
+        } else {
+          console.error(`Failed to update document ${docId}: `, response.error);
+        }
+    });
+
+    // Still update local state
+    const newDocuments = [...documents];
+    newDocuments[currentDocument] = updatedContent;
+    setDocuments(newDocuments);
+  };
+
+  const deleteSource = (source) => {
+    const docId = documents[currentDocument].id;
+    const sources = documents[currentDocument].sources || [];
+    const updatedContent = {
+      id: docId,
+      title: prompt,
+      content: text,
+      sources: sources.filter(s => s !== source)
+    };
+
+    updateUserDoc(userId, docId, updatedContent)
+      .then(response => {
+        if (response.success) {
+        } else {
+          console.error(`Failed to update document ${docId}: `, response.error);
+        }
+    });
+
+    // Still update local state
+    const newDocuments = [...documents];
+    newDocuments[currentDocument] = updatedContent;
+    setDocuments(newDocuments);
+  };
+
 
   // save document every 5 seconds
   useEffect(() => {
@@ -77,18 +132,16 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
 
     return () => clearInterval(interval);
   }, [documents, currentDocument, prompt, text, isModified]);
-
-  const handleViewSwitch = () => {
-    // abort any pending requests
-    abortControllerRef.current.abort();
-    abortControllerRef.current = new AbortController();
-    setSideView(!sideView);
-    setResponseText('');
-  };
   
   const resetAbortController = () => {
     abortControllerRef.current.abort();
     abortControllerRef.current = new AbortController();
+  };
+
+  const handleViewSwitch = () => {
+    resetAbortController();
+    setSideView(!sideView);
+    setResponseText('');
   };
 
   return (
@@ -101,15 +154,42 @@ function HomePage({ userId, documents, setDocuments, currentDocument }) {
           </header>
           <main className="App-main">
             <div className="custom-container">
-              <button className="transparent-button save-button" onClick={() => setModalOpen(true)}>Headstart</button>
-              <PromptInput prompt={prompt} setPrompt={setPrompt} />
-              <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} />
+              {/* <button className="transparent-button save-button" onClick={() => setModalOpen(true)}>Headstart</button> */}
+              {/* <div className="cus-container"> */}
+                <PromptInput prompt={prompt} setPrompt={setPrompt} />
+              {/* </div> */}
+              <div className="custom-button-container">
+                <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} />
+                <SourceButton setSourceModalOpen={setSourceModalOpen} />
+              </div>
             </div>
             {sideView ? 
-              <SideTextInput text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} style={style} prompt={prompt} isLoading={isLoading} setIsLoading={setIsLoading} />
-            : <TextInput text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} style={style} prompt={prompt} isLoading={isLoading} setIsLoading={setIsLoading} />}
-            {!sideView && <InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} style={style} prompt={prompt} />}
-            <HeadstartModal open={modalOpen} close={() => setModalOpen(false)} text={text} setText={setText} />
+              <SideTextInput 
+                text={text} 
+                responseText={responseText} 
+                setText={setText} 
+                setResponseText={setResponseText} 
+                prompt={prompt} 
+                isLoading={isLoading} 
+                setIsLoading={setIsLoading} 
+                signal={abortControllerRef.current.signal} 
+                sources={documents[currentDocument]?.sources || []} 
+              />
+            : <TextInput 
+                text={text}
+                responseText={responseText}
+                setText={setText}
+                setResponseText={setResponseText}
+                prompt={prompt}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                signal={abortControllerRef.current.signal}
+                sources={documents[currentDocument]?.sources || []} 
+              />
+            }
+            {!sideView && <InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} prompt={prompt} sources={documents[currentDocument]?.sources || []}  />}
+            <HeadstartModal open={headstartModalOpen} close={() => setHeadstartModalOpen(false)} text={text} setText={setText} />
+            <SourceModal open={sourceModalOpen} close={() => setSourceModalOpen(false)} sources={documents[currentDocument]?.sources || []}  addSource={addSource} deleteSource={deleteSource} />
           </main>
           <footer className="App-footer">
             {isLoading && <Loader />}

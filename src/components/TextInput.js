@@ -2,12 +2,10 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
-import { AbortContext } from './AbortContext';
 
-const TextInput = ({ text, responseText, setText, setResponseText, style, prompt, isLoading, setIsLoading }) => {
+const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoading, setIsLoading, signal, sources }) => {
     const [input, setInput] = useState(text);
     const lastRequestRef = useRef('');
-    const lastStyleRef = useRef('');
     const lastPromptRef = useRef('');
     const [aiSuggestion, setAiSuggestion] = useState('');
     const [selectedWord, setSelectedWord] = useState('');
@@ -16,7 +14,6 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     const touchTimerRef = useRef(null);
     const placeholder = 'Type here...';
     const { aiComplete, synonym } = Api();
-    const { abortController } = useContext(AbortContext);
 
     useEffect(() => {
         setInput(text);
@@ -77,7 +74,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
     };
 
     const handleRefresh = () => {
-        aiComplete(input, style, prompt, abortController.signal).then(res => {
+        aiComplete(input, sources, prompt, signal).then(res => {
             if (res) {
                 setAiSuggestion(res.suggestion);
             }
@@ -108,35 +105,41 @@ const TextInput = ({ text, responseText, setText, setResponseText, style, prompt
             setAiSuggestion('');
             return;
         }
-        if (debouncedInput === lastRequestRef.current && style === lastStyleRef.current && prompt === lastPromptRef.current) {
+        if (debouncedInput === lastRequestRef.current && prompt === lastPromptRef.current) {
             return;
         }
         if (isLoading) {
             return;
         }
         lastRequestRef.current = debouncedInput;
-        lastStyleRef.current = style;
         lastPromptRef.current = prompt;
-    
-        aiComplete(debouncedInput, style, prompt, abortController.signal).then(res => {
+        // resetAbortController();
+
+        setIsLoading(true);
+        aiComplete(debouncedInput, sources, prompt, signal).then(res => {
             if (res) {
                 setAiSuggestion(res.suggestion);
             }
+        }).finally(() => {
+            setIsLoading(false);
         });
 
-    }, [debouncedInput, aiComplete, style, prompt, isLoading, abortController.signal]);
+    }, [debouncedInput, aiComplete, prompt, isLoading]);
 
     return (
         <div className="text-input">
             <div className={`input-container ${responseText ? 'shrink' : ''}`}>
+                <div className="input-header"> 
+                    <p className="input-header__text">{isLoading ? 'Thinking' : ''}</p>
+                </div>
                 <TextareaAutosize
                     ref={textareaRef}
                     className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`}
                     onKeyDown={handleKeyDown}
                     onChange={handleChange}
                     onDoubleClick={handleDoubleClick}
-                    onTouchStart={handleTouchStart}   // Add touch start event
-                    onTouchEnd={handleTouchEnd}       // Add touch end event
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
                     value={input}
                     placeholder={placeholder}
                     minRows={1}
