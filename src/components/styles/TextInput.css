@@ -9,34 +9,9 @@
     gap: 1em;
 }
 
-.button-container {
-    display: flex;
-    gap: .1em;
-    margin-bottom: -1em;
-}
-
 .button-container .refresh-btn {
     background-color: transparent;
     border: none;
-}
-
-.input-header {
-    /* border: 1px solid red; */
-    position: absolute;
-    top: -3em;
-    left: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    /* justify-content: baseline; */
-    width: 100%;
-}
-
-.input-header__text {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #eee;
-    opacity: .8;
 }
 
 .input-container {
@@ -60,11 +35,27 @@
 }
 
 .input-header {
+    position: absolute;
+    top: -3em;
+    left: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 1em;
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    gap: .1em;
+}
+
+.input-header__text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #eee;
+    opacity: .8;
 }
 
 .feather {

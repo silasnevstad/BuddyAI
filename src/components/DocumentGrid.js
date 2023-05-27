@@ -55,6 +55,9 @@ const DocumentGrid = ({ searchTerm, documents, setDocuments, setCurrentDocument,
             id: docId,
         }
         setDocuments([newDocument, ...documents]);
+
+        // send user to new document
+        window.location.href = `/docs/${docId}`;
     }
 
     const handleDeleteDocument = (index) => {
@@ -72,7 +75,7 @@ const DocumentGrid = ({ searchTerm, documents, setDocuments, setCurrentDocument,
         <div className="document-grid-container">
             <div className="document-grid">
                 {searchTerm === "" && (
-                    <Link to="/home" className="document-item-link">
+                    <Link className='document-item-link'>
                         <CreateDocumentButton handleClick={handleNewDocument} />
                     </Link>
                 )}

@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
-import { AbortContext } from './AbortContext';
 
 const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, isLoading, setIsLoading, signal, sources }) => {
     const [input, setInput] = useState(text);
@@ -159,7 +158,6 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
                         <button className="flat-small-btn green-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}> 
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-right arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </button>
-
                     </div>
                 </div>
                 <TextareaAutosize

@@ -17,14 +17,17 @@
 @media (max-width: 768px) {
     .custom-container {
         /* width: 90%; */
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: flex-start;
         width: 100%;
         margin-top: -.1em;
         margin-left: 1em;
+        margin-bottom: 2em;
     }
 
     .custom-button-container {
-        margin-top: -1em;
+        margin-top: -.5em;
+        margin-right: 1em;
+        align-self: flex-end;
     }
 }

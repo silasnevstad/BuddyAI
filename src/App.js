@@ -45,13 +45,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<DocumentPage userId={userId} documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} />} />
-          <Route path="/home" element={<HomePage userId={userId}  documents={documents} setDocuments={setDocuments}  currentDocument={currentDocument} />} />
+          <Route path="/docs/:id" element={<HomePage userId={userId} documents={documents} setDocuments={setDocuments} fetchDocuments={fetchDocuments} />} />
           <Route path="/account" element={<AccountPage userId={userId} loggedIn={userId !== ''} />} />
           <Route path="/help" element={<HelpPage loggedIn={userId !== ''} />} />
           <Route path="/api" element={<ApiPage userId={userId} />} />
           <Route path="/signup" element={<SignUpPage setUserId={setUserId}  />} />
           <Route path="/login" element={<LoginPage setUserId={setUserId} />} />
-          <Route path="/docs/:id" element={<HomePage userId={userId} documents={documents} setDocuments={setDocuments} fetchDocuments={fetchDocuments} />} />
         </Routes>
     </Router>
   );

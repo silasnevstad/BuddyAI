@@ -216,7 +216,6 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
           </header>
           <main className="App-main" style={{paddingTop: window.innerWidth > 768 ? '0px' : '0px'}}>
             <div className="custom-container">
-              
               <PromptInput prompt={prompt} setPrompt={setPrompt} />
               <div className="custom-button-container">
                 <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} />

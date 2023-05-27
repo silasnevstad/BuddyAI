@@ -53,7 +53,7 @@
 
 .document-item-link:hover {
     text-decoration: none;
-    /* border: 1px solid #555; */
+    border: none;
 }
 
 .document-item {
