@@ -53,7 +53,7 @@ const Welcome = ({ userId, onSearch, editing, setEditing }) => {
 
     return (
         <div className="welcome">
-            <div className="welcome-bar">
+            <div className="welcome-bar-top">
                 <h1 className="welcome-header">Welcome back, {nickName}!</h1>
                 <h1 className="welcome-header"></h1>
                 <SearchBar onSearch={onSearch} />

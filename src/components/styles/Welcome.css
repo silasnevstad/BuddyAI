@@ -8,6 +8,14 @@
     margin-bottom: .5rem;
 }
 
+.welcome-bar-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .welcome-bar {
     display: flex;
     flex-direction: row;
@@ -61,14 +69,16 @@
 @media (max-width: 768px) {
     .welcome {
         width: 90%;
-        /* align-items: center; */
+        align-items: center;
         flex-direction: column;
     }
 
-    .welcome-top-bar {
+    .welcome-bar-top {
         width: 100%;
-        align-items: flex-end;
-        flex-direction: column-reverse;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .search-input {
@@ -83,10 +93,7 @@
 
     .welcome-header {
         font-size: 1.5rem;
-        align-self: flex-start;
-        /* flex-direction: column; */
     }
-    
 
     .search-input {
         width: 100%;
