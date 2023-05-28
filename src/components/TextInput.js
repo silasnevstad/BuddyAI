@@ -18,10 +18,6 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
     const { aiComplete, synonym } = Api();
 
     useEffect(() => {
-        setInput(text);
-    }, [text, setInput]);
-
-    useEffect(() => {
         setText(input);
     }, [input, setText]);
 
