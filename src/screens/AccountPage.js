@@ -23,7 +23,7 @@ function AccountPage({ userId, loggedIn }) {
                     setUserData(userData);
                 }
             } else {
-                console.log('No user ID');
+                // console.log('No user ID');
             }
             setIsLoading(false);
         };

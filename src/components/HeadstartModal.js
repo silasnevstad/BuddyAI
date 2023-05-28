@@ -91,7 +91,6 @@ const HeadstartModal = ({ open, close, text, setText }) => {
         const response = await askText(prompt);
         setHeadstart(response);
         setLoading(false);
-        console.log(response);
     }
 
     const handleConfirm = () => {

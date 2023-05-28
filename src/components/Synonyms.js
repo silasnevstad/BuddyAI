@@ -2,7 +2,6 @@ import './styles/Synonyms.css'
 
 const Synonyms = ({ synonyms, definitions, replaceWithSynonym }) => {
     if (!synonyms || synonyms.length <= 0) return null;
-    console.log('synonyms', synonyms);
     return (
         <div className="synonyms-container">
             <p className="definition-text">{definitions[0]}</p>

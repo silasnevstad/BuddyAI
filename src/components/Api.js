@@ -8,7 +8,6 @@ const Api = () => {
     const openai = new OpenAIApi(configuration);
 
     const aiComplete = async (text, sources, prompt, signal) => {
-        console.log('aiComplete', text, sources, prompt, signal);
         if (!text) return '';
         let data;
         try {
@@ -26,7 +25,7 @@ const Api = () => {
             if (error.name === 'AbortError') {
                 // console.log('Fetch aborted'); // ignore the error or handle it in a way that doesn't affect UX
             } else {
-                console.log(error);
+                // console.log(error);
                 throw error; // re-throw the error if it's not an AbortError
             }
         }
@@ -34,7 +33,6 @@ const Api = () => {
     }
 
     const aiComplete2 = async (text, sources, prompt, signal) => {
-        console.log('aiComplete2', text, sources, prompt, signal);
         if (!text) return '';
         let data;
         try {
