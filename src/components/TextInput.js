@@ -158,7 +158,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
         <div className="text-input">
             <div className={`input-container ${responseText ? 'shrink' : ''}`}>
                 <div className="input-header"> 
-                    <p className="input-header__text">{isLoading ? 'Thinking' : ''}</p>
+                    <p className="input-header__text">{isLoading ? 'Thinking' : ' '}</p>
                     <div className="button-container">
                         <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}} disabled={isLoading}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
