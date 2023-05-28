@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import '../App.css';
 import '../components/styles/HomePage.css';
@@ -58,13 +58,13 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
         setIsLoadingDocument(false);  // Set loading to false once the document is found
       }
     }
-  }, [id, userId, isDocumentsLoading]);
+  }, [id, userId, isDocumentsLoading, documents, fetchDocuments]);
 
   useEffect(() => {
     setIsModified(true);
   }, [text, prompt, documents]);
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     if (userId === '') {
       return;
     }
@@ -94,7 +94,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
   
       setIsModified(false);
     }
-  };
+  }, [documents, currentDocument, prompt, text, userId, isModified, setDocuments]);
 
   const addSource = (source) => {
     const docId = currentDocument.id;
@@ -174,7 +174,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [documents, currentDocument, prompt, text, isModified]);
+  }, [documents, currentDocument, prompt, text, isModified, userId, handleSave]);
   
   const resetAbortController = () => {
     abortControllerRef.current.abort();

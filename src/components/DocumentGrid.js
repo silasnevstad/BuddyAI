@@ -13,7 +13,7 @@ const CreateDocumentButton = ({ handleClick }) => {
     );
 }
 
-const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocument, searchTerm, editing }) => {
+const DocumentItem = ({ document, index, handleDeleteDocument, searchTerm, editing }) => {
     const highlightSearchTerm = (text) => {
         if (!searchTerm) return text;
         let parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
@@ -45,7 +45,7 @@ const DocumentItem = ({ document, index, setCurrentDocument, handleDeleteDocumen
     );
 };
 
-const DocumentGrid = ({ searchTerm, documents, setDocuments, setCurrentDocument, addDocument, deleteDocument, editing }) => {
+const DocumentGrid = ({ searchTerm, documents, setDocuments, addDocument, deleteDocument, editing }) => {
     const handleNewDocument = async () => {
         const docId = await addDocument();
 
@@ -80,7 +80,7 @@ const DocumentGrid = ({ searchTerm, documents, setDocuments, setCurrentDocument,
                     </Link>
                 )}
                 {filteredDocuments.map((document, index) => {
-                    return <DocumentItem key={document.id} document={document} index={index} setCurrentDocument={setCurrentDocument} handleDeleteDocument={handleDeleteDocument} searchTerm={searchTerm} editing={editing} />
+                    return <DocumentItem key={document.id} document={document} index={index} handleDeleteDocument={handleDeleteDocument} searchTerm={searchTerm} editing={editing} />
                 })}
             </div>
         </div>

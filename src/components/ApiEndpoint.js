@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './styles/ApiEndpoint.css';
-import SliderOpen from './SliderOpen';
 import downChevron from './images/chevron-down.svg';
 
 const parseStringToJSON = (str) => {
@@ -11,13 +10,13 @@ const parseStringToJSON = (str) => {
     }
 }
 
-const CodeContainer = ({ data, value }) => {
+const CodeContainer = ({ data }) => {
     return (
         <>
             <p className="api-endpoint-code">{'{'}</p>
             {Object.entries(data).map(([key, val], index) => (
                 <p key={index} className="api-endpoint-code indent">
-                    <>{`"${key}": `} <span className={typeof value === 'string' ? "string" : "number"}>{key === 'style' ? value : key === 'synonyms' ? `["${val}"]` : key === 'sources' ? `[${val}]` : `"${val}"`}</span>{index !== Object.entries(data).length - 1 ? ',' : ''}</>
+                    <>{`"${key}": `} <span className={typeof val === 'string' ? "string" : "number"}>{key === 'synonyms' ? `["${val}"]` : key === 'sources' ? `[${val}]` : `"${val}"`}</span>{index !== Object.entries(data).length - 1 ? ',' : ''}</>
                 </p>
             ))}
             <p className="api-endpoint-code">{'}'}</p>
@@ -30,7 +29,6 @@ const ApiEndpoint = ({ endpoint, description, inputDescription, outputDescriptio
     const [parsedExample, setParsedExample] = useState(null);
     const [parsedResponse, setParsedResponse] = useState(null);
     const [parsedBadRequest, setParsedBadRequest] = useState(null);
-    const [value, setValue] = useState(2);
     const badRequest = "{error: \"string\"}";
 
     useEffect(() => {
@@ -60,21 +58,20 @@ const ApiEndpoint = ({ endpoint, description, inputDescription, outputDescriptio
                     <p className="api-endpoint-description">{inputDescription}</p>
                     {parsedExample &&
                         <div className="api-endpoint-code-container">
-                            <CodeContainer data={parsedExample} value={value} />
+                            <CodeContainer data={parsedExample} />
                         </div>
                     }
-                    {/* <SliderOpen value={value} setValue={setValue} /> */}
                     <p className="api-endpoint-response"><span className="bold">Response</span></p>
                     <p className="api-endpoint-description"><span className="semibold green">200</span> {outputDescription}</p>
                     {parsedResponse &&
                         <div className="api-endpoint-code-container">
-                            <CodeContainer data={parsedResponse} value={value} />
+                            <CodeContainer data={parsedResponse} />
                         </div>
                     }
                     <p className="api-endpoint-description semibold"><span className="red">400</span> Bad request</p>
                     {parsedResponse &&
                         <div className="api-endpoint-code-container">
-                            <CodeContainer data={parsedBadRequest} value={value} />
+                            <CodeContainer data={parsedBadRequest} />
                         </div>
                     }
                 </div>

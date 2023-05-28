@@ -96,6 +96,8 @@ const HeadstartModal = ({ open, close, text, setText }) => {
 
     const handleConfirm = () => {
         setText(headstart);
+        setHeadstart('');
+        setPrompt('');
         close();
     }
 

@@ -1,0 +1,70 @@
+.synonyms-container {
+    padding: 5px;
+    background-color: #333;
+    border-radius: 5px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.definition-text {
+    font-size: 1.1em;
+    color: #eee;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #444;
+}
+
+.synonym-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.synonym-text {
+    font-size: 1.2em;
+    color: #eee;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: #444;
+}
+
+.synonym-text:hover {
+    background-color: #61965d;
+}
+
+@media (prefers-color-scheme: light) {
+    .synonyms-container {
+        background-color: #eee;
+    }
+
+    .definition-text {
+        background-color: #fff;
+        color: #222;
+    }
+
+    .synonym-text {
+        background-color: #fff;
+        color: #222;
+    }
+
+    .synonym-text:hover {
+        background-color: #9bd597;
+    }
+}

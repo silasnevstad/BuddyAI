@@ -9,7 +9,7 @@ const HeaderNav = ({ handleSave, loggedIn }) => {
             <Link to="/api" className="transparent-button">API</Link>
             {loggedIn && <Link to="/account" className="transparent-button">Account</Link>}
             <Link to="/" className="transparent-button">Home</Link>
-            {window.innerWidth > 600 && !loggedIn && <Link to="/signup" className="full-button">Sign Up</Link>}
+            {!loggedIn && <Link to="/signup" className="full-button">Sign Up</Link>}
         </div>
     );
 }

@@ -9,7 +9,7 @@ import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import { createNewDoc, deleteUserDoc } from '../components/firebase';
 
-function DocumentPage({ userId, documents, setDocuments, setCurrentDocument }) {
+function DocumentPage({ userId, documents, setDocuments }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [editing, setEditing] = useState(false);
 
@@ -35,7 +35,7 @@ function DocumentPage({ userId, documents, setDocuments, setCurrentDocument }) {
                 </header>
                 <main className="App-main">
                     <Welcome userId={userId} onSearch={onSearch} editing={editing} setEditing={setEditing} />
-                    <DocumentGrid searchTerm={searchTerm} documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} addDocument={addDocument} deleteDocument={deleteDocument} editing={editing} />
+                    <DocumentGrid searchTerm={searchTerm} documents={documents} setDocuments={setDocuments} addDocument={addDocument} deleteDocument={deleteDocument} editing={editing} />
                 </main>
                 <footer className="App-footer">
                     <Footer />

@@ -42,7 +42,7 @@ const Welcome = ({ userId, onSearch, editing, setEditing }) => {
             <div className="welcome">
                 <div className="welcome-bar-top">
                     {/* <h1 className="welcome-header">Welcome to Writing Buddy!</h1> */}
-                    <h1 className="welcome-header"></h1>
+                    <h1 className="welcome-header"> </h1>
                     <SearchBar onSearch={onSearch} />
                 </div>
                 <h3>
@@ -56,7 +56,7 @@ const Welcome = ({ userId, onSearch, editing, setEditing }) => {
         <div className="welcome">
             <div className="welcome-bar-top">
                 {/* <h1 className="welcome-header">Welcome back, {nickName}!</h1> */}
-                <h1 className="welcome-header"></h1>
+                <h1 className="welcome-header"> </h1>
                 <SearchBar onSearch={onSearch} />
             </div>
             <div className="welcome-bar">

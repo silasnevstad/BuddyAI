@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
+import Synonyms from './Synonyms';
 
 const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoading, setIsLoading, signal, sources }) => {
     const [input, setInput] = useState(text);
@@ -34,7 +35,6 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
     };
 
     const handleDoubleClick = async (e) => {
-        console.log('double click');
         const text = e.target.value;
         const start = e.target.selectionStart;
         const end = e.target.selectionEnd;
@@ -49,28 +49,25 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
         // Fetch definitions
         const url = `https://wordsapiv1.p.rapidapi.com/words/${clickedWord}/definitions`;
         const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '77edf1b16amsh759d0470e8eda0ap16065djsn7244fa304a7a',
-            'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
-        }
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': process.env.REACT_APP_WORDS_API_KEY,
+                'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+            }
         };
 
         fetch(url, options)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             // data.results contains the definitions
             const definitions = data.definitions.map(result => result.definition);
             setDefinitions(definitions);
-            console.log(definitions);
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
         });
     };
     
-    // New methods
     const handleTouchStart = (e) => {
         touchTimerRef.current = setTimeout(() => handleDoubleClick(e), 500);  // 500ms delay for long press
     };
@@ -84,6 +81,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
         const afterWord = input.substring(selectedWord.end);
         setInput(beforeWord + synonym + afterWord);
         setSynonyms([]);
+        setDefinitions([]);
     };
 
     const handleReplaceWithResponse = () => {
@@ -94,6 +92,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
     const handleChange = (e) => {
         setInput(e.target.value);
         setSynonyms([]);
+        setDefinitions([]);
     };
 
     const handleResponseChange = (e) => {
@@ -143,7 +142,6 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
         }
         lastRequestRef.current = debouncedInput;
         lastPromptRef.current = prompt;
-        // resetAbortController();
 
         setIsLoading(true);
         aiComplete(debouncedInput, sources, prompt, signal).then(res => {
@@ -178,7 +176,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
                     value={input}
                     placeholder={placeholder}
                     minRows={1}
-                    maxRows={20}
+                    maxRows={25}
                 />
                 {aiSuggestion && (
                     <div className="suggestion" onClick={() => {
@@ -190,7 +188,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
                         {aiSuggestion}
                     </div>
                 )}
-                {synonyms.length > 0 && (
+                {/* {synonyms.length > 0 && (
                     <div className="definition-box">
                         <p className="definition-text">{definitions[0]}</p>
                         <div className="synonym-box">
@@ -200,7 +198,8 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
                             ))}
                         </div>
                     </div>
-                )}
+                )} */}
+                <Synonyms synonyms={synonyms} definitions={definitions} replaceWithSynonym={replaceWithSynonym} />
             </div>
             {responseText && (
                 <div className="input-container slide-in">
@@ -225,7 +224,7 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
                         onChange={handleResponseChange}
                         placeholder="Formalized/Improved text will be displayed here..."
                         minRows={1}
-                        maxRows={20}
+                        maxRows={25}
                     />
                 </div>
             )}

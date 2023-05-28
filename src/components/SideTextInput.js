@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Api from './Api';
 import './styles/TextInput.css';
+import Synonyms from './Synonyms';
 
 const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, isLoading, setIsLoading, signal, sources }) => {
     const [input, setInput] = useState(text);
@@ -10,7 +11,9 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
     const [aiSuggestion, setAiSuggestion] = useState('');
     const [selectedWord, setSelectedWord] = useState('');
     const [synonyms, setSynonyms] = useState([]);
+    const [definitions, setDefinitions] = useState([]);
     const textareaRef = useRef(null);
+    const touchTimerRef = useRef(null);
     const placeholder = 'Type here...';
     const { aiComplete2, synonym } = Api();
 
@@ -37,9 +40,40 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
         const end = e.target.selectionEnd;
         const clickedWord = text.substring(start, end);
         setSelectedWord({word: clickedWord, start, end});
+    
+        // Fetch synonyms
         const syns = await synonym(clickedWord);
         if (!syns) return;
         setSynonyms(syns.synonyms);
+        
+        // Fetch definitions
+        const url = `https://wordsapiv1.p.rapidapi.com/words/${clickedWord}/definitions`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': process.env.REACT_APP_WORDS_API_KEY,
+                'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+            }
+        };
+
+        fetch(url, options)
+        .then(response => response.json())
+        .then(data => {
+            // data.results contains the definitions
+            const definitions = data.definitions.map(result => result.definition);
+            setDefinitions(definitions);
+        })
+        .catch(err => {
+            // console.log(err);
+        });
+    };
+
+    const handleTouchStart = (e) => {
+        touchTimerRef.current = setTimeout(() => handleDoubleClick(e), 500);  // 500ms delay for long press
+    };
+    
+    const handleTouchEnd = () => {
+        clearTimeout(touchTimerRef.current);
     };
     
     const replaceWithSynonym = (synonym) => {
@@ -47,6 +81,7 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
         const afterWord = input.substring(selectedWord.end);
         setInput(beforeWord + synonym + afterWord);
         setSynonyms([]);
+        setDefinitions([]);
     };
 
     const handleReplaceWithResponse = () => {
@@ -57,6 +92,7 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
     const handleChange = (e) => {
         setInput(e.target.value);
         setSynonyms([]);
+        setDefinitions([]);
     };
 
     const handleResponseChange = (e) => {
@@ -115,7 +151,7 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
             setIsLoading(false);
         });
 
-    }, [debouncedInput, aiComplete2, sources, prompt, setIsLoading, responseText, setResponseText, isLoading]);
+    }, [debouncedInput, aiComplete2, prompt, isLoading, signal, sources, setIsLoading, setResponseText]);
 
     return (
         <div className="text-input">
@@ -125,30 +161,20 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
                 </div>
                 <TextareaAutosize
                     ref={textareaRef}
-                    className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`} // Add class for request textarea
+                    className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`}
                     onKeyDown={handleKeyDown}
                     onChange={handleChange}
                     onDoubleClick={handleDoubleClick}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
                     value={input}
                     placeholder={placeholder}
                     minRows={1}
-                    maxRows={20}
+                    maxRows={25}
                 />
-                {synonyms.length > 0 && (
-                    <div className="synonym-box">
-                        {synonyms.map(syn => (
-                            <div key={syn} onClick={() => replaceWithSynonym(syn)} className="synonym-text">{syn}</div>
-                        ))}
-                    </div>
-                )}
+                <Synonyms synonyms={synonyms} definitions={definitions} replaceWithSynonym={replaceWithSynonym} />
             </div>
-            {/* <div className="button-container">
-                <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}}><img src={Refresh} alt="Refresh response" className="refresh-icon"/></button>
-                <button className="flat-small-btn green-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}>Use <img src={ArrowRight} alt="Replace with response" className="arrow-icon"/></button>
-            </div> */}
-
             <div className="input-container">
-                {/* <button className="close-btn" onClick={() => setResponseText('')}><img src={X} alt="Close response" className="x-icon"/></button> */}
                 <div className="input-header"> 
                     <p className="input-header__text">{isLoading ? 'Thinking' : 'Buddy'}</p>
                     <div className="button-container">
@@ -166,7 +192,7 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
                     onChange={handleResponseChange}
                     placeholder="Buddy will type here..."
                     minRows={1}
-                    maxRows={20}
+                    maxRows={25}
                 />
             </div>
         </div>

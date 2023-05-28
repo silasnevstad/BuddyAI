@@ -36,7 +36,7 @@
 
 .input-header {
     position: absolute;
-    top: -3em;
+    top: -2.2em;
     left: 0;
     display: flex;
     flex-direction: row;
@@ -79,11 +79,22 @@
       transform: rotate(360deg);
     }
 }
-  
+
+@keyframes bounceRight {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
 
 .feather-rotate-cw:hover {
     color: #f5c542;
-    animation: rotate .4s ease-in-out;
+    animation: rotate 1s cubic-bezier(0.175, 0.82, 0.165, 1);
 }
 
 .feather-rotate-cw:active {
@@ -97,6 +108,7 @@
 
 .feather-arrow-right:hover {
     color: #77d970;
+    animation: bounceRight .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .text-input__textarea {
@@ -241,6 +253,7 @@
 
     .input-header {
         width: 100%;
+        top: -2.8em;
     }
 
     .input-container {
@@ -298,15 +311,19 @@
     }
 
     .definition-box {
-        background-color: #ccc;
+        background-color: #eee;
     }
 
     .definition-text {
-        background-color: #ddd;
+        background-color: #fff;
         color: #222;
     }
 
     .synonym-text {
-        background-color: #ddd;
+        background-color: #fff;
+    }
+
+    .synonym-text:hover {
+        background-color: #9bd597;
     }
 }

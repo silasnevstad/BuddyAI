@@ -13,7 +13,7 @@ const Title = ({ hideMobile, loggedIn }) => {
             if (hideMobile) {
                 return <Link to="/" className="transparent-button-large">{title.toLocaleUpperCase()}</Link>;
             }
-            return <Link to="/signup" className="full-button" style={hideMobile ? {display: "none"} : {}}>Sign Up</Link>;
+            // return <Link to="/signup" className="full-button" style={hideMobile ? {display: "none"} : {}}>Sign Up</Link>;
         } else {
             return <Link to="/" className="transparent-button-large">{title.toLocaleUpperCase()}</Link>;
         }

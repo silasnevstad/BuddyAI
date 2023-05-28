@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DocumentPage from './screens/DocumentPage';
 import HomePage from './screens/HomePage';
@@ -12,7 +12,6 @@ import { getUserDocs, onAuthStateChanged, auth } from './components/firebase';
 
 function App() {
   const [documents, setDocuments] = useState([]);
-  const [currentDocument, setCurrentDocument] = useState(0);
   const [userId, setUserId] = useState('');
 
   useEffect(() => {
@@ -27,11 +26,11 @@ function App() {
     });
   }, []);
 
-  const fetchDocuments = async () => {
+  const fetchDocuments = useCallback(async () => {
     getUserDocs(userId).then(documentList => {
       setDocuments(documentList);
     });
-  };
+  }, [userId]);
 
   useEffect(() => {
     if (userId === '') {
@@ -39,12 +38,12 @@ function App() {
     }
 
     fetchDocuments();
-  }, [userId]);
+  }, [userId, fetchDocuments]);
 
   return (
       <Router>
         <Routes>
-          <Route path="/" element={<DocumentPage userId={userId} documents={documents} setDocuments={setDocuments} setCurrentDocument={setCurrentDocument} />} />
+          <Route path="/" element={<DocumentPage userId={userId} documents={documents} setDocuments={setDocuments} />} />
           <Route path="/docs/:id" element={<HomePage userId={userId} documents={documents} setDocuments={setDocuments} fetchDocuments={fetchDocuments} />} />
           <Route path="/account" element={<AccountPage userId={userId} loggedIn={userId !== ''} />} />
           <Route path="/help" element={<HelpPage loggedIn={userId !== ''} />} />
