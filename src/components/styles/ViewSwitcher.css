@@ -13,6 +13,10 @@
     overflow: hidden;
 }
 
+.view-switcher-container:hover {
+    border: 1px solid #888;
+}
+
 .slider {
     position: absolute;
     top: 0em;
@@ -93,5 +97,9 @@
 
     .view-switcher-box, .view-switcher-side {
         filter: invert(1);
+    }
+
+    .view-switcher-container:hover {
+        border: 1px solid #222;
     }
 }
