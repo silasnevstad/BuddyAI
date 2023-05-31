@@ -7,33 +7,31 @@ import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import { signUp } from '../components/firebase';
 
+const InputField = ({ id, value, onChange, placeholder }) => {
+    const isEmpty = !value;
+    
+    return (
+        <div className="input-field-container">
+            <input
+                type="text"
+                id={id}
+                placeholder=""
+                value={value}
+                onChange={onChange}
+                className={isEmpty ? '' : 'non-empty'}
+            />
+            <label htmlFor={id}>{placeholder}</label>
+        </div>
+    );
+};
+
 const InputFields = ({ nickname, setNickname, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword }) => {
     return (
         <div className="input-fields">
-            <input
-                type="text"
-                placeholder="Nickname"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-            />
-            <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+            <InputField id="nickname" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Nickname" />
+            <InputField id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+            <InputField id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+            <InputField id="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
         </div>
     );
 };

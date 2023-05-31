@@ -183,12 +183,13 @@
 
 @media (prefers-color-scheme: light) {
     .document-item-container {
-        background-color: #e8e8e8;
+        background-color: #fff;
+        border: 1px solid #ddd;
     }
 
     .document-item-container:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.0);
-        border: 1px solid #222;
+        border-color: #777;
     }
 
     .document-item-close-icon {

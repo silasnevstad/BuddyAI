@@ -7,21 +7,29 @@ import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import { signIn } from '../components/firebase';
 
+const InputField = ({ id, value, onChange, placeholder }) => {
+    const isEmpty = !value;
+    
+    return (
+        <div className="input-field-container">
+            <input
+                type="text"
+                id={id}
+                placeholder=""
+                value={value}
+                onChange={onChange}
+                className={isEmpty ? '' : 'non-empty'}
+            />
+            <label htmlFor={id}>{placeholder}</label>
+        </div>
+    );
+};
+
 const InputFields = ({ email, setEmail, password, setPassword }) => {
     return (
         <div className="input-fields">
-            <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+            <InputField id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+            <InputField id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
         </div>
     );
 };

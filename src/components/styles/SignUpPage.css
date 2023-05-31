@@ -20,15 +20,27 @@
 .input-fields {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
+}
+
+.input-field-label {
+    font-size: 1.2rem;
+    color: #eee;
+    margin-top: .3rem;
+    margin-bottom: -.3rem;
 }
 
 .login-btn:hover::before {
     width: 95%;
 }
 
-.input-fields input {
-    padding: .6rem;
+.input-field-container {
+    position: relative;
+}
+
+.input-field-container input {
+    padding: .65rem;
     width: 25rem;
     font-size: 1.25rem;
     border: 1px solid #666;
@@ -37,13 +49,38 @@
     color: #eee;
 }
 
+.input-field-container label {
+    font-size: 1.2rem;
+    color: #ccc;
+    position: absolute;
+    left: 0;
+    padding: 0.5em;
+    align-items: flex-start;
+    /* padding-left: .2em/; */
+    pointer-events: none;
+    text-align: left;
+    transition: all 0.3s ease;
+    transform-origin: left;
+}
+
 .input-fields input:focus {
     outline: none;
-    border: 1px solid #bbb;
+    border: 1px solid #aaa;
     border-radius: 4px;
     background-color: transparent;
-    color: #eee;
 }
+
+.input-field-container input:focus + label,
+.input-field-container input.non-empty + label {
+    transform: translateY(-50%) scale(.8);
+    margin: 0em;
+    margin-left: .5em;
+    padding: 0.1em;
+    background-color: transparent;
+    backdrop-filter: blur(4px);
+}
+
+
 
 .error-message {
     color: #ff3f5c;
@@ -78,5 +115,24 @@
         border-radius: 4px;
         background-color: transparent;
         color: #eee;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .input-fields input {
+        color: #333;
+        border-color: #aaa;
+    }
+
+    .input-fields input:focus {
+        border-color: #aaa;
+    }
+
+    .input-field-label {
+        color: #555;
+    }
+
+    .input-fields label {
+        color: #888;
     }
 }
