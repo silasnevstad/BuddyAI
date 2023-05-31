@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import './styles/HeadstartModal.css';
 import Api from './Api';
@@ -7,16 +7,16 @@ import Loader from './Loader';
 const HeadstartModal = ({ open, close, text, setText }) => {
     const [prompt, setPrompt] = useState('');
     const [headstart, setHeadstart] = useState('');
-    const [placeholder, setPlaceholder] = useState('');
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [isTyping, setIsTyping] = useState(true);
-    const [isWaiting, setIsWaiting] = useState(false);
+    const [delayTyping, setDelayTyping] = useState(false);
     const [loading, setLoading] = useState(false);
     const { askText } = Api();
+    const textareaRef = useRef(null);
 
     useEffect(() => {
-        const placeholders = [
+        const placeholderTexts = [
             'Essay about bitcoin',
             'Poem about the ocean',
             'Story about a dog',
@@ -53,58 +53,70 @@ const HeadstartModal = ({ open, close, text, setText }) => {
             'Villain’s apology letter',
             'Trip to Earth\'s center',
         ];
-        let timeout;
-        if (isWaiting) {
-            timeout = setTimeout(() => {
-                setIsWaiting(false);
-            }, 2500);
-        } else {
-            timeout = setTimeout(() => {
-                if (isTyping) {
-                    if (charIndex < placeholders[placeholderIndex].length) {
-                        setPlaceholder(prev => prev + placeholders[placeholderIndex][charIndex]);
+
+        const updatePrompt = () => {
+            if (!textareaRef.current || !textareaRef.current.matches(':focus')) {
+                if (isTyping && !delayTyping) {
+                    if (charIndex < placeholderTexts[placeholderIndex].length) {
+                        setPrompt(prev => prev + placeholderTexts[placeholderIndex][charIndex]);
                         setCharIndex(prev => prev + 1);
-                    } 
-                    if (charIndex >= placeholders[placeholderIndex].length - 1) {
-                        setIsWaiting(true);
+                    } else {
                         setIsTyping(false);
+                        setDelayTyping(true);
+                        setTimeout(() => {
+                            setDelayTyping(false);
+                        }, 2000);
                     }
-                } else {
+                } else if (!delayTyping) {
                     if (charIndex > 0) {
-                        setPlaceholder(prev => prev.slice(0, -1));
+                        setPrompt(prev => prev.slice(0, -1));
                         setCharIndex(prev => prev - 1);
-                    }
-                    if (charIndex <= 1) {
+                    } else {
                         setIsTyping(true);
-                        setIsWaiting(false);
-                        setPlaceholderIndex((placeholderIndex + 1) % placeholders.length);
+                        setDelayTyping(true);
+                        setTimeout(() => {
+                            setDelayTyping(false);
+                            setPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholderTexts.length);
+                        }, 2000);
                     }
                 }
-            }, isTyping ? 45 : 10); // Adjust typing/deletion speed here
-        }
+            }
+        };
+        
 
-        return () => clearTimeout(timeout);
-    }, [charIndex, placeholderIndex, isTyping, isWaiting]);
+        const typingInterval = setInterval(updatePrompt, isTyping ? 55 : 10);
+
+
+        return () => {
+            clearInterval(typingInterval);
+        };
+    }, [charIndex, placeholderIndex, isTyping, delayTyping]);
+
+    useEffect(() => {
+        if (textareaRef.current && textareaRef.current.matches(':focus')) {
+            setPrompt('');
+        }
+    }, [textareaRef]);
 
     const handleAsk = async () => {
         setLoading(true);
         const response = await askText(prompt);
         setHeadstart(response);
         setLoading(false);
-    }
+    };
 
     const handleConfirm = () => {
         setText(headstart);
         setHeadstart('');
         setPrompt('');
         close();
-    }
+    };
 
     const handleStartOver = () => {
         setText('');
         setHeadstart('');
         setPrompt('');
-    }
+    };
 
     if (!open) return null;
 
@@ -114,35 +126,59 @@ const HeadstartModal = ({ open, close, text, setText }) => {
                 <div className="headstart-modal-content">
                     <div className="headstart-modal-content-text">
                         {loading ? (
-                            <div className="headstart-modal-content-loading" style={{ marginTop: '1em' }}>
-                                <Loader />
+                        <div className="headstart-modal-content-loading" style={{ marginTop: '1em' }}>
+                            <Loader />
+                        </div>
+                        ) : headstart ? (
+                        <div className="headstart-content-editor">
+                            <TextareaAutosize
+                            className="headstart-modal-content-textbox"
+                            rows="1"
+                            value={headstart}
+                            onChange={(e) => setHeadstart(e.target.value)}
+                            maxRows={10}
+                            ></TextareaAutosize>
+                            <div className="headstart-content-editor-buttons">
+                                <button className="full-button close-btn" onClick={close}>
+                                    Close
+                                </button>
+                                <button className="full-button green-btn" onClick={handleStartOver}>
+                                    Start Over
+                                </button>
+                                <button className="full-button refresh-btn" onClick={handleAsk}>
+                                    Refresh
+                                </button>
+                                <button className="full-button green-btn" onClick={handleConfirm}>
+                                    Confirm
+                                </button>
                             </div>
+                        </div>
                         ) : (
-                            headstart ? (
-                                <div className="headstart-content-editor">
-                                    <TextareaAutosize className="headstart-modal-content-textbox" placeholder={placeholder} rows="1" value={headstart} onChange={e => setHeadstart(e.target.value)} maxRows={10}></TextareaAutosize>
-                                    <div className="headstart-content-editor-buttons">
-                                        <button className="full-button close-btn" onClick={close}>Close</button>
-                                        <button className="full-button green-btn" onClick={handleStartOver}>Start Over</button>
-                                        <button className="full-button refresh-btn" onClick={handleAsk}>Refresh</button>
-                                        <button className="full-button green-btn" onClick={handleConfirm}>Confirm</button>
-                                    </div>
-                                </div>
-                            ) : (
-                                <>
-                                    <TextareaAutosize className="headstart-modal-content-textbox" placeholder={placeholder} rows="1" value={prompt} onChange={e => setPrompt(e.target.value)} maxRows={10}></TextareaAutosize>
-                                    <div className="headstart-content-editor-buttons">
-                                        <button className="full-button" onClick={handleAsk}>Go</button>
-                                        <button className="full-button" onClick={close}>Cancel</button>
-                                    </div>
-                                </>
-                            )
-                        )}                        
+                        <>
+                            <TextareaAutosize
+                            className="headstart-modal-content-textbox"
+                            rows="1"
+                            value={prompt}
+                            onChange={(e) => setPrompt(e.target.value)}
+                            onFocus={() => setPrompt('')}
+                            ref={textareaRef}
+                            maxRows={10}
+                            ></TextareaAutosize>
+                            <div className="headstart-content-editor-buttons">
+                                <button className="full-button" onClick={handleAsk}>
+                                    Go
+                                </button>
+                                <button className="full-button" onClick={close}>
+                                    Cancel
+                                </button>
+                            </div>
+                        </>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default HeadstartModal;

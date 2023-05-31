@@ -58,14 +58,15 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
         setIsLoadingDocument(false);  // Set loading to false once the document is found
       }
     }
-  }, [id, userId, isDocumentsLoading, documents, fetchDocuments]);
+  }, [id, userId, isDocumentsLoading, fetchDocuments]);
 
   useEffect(() => {
     setIsModified(true);
-  }, [text, prompt, documents]);
+  }, [text, prompt, sources]);
 
   const handleSave = useCallback(() => {
     if (userId === '') {
+      setIsModified(false);
       return;
     }
     if (documents.length > 0 && isModified) {
@@ -91,9 +92,8 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
       newDocuments[currentDocument] = updatedContent;
       setDocuments(newDocuments);
       setCurrentDocument(updatedContent);
-  
-      setIsModified(false);
     }
+    setIsModified(false);
   }, [documents, currentDocument, prompt, text, userId, isModified, setDocuments]);
 
   const addSource = (source) => {
@@ -174,7 +174,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [documents, currentDocument, prompt, text, isModified, userId, handleSave]);
+  }, [prompt, text, isModified, handleSave]);
   
   const resetAbortController = () => {
     abortControllerRef.current.abort();
