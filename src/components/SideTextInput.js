@@ -16,11 +16,7 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
     const touchTimerRef = useRef(null);
     const placeholder = 'Type here...';
     const { aiComplete2, synonym } = Api();
-
-    useEffect(() => {
-        setInput(text);
-    }, [text, setInput]);
-
+    
     useEffect(() => {
         setText(input);
     }, [input, setText]);
