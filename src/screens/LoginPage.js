@@ -7,13 +7,13 @@ import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import { signIn } from '../components/firebase';
 
-const InputField = ({ id, value, onChange, placeholder }) => {
+const InputField = ({ id, value, onChange, placeholder, password }) => {
     const isEmpty = !value;
     
     return (
         <div className="input-field-container">
             <input
-                type="text"
+                type={password ? 'password' : 'text'}
                 id={id}
                 placeholder=""
                 value={value}
@@ -29,7 +29,8 @@ const InputFields = ({ email, setEmail, password, setPassword }) => {
     return (
         <div className="input-fields">
             <InputField id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-            <InputField id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+            {/* make password field secure (hide characters) */}
+            <InputField id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" password={true} />
         </div>
     );
 };
@@ -48,6 +49,13 @@ function LoginPage({ setUserId }) {
     const [error, setError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const firebaseAuthErrorCodes = {
+        'auth/invalid-email': 'Invalid email address.',
+        'auth/user-disabled': 'This account has been disabled.',
+        'auth/user-not-found': 'No account found with this email address.',
+        'auth/wrong-password': 'Incorrect password.',
+    }
 
     const handleSignIn = async () => {
         setIsLoading(true);
@@ -71,7 +79,7 @@ function LoginPage({ setUserId }) {
                 </header>
                 <main className="App-main">
                     <div className="signup-container">
-                        {isError ? <p className="error-message">{error}</p> : null }
+                        {isError ? <p className="error-message">{firebaseAuthErrorCodes[error]}</p> : null}
                         <InputFields email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
                         <div className="signup-buttons">
                             <LoginButton isLoading={isLoading} handleSignIn={handleSignIn} />

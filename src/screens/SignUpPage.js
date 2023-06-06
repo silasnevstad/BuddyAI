@@ -7,13 +7,13 @@ import HeaderNav from '../components/HeaderNav';
 import Footer from '../components/Footer';
 import { signUp } from '../components/firebase';
 
-const InputField = ({ id, value, onChange, placeholder }) => {
+const InputField = ({ id, value, onChange, placeholder, password }) => {
     const isEmpty = !value;
     
     return (
         <div className="input-field-container">
             <input
-                type="text"
+                type={password ? 'password' : 'text'}
                 id={id}
                 placeholder=""
                 value={value}
@@ -30,8 +30,8 @@ const InputFields = ({ nickname, setNickname, email, setEmail, password, setPass
         <div className="input-fields">
             <InputField id="nickname" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Nickname" />
             <InputField id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-            <InputField id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-            <InputField id="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
+            <InputField id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" password={true} />
+            <InputField id="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" password={true} />
         </div>
     );
 };
