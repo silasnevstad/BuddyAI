@@ -8,14 +8,14 @@ const Title = ({ hideMobile, loggedIn }) => {
 
     const getTitle = () => {
         if (window.innerWidth > 600) {
-            return <Link to="/" className="transparent-button-large">{title.toLocaleUpperCase()}</Link>;
+            return <Link to="/" className="transparent-button-large">{title}</Link>;
         } else if (!loggedIn) {
             if (hideMobile) {
-                return <Link to="/" className="transparent-button-large">{title.toLocaleUpperCase()}</Link>;
+                return <Link to="/" className="transparent-button-large">{title}</Link>;
             }
             // return <Link to="/signup" className="full-button" style={hideMobile ? {display: "none"} : {}}>Sign Up</Link>;
         } else {
-            return <Link to="/" className="transparent-button-large">{title.toLocaleUpperCase()}</Link>;
+            return <Link to="/" className="transparent-button-large">{title}</Link>;
         }
     };
 

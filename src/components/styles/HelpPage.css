@@ -1,5 +1,5 @@
 .help-container {
-    width: 70%;
+    width: 80%;
     margin: auto;
     margin-top: 0em;
     display: flex;
@@ -35,6 +35,8 @@
     margin-bottom: 2em;
     margin-top: 1em;
     text-align: center;
+    align-items: center;
+    display: flex;
 }
 
 .small {
@@ -59,15 +61,17 @@
     font-family: 'Impact', sans-serif; /* or your preferred font */
     font-size: 3em;
     font-weight: bold;
-    margin-right: 1em;
+    /* margin-right: 1em; */
     padding-left: 0.5em; /* added padding to prevent cutting off */
+    padding: 0.5em;
+    border-radius: .4em;
     color: #eee;
 }
 
 .help-instruction {
     padding: 1em;
     text-align: left;
-    transform: skewX(20deg);
+    /* transform: skewX(20deg); */
 }
 
 .help-list-item {
@@ -76,32 +80,35 @@
     align-items: center;
     text-align: left;
     border-radius: 1em;
-    transform: skewX(-20deg);
+    padding: .5em 1em;
     color: #eee;
     transition: all 0.3s ease;
     height: 5em;
-    border-bottom: 2px solid #eee;
-    border-top: 2px solid #eee;
+    background-color: #333;
+}
+
+.help-list-item:hover {
+    transform: scale(1.05);
 }
 
 /* added specific classes for stair effect */
 .help-list-item.step1 {
-    margin-left: -5%;
-    margin-right: 15%;
+    /* margin-left: -5%; */
+    /* margin-right: 15%; */
 }
 
 .help-list-item.step2 {
-    margin-left: 0%;
-    margin-right: 10%;
+    /* margin-left: 0%; */
+    /* margin-right: 10%; */
 }
 
 .help-list-item.step3 {
-    margin-left: 5%;
-    margin-right: 5%;
+    /* margin-left: 5%; */
+    /* margin-right: 5%; */
 }
 
 .help-list-item.step4 {
-    margin-left: 10%;
+    /* margin-left: 10%; */
 }
 
 
@@ -110,27 +117,64 @@
     font-size: 1.3em;
 }
 
-.help-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: auto auto;
-    gap: 3em 1em;
-    justify-items: center;
-    align-items: center;
-    margin-bottom: 5em;
+@keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+  
+    100% {
+      transform: translateX(-30%);
+    }
 }
-
+  
 .help-grid-item {
-    font-size: 1.2em;
+    font-size: 1.1em;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.2em;
     text-align: center;
     justify-content: center;
-    width: 80%;
-    grid-column-end: span 2;
+    height: 4em;
+    background-color: #333;
+    border-radius: 1em;
     padding: 1em;
+  
+    /* To ensure smooth entry on the right side */
+    /* white-space: nowrap; */
+}
+
+.help-grid-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.help-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 2em;
+}
+
+.greenback {
+    background-color: #77d970;
+    color: #000;
+}
+
+.orangeback {
+    background-color: #f5a623;
+    color: #fff;
+}
+
+.paleback {
+    background-color: #adbe32;
+    color: #000;
+}
+
+.redback {
+    background-color: #ff3f5c;
+    color: #fff;
 }
 
 .help-grid-item:nth-child(4) {
@@ -151,8 +195,7 @@
 .venmo-icon {
     width: 2.5em;
     height: 2.5em;
-    margin-bottom: 2.5em;
-    margin-top: -1em;
+    margin-left: 1em;
 }
 
 .venmo-icon:hover {
@@ -196,6 +239,7 @@
 
     .help-list-item {
         transform: skewX(0deg);
+        background-color: #fff;
     }
 
     .help-instruction {
@@ -275,8 +319,10 @@
 
     .help-list-item {
         color: #000000;
-        border-bottom: 2px solid #222;
-        border-top: 2px solid #222;
+        background-color: #fff;
+        /* border-bottom: 2px solid #222; */
+        /* border-top: 2px solid #222; */
+        border-color: #222;
     }
 
     .help-grid-item-bold {
