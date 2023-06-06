@@ -14,7 +14,8 @@
 }
 
 .view-switcher-container:hover {
-    border: 1px solid #888;
+    /* border: 1px solid #555; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
 }
 
 .slider {
@@ -88,7 +89,7 @@
 @media (prefers-color-scheme: light) {
     .view-switcher-container {
         background-color: #eee;
-        border: 1px solid #aaa;
+        /* border: 1px solid #aaa; */
     }
 
     .slider {
@@ -100,6 +101,6 @@
     }
 
     .view-switcher-container:hover {
-        border: 1px solid #222;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     }
 }

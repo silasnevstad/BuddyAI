@@ -2,7 +2,7 @@ import './styles/PromptInput.css'
 
 const PromptInput = ({ prompt, setPrompt }) => {
     // create a shorter version of the prompt input for mobile
-    const placeHolder = window.innerWidth < 600 ? 'Give buddy context...' : 'Tell buddy what you want to write about...';
+    const placeHolder = window.innerWidth < 600 ? 'Give buddy context...' : 'Tell buddy the title...';
     return (
         <div className="prompt-input-container">
             <textarea

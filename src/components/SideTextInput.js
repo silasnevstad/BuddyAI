@@ -151,46 +151,49 @@ const SideTextInput = ({ text, responseText, setText, setResponseText, prompt, i
     }, [debouncedInput, aiComplete2, prompt, isLoading, signal, sources, setIsLoading, setResponseText]);
 
     return (
-        <div className="text-input">
-            <div className="input-container">
-                <div className="input-header"> 
-                    <p className="input-header__text">You</p>
-                </div>
-                <TextareaAutosize
-                    ref={textareaRef}
-                    className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`}
-                    onKeyDown={handleKeyDown}
-                    onChange={handleChange}
-                    onDoubleClick={handleDoubleClick}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                    value={input}
-                    placeholder={placeholder}
-                    minRows={1}
-                    maxRows={25}
-                />
-                <Synonyms synonyms={synonyms} definitions={definitions} replaceWithSynonym={replaceWithSynonym} />
-            </div>
-            <div className="input-container">
-                <div className="input-header"> 
-                    <p className="input-header__text">{isLoading ? 'Thinking' : 'Buddy'}</p>
-                    <div className="button-container">
-                        <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                        </button>
-                        <button className="flat-small-btn green-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}> 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-right arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                        </button>
+        <div className="text-input-container">
+            <div className="text-input">
+                <div className="input-container">
+                    <div className="input-header"> 
+                        <p className="input-header__text">You</p>
                     </div>
+                    <TextareaAutosize
+                        ref={textareaRef}
+                        className={`text-input__textarea ${responseText ? 'request-textarea' : ''}`}
+                        onKeyDown={handleKeyDown}
+                        onChange={handleChange}
+                        onDoubleClick={handleDoubleClick}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                        value={input}
+                        placeholder={placeholder}
+                        minRows={1}
+                        maxRows={25}
+                    />
+                    <Synonyms synonyms={synonyms} definitions={definitions} replaceWithSynonym={replaceWithSynonym} />
                 </div>
-                <TextareaAutosize
-                    className="text-input__textarea request-textarea"
-                    value={responseText}
-                    onChange={handleResponseChange}
-                    placeholder="Buddy will type here..."
-                    minRows={1}
-                    maxRows={25}
-                />
+                <div className="input-container">
+                    <div className="input-header"> 
+                        <p className="input-header__text">{isLoading ? 'Thinking' : 'Buddy'}</p>
+                    </div>
+                    <TextareaAutosize
+                        className="text-input__textarea request-textarea"
+                        value={responseText}
+                        onChange={handleResponseChange}
+                        placeholder="Buddy will type here..."
+                        minRows={1}
+                        maxRows={25}
+                        disabled={isLoading}
+                    />
+                </div>
+            </div>
+            <div className="button-container">
+                <button className="flat-small-btn refresh-btn" onClick={handleRefresh} style={{right: '5em'}}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                </button>
+                <button className="flat-small-btn green-btn" onClick={handleReplaceWithResponse} style={{right: '0em'}}> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-right arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
             </div>
         </div>
     );

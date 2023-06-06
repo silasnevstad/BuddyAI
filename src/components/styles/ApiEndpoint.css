@@ -228,7 +228,7 @@
 
 @media (prefers-color-scheme: light) {
     .api-endpoint-container {
-        background-color: #fff;
+        background-color: #efefef;
         border: 1.5px solid #ccc;
     }
 
@@ -238,7 +238,7 @@
     }
 
     .api-endpoint-container-closed {
-        background-color: #fff;
+        background-color: #efefef;
     }
 
     .api-endpoint-title {

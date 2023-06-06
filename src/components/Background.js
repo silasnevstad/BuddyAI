@@ -37,7 +37,7 @@ const Background = ({ children }) => {
                         </filter>
                     </defs>
                     <g filter="url(#bbblurry-filter)">
-                        <ellipse id="ellipse1" rx="96" ry="90" cx={ellipse1.cx} cy={ellipse1.cy} fill="#fb2576ff">
+                        {/* <ellipse id="ellipse1" rx="96" ry="90" cx={ellipse1.cx} cy={ellipse1.cy} fill="#fb2576ff">  #fb2576ff */}
                             {/* <animateTransform 
                                 attributeName="transform" 
                                 type="translate" 
@@ -47,8 +47,8 @@ const Background = ({ children }) => {
                                 dur="1.5s" 
                                 repeatCount="1"
                             /> */}
-                        </ellipse>
-                        <ellipse id="ellipse2" rx="96" ry="90" cx={ellipse2.cx} cy={ellipse2.cy} fill="#77d970ff">
+                        {/* </ellipse> */}
+                        {/* <ellipse id="ellipse2" rx="96" ry="90" cx={ellipse2.cx} cy={ellipse2.cy} fill="#77d970ff"> #77d970ff */}
                             {/* <animateTransform 
                                 attributeName="transform" 
                                 type="translate" 
@@ -58,7 +58,7 @@ const Background = ({ children }) => {
                                 dur="1s" 
                                 repeatCount="1"
                             /> */}
-                        </ellipse>
+                        {/* </ellipse> */}
                     </g>
                 </svg>
             </div>

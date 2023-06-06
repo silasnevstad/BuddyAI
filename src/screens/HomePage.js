@@ -22,15 +22,15 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
   let { id } = useParams();
   const [currentDocument, setCurrentDocument] = useState(null);
   const [text, setText] = useState('');
-  const [responseText, setResponseText] = useState('');
+  const [prompt, setPrompt] = useState('');
   const [sources, setSources] = useState([]);
+  const [responseText, setResponseText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingDocument, setIsLoadingDocument] = useState(true);
   const [isDocumentsLoading, setIsDocumentsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [headstartModalOpen, setHeadstartModalOpen] = useState(false);
   const [sourceModalOpen, setSourceModalOpen] = useState(false);
-  const [prompt, setPrompt] = useState('');
   const [sideView, setSideView] = useState(Math.random() < 0.5);
   const [isModified, setIsModified] = useState(false);
   const abortControllerRef = useRef(new AbortController());
@@ -219,8 +219,8 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
               <PromptInput prompt={prompt} setPrompt={setPrompt} />
               <div className="custom-button-container">
                 <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} />
-                <button className={window.innerWidth > 768 ? "full-button" : "transparent-button"} onClick={() => setHeadstartModalOpen(true)}>Headstart</button>
-                <SourceButton setSourceModalOpen={setSourceModalOpen} />
+                {/* <button className={window.innerWidth > 768 ? "full-button" : "transparent-button"} onClick={() => setHeadstartModalOpen(true)}>Headstart</button> */}
+                {/* <SourceButton setSourceModalOpen={setSourceModalOpen} /> */}
               </div>
             </div>
             {sideView ? 
@@ -247,7 +247,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
                 sources={sources} 
               />
             }
-            {!sideView && <InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} prompt={prompt} sources={sources}  />}
+            {<InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} prompt={prompt} sources={sources} setHeadstartModalOpen={setHeadstartModalOpen} setSourceModalOpen={setSourceModalOpen} />}
             <HeadstartModal open={headstartModalOpen} close={() => setHeadstartModalOpen(false)} text={text} setText={setText} />
             <SourceModal open={sourceModalOpen} close={() => setSourceModalOpen(false)} sources={sources}  addSource={addSource} deleteSource={deleteSource} />
           </main>

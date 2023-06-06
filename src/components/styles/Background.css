@@ -65,6 +65,6 @@
 /* light color scheme */
 @media (prefers-color-scheme: light) {
     .background-svg {
-        background-color: #fff;
+        background-color: #cbdcf6;
     }
 }

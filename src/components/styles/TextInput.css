@@ -1,7 +1,18 @@
+.text-input-container {
+    position: relative;
+    width: 90%;
+    margin-top: .5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1em;
+}
+
 .text-input {
     position: relative;
-    width: 80%;
-    margin-top: 1.5em;
+    width: 100%;
+    margin-top: .5em;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -18,20 +29,26 @@
     position: relative;
     border: 1px solid #444;
     width: 100%;
-    border-radius: 5px;
-    font-size: 1.1em;
+    
+    font-size: 1.2em;
     font-weight: 500;
+    /* backdrop-filter: blur(500px); */
+    /* background-color: transparent; */
     background-color: transparent;
+    border-radius: 13px;
     resize: none;
-    backdrop-filter: blur(500px);
     z-index: 1;
-    padding: 10px;
+    padding: .5em .6em;
     line-height: 1;
     margin-top: .5em;
     min-height: 20px;
     white-space: pre-wrap;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
+}
+
+.input-container:focus {
+    border-color: #555;
 }
 
 .input-header {
@@ -49,6 +66,7 @@
 .button-container {
     display: flex;
     gap: .1em;
+    align-self: flex-end;
 }
 
 .input-header__text {
@@ -63,7 +81,7 @@
 }
 
 .feather:hover {
-    color: #222;
+    color: #ddd;
 }
 
 .feather-rotate-cw {
@@ -93,17 +111,21 @@
 }
 
 .feather-rotate-cw:hover {
-    color: #f5c542;
+    /* color: #ddd; #f5c542 */
     animation: rotate 1s cubic-bezier(0.175, 0.82, 0.165, 1);
 }
 
 .feather-rotate-cw:active {
-    color: #f5c542;
+    color: #9a7100;
     animation: rotate .4s ease-in-out;
 }
 
 .feather-x:hover {
     color: #f54242;
+}
+
+.feather-arrow:hover {
+    color: #77d970;
 }
 
 .feather-arrow-right:hover {
@@ -261,16 +283,13 @@
         font-size: 1em;
         padding: 8px;
         line-height: 1;
+        margin-top: 2.2em;
     }
 
     .suggestion {
         font-size: 1.2em;
         margin-left: 2px;
         margin-top: 0px;
-    }
-
-    .input-container {
-        margin-top: 2.2em;
     }
 
     .input-container.shrink {
@@ -287,7 +306,8 @@
 
 @media (prefers-color-scheme: light) {
     .input-container {
-        border: 1px solid #ccc;
+        border: 1px solid #999;
+        background-color: #fff;
     }
 
     .text-input__textarea {
@@ -307,6 +327,18 @@
     }
 
     .feather {
+        color: #222;
+    }
+
+    .feather-rotate-cw:hover {
+        color: #222;
+    }
+
+    .feather-arrow:hover {
+        color: #222;
+    }
+
+    .feather-arrow-right:hover {
         color: #222;
     }
 

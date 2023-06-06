@@ -8,15 +8,16 @@
 
 .prompt-input {
     font-size: 1.3em;
-    padding: .5em .4em;
-    backdrop-filter: blur(500px);
+    padding: .5em .6em;
+    /* backdrop-filter: blur(500px); */
+    /* background-color: transparent; */
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 13px;
     border: 1px solid #555;
     color: #ddd;
     overflow: hidden;
     resize: none;
-    width: 40vw;
+    width: 20vw;
     height: 1.1em;
     line-height: 1.2;
     font-family: 'Montserrat', sans-serif;
@@ -42,6 +43,7 @@
 @media (prefers-color-scheme: light) {
     .prompt-input {
         color: #222;
-        border: 1px solid #ccc;
+        background-color: #fff;
+        border: 1px solid #999;
     }
 }

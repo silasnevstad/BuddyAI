@@ -53,13 +53,109 @@
     padding: .7em 1.8em;
     border-radius: 0.3em;
     text-decoration: none;
+    transition: all .2s ease-in-out;
 }
 
 .full-button:hover {
     background-color: #fff;
     transition: background-color 0.2s ease-in-out;
-    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
 }
+
+.input-button {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    color: #222;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: .8em 1.5em;
+    border-radius: 1em;
+    min-height: 3em;
+    text-decoration: none;
+}
+
+.input-button:hover {
+    background-color: #77d970;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.input-field {
+    font-size: 1.2em;
+    font-weight: 500;
+    padding: .8em .6em;
+    /* backdrop-filter: blur(500px); */
+    /* background-color: transparent; */
+    background-color: transparent;
+    border-radius: 13px;
+    border: 1px solid #555;
+    color: #fff;
+    overflow: hidden;
+    resize: none;
+    width: 20vw;
+    height: 1.1em;
+    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+    white-space: nowrap; /* add this line */
+}
+
+.input-field:focus {
+    outline: none;
+    border: 1px solid #999;
+}
+
+.input-field-with-button {
+    font-size: 1.2em;
+    font-weight: 500;
+    padding: .8em .6em;
+    padding-right: 2.5em; /* make room for the button on the right */
+    background-color: transparent;
+    border-radius: 13px;
+    border: 1px solid #555;
+    color: #fff;
+    overflow: hidden;
+    resize: none;
+    width: 20vw;
+    height: 1.1em;
+    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+    white-space: nowrap;
+    position: relative;
+    display: flex; /* add this line */
+    align-items: center; /* add this line */
+}
+
+.input-field-with-button:focus {
+    outline: none;
+    border: 1px solid #999;
+}
+
+.input-field-with-button input {
+    font-size: 1.2em;
+    border: none; 
+    background: transparent;
+    color: #fff;
+    width: 100%; 
+}
+
+.input-field-with-button input:focus {
+    outline: none;
+}
+
+.button-inside {
+    position: absolute;
+    right: .5em;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #555;
+    border-radius: 25%;
+    padding: 0.75em;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
 
 .flat-small-btn {
     /* position: absolute; */
@@ -125,6 +221,32 @@
 
     .full-button:hover {
         background-color: #111;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .input-button:hover {
+        background-color: #eee;
+    }
+
+    .input-field {
+        border: 1px solid #aaa;
+        background-color: #fff;
+        color: #222;
+    }
+
+    .input-field-with-button {
+        border: 1px solid #aaa;
+        background-color: #fff;
+        color: #222;
+    }
+
+    .input-field-with-button input {
+        color: #222;
+    }
+
+    .button-inside {
+        background-color: #ccc;
+        color: #222;
     }
 
     .flat-small-btn {

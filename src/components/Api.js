@@ -17,7 +17,7 @@ const Api = () => {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${adminKey}`,
                 },
-                body: JSON.stringify({ text, sources, prompt }),
+                body: JSON.stringify({ text, prompt, sources }),
                 signal: signal,
             });
             data = await response.json();
@@ -42,7 +42,7 @@ const Api = () => {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${adminKey}`,
                 },
-                body: JSON.stringify({ text, sources, prompt }),
+                body: JSON.stringify({ text, prompt, sources }),
                 signal: signal,
             });
             data = await response.json();
@@ -56,6 +56,21 @@ const Api = () => {
         return data;
     }
 
+    const modifyText = async (text, sources, prompt, request) => {
+        if (!text) return '';
+        const response = await fetch(`${BASE_URL}v1/modify`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${adminKey}`,
+            },
+            body: JSON.stringify({ text, prompt, sources, request }),
+            // signal: abortController.signal
+        });
+        const data = await response.json();
+        return data;
+    }
+
     const formalizeText = async (text, sources, prompt) => {
         if (!text) return '';
         const response = await fetch(`${BASE_URL}v1/formalize`, {
@@ -64,7 +79,7 @@ const Api = () => {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${adminKey}`,
             },
-            body: JSON.stringify({ text, sources, prompt }),
+            body: JSON.stringify({ text, prompt, sources }),
             // signal: abortController.signal
         });
         const data = await response.json();
@@ -79,7 +94,7 @@ const Api = () => {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${adminKey}`,
             },
-            body: JSON.stringify({ text, sources, prompt }),
+            body: JSON.stringify({ text, prompt, sources}),
             // signal: abortController.signal
         });
         const data = await response.json();
@@ -125,7 +140,7 @@ const Api = () => {
         return data;
     }
 
-    return { aiComplete, aiComplete2, formalizeText, niceifyText, askText, synonym, createAPIKey };
+    return { aiComplete, aiComplete2, modifyText, formalizeText, niceifyText, askText, synonym, createAPIKey };
 };
 
 export default Api;
