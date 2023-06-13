@@ -22,6 +22,12 @@ const TextInput = ({ text, responseText, setText, setResponseText, prompt, isLoa
         setText(input);
     }, [input, setText]);
 
+    useEffect(() => {
+        // update the input if the text prop changes
+        setInput(text);
+    }, [text]);
+
+
     const handleKeyDown = (e) => {
         if (e.key === 'Tab' && aiSuggestion) {
             e.preventDefault();

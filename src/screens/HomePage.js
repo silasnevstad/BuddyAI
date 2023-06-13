@@ -8,7 +8,6 @@ import HeadstartModal from '../components/HeadstartModal';
 import TextInput from '../components/TextInput';
 import SideTextInput from '../components/SideTextInput';
 import InputButtons from '../components/InputButtons';
-import SourceButton from '../components/SourceButton';
 import SourceModal from '../components/SourceModal';
 import Background from '../components/Background';
 import Title from '../components/Title';
@@ -174,7 +173,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [prompt, text, isModified, handleSave]);
+  }, [prompt, text, isModified, handleSave, userId]);
   
   const resetAbortController = () => {
     abortControllerRef.current.abort();
@@ -247,7 +246,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
                 sources={sources} 
               />
             }
-            <InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} prompt={prompt} sources={sources} setHeadstartModalOpen={setHeadstartModalOpen} setSourceModalOpen={setSourceModalOpen} />
+            <InputButtons text={text} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} prompt={prompt} sources={sources} setHeadstartModalOpen={setHeadstartModalOpen} setSourceModalOpen={setSourceModalOpen} />
             <HeadstartModal open={headstartModalOpen} close={() => setHeadstartModalOpen(false)} text={text} setText={setText} />
             <SourceModal open={sourceModalOpen} close={() => setSourceModalOpen(false)} sources={sources}  addSource={addSource} deleteSource={deleteSource} />
           </main>

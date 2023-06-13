@@ -4,9 +4,10 @@ import './styles/HeadstartModal.css';
 import Api from './Api';
 import Loader from './Loader';
 
-const HeadstartModal = ({ open, close, text, setText }) => {
+const HeadstartModal = ({ open, close, setText }) => {
     const [prompt, setPrompt] = useState('');
     const [headstart, setHeadstart] = useState('');
+    const [placeholder, setPlaceholder] = useState('');
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [isTyping, setIsTyping] = useState(true);
@@ -16,6 +17,10 @@ const HeadstartModal = ({ open, close, text, setText }) => {
     const textareaRef = useRef(null);
 
     useEffect(() => {
+        if (headstart !== '') {
+            // If the user has already typed something, don't overwrite it
+            return;
+        }
         const placeholderTexts = [
             'Essay about bitcoin',
             'Poem about the ocean',
@@ -58,7 +63,7 @@ const HeadstartModal = ({ open, close, text, setText }) => {
             if (!textareaRef.current || !textareaRef.current.matches(':focus')) {
                 if (isTyping && !delayTyping) {
                     if (charIndex < placeholderTexts[placeholderIndex].length) {
-                        setPrompt(prev => prev + placeholderTexts[placeholderIndex][charIndex]);
+                        setPlaceholder(prev => prev + placeholderTexts[placeholderIndex][charIndex]);
                         setCharIndex(prev => prev + 1);
                     } else {
                         setIsTyping(false);
@@ -69,7 +74,7 @@ const HeadstartModal = ({ open, close, text, setText }) => {
                     }
                 } else if (!delayTyping) {
                     if (charIndex > 0) {
-                        setPrompt(prev => prev.slice(0, -1));
+                        setPlaceholder(prev => prev.slice(0, -1));
                         setCharIndex(prev => prev - 1);
                     } else {
                         setIsTyping(true);
@@ -93,7 +98,8 @@ const HeadstartModal = ({ open, close, text, setText }) => {
     }, [charIndex, placeholderIndex, isTyping, delayTyping]);
 
     useEffect(() => {
-        if (textareaRef.current && textareaRef.current.matches(':focus')) {
+        // If the user is typing, don't overwrite it
+        if (textareaRef.current && textareaRef.current.matches(':focus')) { 
             setPrompt('');
         }
     }, [textareaRef]);
@@ -118,6 +124,13 @@ const HeadstartModal = ({ open, close, text, setText }) => {
         setPrompt('');
     };
 
+
+    const onClose = () => {
+        setPrompt('');
+        setHeadstart('');
+        close();
+    };
+
     if (!open) return null;
 
     return (
@@ -126,7 +139,7 @@ const HeadstartModal = ({ open, close, text, setText }) => {
                 <div className="headstart-modal-content">
                     <div className="headstart-modal-content-text">
                         {loading ? (
-                        <div className="headstart-modal-content-loading" style={{ marginTop: '1em' }}>
+                        <div className="headstart-modal-content-loading" style={{ marginTop: '4em' }}>
                             <Loader />
                         </div>
                         ) : headstart ? (
@@ -136,20 +149,20 @@ const HeadstartModal = ({ open, close, text, setText }) => {
                             rows="1"
                             value={headstart}
                             onChange={(e) => setHeadstart(e.target.value)}
-                            maxRows={10}
+                            maxRows={35}
                             ></TextareaAutosize>
                             <div className="headstart-content-editor-buttons">
-                                <button className="full-button close-btn" onClick={close}>
+                                <button className="blue-btn close-btn redhover" onClick={onClose}>
                                     Close
                                 </button>
-                                <button className="full-button green-btn" onClick={handleStartOver}>
+                                <button className="blue-btn green-btn" onClick={handleStartOver}>
                                     Start Over
                                 </button>
-                                <button className="full-button refresh-btn" onClick={handleAsk}>
+                                <button className="blue-btn refresh-btn orangehover" onClick={handleAsk}>
                                     Refresh
                                 </button>
-                                <button className="full-button green-btn" onClick={handleConfirm}>
-                                    Confirm
+                                <button className="blue-btn green-btn" onClick={handleConfirm}>
+                                    Use
                                 </button>
                             </div>
                         </div>
@@ -161,15 +174,16 @@ const HeadstartModal = ({ open, close, text, setText }) => {
                             value={prompt}
                             onChange={(e) => setPrompt(e.target.value)}
                             onFocus={() => setPrompt('')}
+                            placeholder={placeholder}
                             ref={textareaRef}
                             maxRows={10}
                             ></TextareaAutosize>
                             <div className="headstart-content-editor-buttons">
-                                <button className="full-button" onClick={handleAsk}>
-                                    Go
-                                </button>
-                                <button className="full-button" onClick={close}>
+                                <button className="blue-btn redhover" onClick={onClose}>
                                     Cancel
+                                </button>
+                                <button className="blue-btn" onClick={handleAsk}>
+                                    Go
                                 </button>
                             </div>
                         </>

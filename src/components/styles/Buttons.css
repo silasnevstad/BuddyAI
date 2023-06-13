@@ -157,7 +157,6 @@
     cursor: pointer;
 }
 
-
 .flat-small-btn {
     /* position: absolute; */
     padding: 4px 8px;
@@ -182,6 +181,36 @@
 .green-btn {
     top: 0em;
     right: 5.9em;
+}
+
+.blue-btn {
+    background-color: #ddd;
+    border: none;
+    color: #222;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: .7em 1.8em;
+    border-radius: 2em;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+}
+
+.blue-btn:hover {
+    background-color: #77d970;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+}
+
+.redhover:hover {
+    background-color: #ff3f5c;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.orangehover:hover {
+    background-color: #ff9f1c;
+    transition: background-color 0.2s ease-in-out;
 }
 
 @media screen and (max-width: 768px) {
@@ -261,5 +290,21 @@
 
     .flat-small-btn {
         color: #222;
+    }
+
+    .blue-btn {
+        background-color: #9dbbe7;
+    }
+
+    .blue-btn:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .redhover:hover {
+        background-color: #ff3f5c;
+    }
+
+    .orangehover:hover {
+        background-color: #ff9f1c;
     }
 }

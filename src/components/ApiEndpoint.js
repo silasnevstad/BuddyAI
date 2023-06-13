@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './styles/ApiEndpoint.css';
-import downChevron from './images/chevron-down.svg';
 
 const parseStringToJSON = (str) => {
     try {

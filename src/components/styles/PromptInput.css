@@ -32,7 +32,7 @@
     .prompt-input {
         width: 70vw;
         font-size: 1.3em;
-        margin-top: 20px;
+        margin-top: -10px;
     }
 
     .prompt-input-container {

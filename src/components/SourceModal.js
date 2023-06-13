@@ -44,21 +44,21 @@ const SourceModal = ({ open, close, sources, addSource, deleteSource }) => {
                 <div className="modal-header">
                     <p className="modal-header-text">{addingSource ? "New Source" : "Sources"}</p>
                     <div className="modal-header-buttons">
-                        {addingSource && window.innerWidth > 780 && <span className="full-button" onClick={() => setAddingSource(false)}>Back</span>}
-                        {!addingSource && sources.length > 0 && <span onClick={() => setIsEditing(!isEditing)} className="full-button">{isEditing ? "Done" : "Edit"}</span>}
+                        {addingSource && window.innerWidth > 780 && <span className="blue-btn" onClick={() => setAddingSource(false)}>Back</span>}
+                        {!addingSource && sources.length > 0 && <span onClick={() => setIsEditing(!isEditing)} className="blue-btn">{isEditing ? "Done" : "Edit"}</span>}
                         {addingSource ?
-                            <span onClick={handleAddSource} className="full-button">Add Source</span> :
-                            <span onClick={() => setAddingSource(true)} className="full-button">New Source</span>
+                            <span onClick={handleAddSource} className="blue-btn">Add Source</span> :
+                            <span onClick={() => setAddingSource(true)} className="blue-btn">New Source</span>
                         }
-                        <span onClick={handleClose} className="full-button">Close</span>
+                        <span onClick={handleClose} className="blue-btn redhover">Close</span>
                     </div>
                 </div>
                 <div className="modal-content">
                     <div className="modal-body">
                         {addingSource ? 
                             <div className="new-source-container">
-                                <input className="new-source-input" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                                <textarea className="new-source" placeholder="Text" value={text} onChange={(e) => setText(e.target.value)} />
+                                <input className="new-source-input" placeholder="Title..." value={title} onChange={(e) => setTitle(e.target.value)} type="text" />
+                                <textarea className="new-source" placeholder="Text..." value={text} onChange={(e) => setText(e.target.value)} />
                             </div>
                         :
                         sources.length > 0 ?
