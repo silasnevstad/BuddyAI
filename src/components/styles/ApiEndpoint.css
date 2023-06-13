@@ -178,11 +178,24 @@
     color: #fff;
     font-size: 1.5em;
     margin-right: .5em;
-    transform: rotate(-180deg);
+    transform: rotate(270deg);
 }
 
 .api-endpoint-container .chevron.open {
-    transform: rotate(0deg);
+    animation: rotate 0.3s ease-in-out;
+    transform: rotate(0deg);   
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(270deg);
+    }
+    50% {
+        transform: rotate(315deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -228,17 +241,17 @@
 
 @media (prefers-color-scheme: light) {
     .api-endpoint-container {
-        background-color: #efefef;
-        border: 1.5px solid #ccc;
+        background-color: #9dbbe7;
+        border: .5px solid #ccc;
+    }
+
+    .api-endpoint-container-closed {
+        background-color: #9dbbe7;
     }
 
     .api-endpoint-container:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
         border-color: #888;
-    }
-
-    .api-endpoint-container-closed {
-        background-color: #efefef;
     }
 
     .api-endpoint-title {
@@ -290,14 +303,14 @@
     }
 
     .orange {
-        color: #f5722f;
+        color: #e04e05;
     }
     
     .green {
-        color: #44db3a;
+        color: #27991e;
     }
     
     .red {
-        color: #ff3f5c;
+        color: #dd2944;
     }
 }

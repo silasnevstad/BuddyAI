@@ -2,13 +2,17 @@
     position: absolute;
     bottom: 3em;
     left: auto;
-    width: 80%;
+    /* width: 80%; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     justify-content: center;
     margin: 1em 0;
+    background-color: #444;
+    border-radius: 5em;
+    padding: .5em;
+    gap: 0.5em;
 }
 
 .input-buttons-container-left {
@@ -17,6 +21,7 @@
     flex-direction: row;
     align-items: center;
     gap: 2em;
+    padding: 0em;
 }
 
 .input-buttons-container-left button:hover::before {
@@ -29,7 +34,6 @@
 
 .input-buttons-text {
     font-size: 1.1em;
-    /* border: 1px solid blue; */
 }
 
 @media (max-width: 768px) {
@@ -55,5 +59,11 @@
         margin: 0em;
         width: 100%;
         align-items: flex-start;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .input-buttons-container {
+        background-color: #819ABF;
     }
 }

@@ -247,7 +247,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
                 sources={sources} 
               />
             }
-            {<InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} prompt={prompt} sources={sources} setHeadstartModalOpen={setHeadstartModalOpen} setSourceModalOpen={setSourceModalOpen} />}
+            <InputButtons text={text} responseText={responseText} setText={setText} setResponseText={setResponseText} isLoading={isLoading} setIsLoading={setIsLoading} prompt={prompt} sources={sources} setHeadstartModalOpen={setHeadstartModalOpen} setSourceModalOpen={setSourceModalOpen} />
             <HeadstartModal open={headstartModalOpen} close={() => setHeadstartModalOpen(false)} text={text} setText={setText} />
             <SourceModal open={sourceModalOpen} close={() => setSourceModalOpen(false)} sources={sources}  addSource={addSource} deleteSource={deleteSource} />
           </main>

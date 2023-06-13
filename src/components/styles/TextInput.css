@@ -65,7 +65,7 @@
 
 .button-container {
     display: flex;
-    gap: .1em;
+    gap: .5em;
     align-self: flex-end;
 }
 

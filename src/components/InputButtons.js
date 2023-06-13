@@ -57,7 +57,7 @@ const InputButtons = ({ text, responseText, setText, setResponseText, isLoading,
 
     return (
         <div className="input-buttons-container">
-            <div className="input-buttons-container-left">
+            {/* <div className="input-buttons-container-left"> */}
                 <button className="input-button input-buttons-text" onClick={() => setHeadstartModalOpen(true)} disabled={isLoading}>Headstart</button>
                 <button className="input-button input-buttons-text" onClick={handleFormalize} disabled={isLoading}>Improve</button>
                 <button className="input-button input-buttons-text" onClick={() => setSourceModalOpen(true)} disabled={isLoading}>Sources</button>
@@ -70,10 +70,10 @@ const InputButtons = ({ text, responseText, setText, setResponseText, isLoading,
                 </div>
                 {/* show a synoym button if its on mobile */}
                 {/* {window.innerWidth <= 768 && <button className="transparent-button" onClick={() => { }} disabled={isLoading}>Synonym</button>} */}
-            </div>
+            {/* </div> */}
 
             <div className="input-buttons-container-right">
-                <TextInputInfo text={text} />
+                
             </div>
         </div>
     );

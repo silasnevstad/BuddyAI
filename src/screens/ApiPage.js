@@ -108,7 +108,11 @@ const ApiPage = ({ userId }) => {
                     <h1 className="api-title">API</h1>
                     <p className="api-description">The Buddy API provides text completion suggestions and text refinements. The API is currently in <span className="semibold red">beta</span> and is subject to change.</p>
                     <div className="api-info-container">
-                        <p className="api-info"><span className="semibold">Status:</span> <span className="semibold">Online</span></p>
+                        <div className="api-info-online">
+                            <div className="online-circle"></div>
+                            <p className="online-text mobile-green"><span className="semibold">Online</span></p>
+                        </div>
+                        {/* <p className="api-info mobile-green"><span className="semibold">Online</span></p> */}
                         <p className="api-info"><span className="semibold">Base URL</span> apibuddy.herokuapp.com </p>
                         {apiKey ? 
                             <p className="api-info" style={{cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px'}} onClick={() => setShowKey(!showKey)}>
