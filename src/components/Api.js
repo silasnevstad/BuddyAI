@@ -105,7 +105,7 @@ const Api = () => {
         if (!text) return '';
         try {
             const response = await openai.createChatCompletion({
-              model: 'gpt-4',
+              model: 'gpt-3.5-turbo-0613',
               messages: [{'role': 'user', 'content': text}],
             });
             return response.data.choices[0].message.content;
