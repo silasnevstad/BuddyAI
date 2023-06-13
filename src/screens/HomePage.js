@@ -192,7 +192,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
       <Background>
         <div className="App">
           <header className="App-header">
-            <Title hideMobile={true} loggedIn={userId !== ''} />
+            <Title showMobile={true} loggedIn={userId !== ''} />
             <HeaderNav handleSave={handleSave} loggedIn={userId !== ''} />
           </header>
           <main className="App-main">
@@ -218,7 +218,7 @@ function HomePage({ userId, documents, setDocuments, fetchDocuments }) {
             <div className="custom-container">
               <PromptInput prompt={prompt} setPrompt={setPrompt} />
               <div className="custom-button-container">
-                <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} />
+                <ViewSwitcher handleViewSwitch={handleViewSwitch} view={sideView} special={true} />
                 {/* <button className={window.innerWidth > 768 ? "full-button" : "transparent-button"} onClick={() => setHeadstartModalOpen(true)}>Headstart</button> */}
                 {/* <SourceButton setSourceModalOpen={setSourceModalOpen} /> */}
               </div>

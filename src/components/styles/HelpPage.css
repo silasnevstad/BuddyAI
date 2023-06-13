@@ -233,6 +233,12 @@
     .help-list-item {
         transform: skewX(0deg);
         background-color: #fff;
+        padding: 1em .5em;
+    }
+
+    /* last help list item */
+    .help-list-item:last-child {
+        height: 8em;
     }
 
     .help-instruction {
@@ -241,32 +247,8 @@
     }
 
     .help-step {
-        font-size: 2.5em;
+        font-size: 2em;
         margin-right: .1em;
-    }
-
-    .help-list-item.step1 {
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-    
-    .help-list-item.step2 {
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-    
-    .help-list-item.step3 {
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-    
-    .help-list-item.step4 {
-        margin-left: 0%;
-    }
-
-    .help-list-item { 
-        height: 10em;
-        width: 100%;
     }
 
     .help-list-item-bold {
@@ -277,6 +259,8 @@
     .help-grid {
         display: flex;
         flex-direction: column;
+        padding: 0em 1em;
+        width: 90%;
     }
 
     .help-grid-item {

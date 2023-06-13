@@ -30,7 +30,7 @@
     border: 1px solid #444;
     width: 100%;
     
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 500;
     /* backdrop-filter: blur(500px); */
     /* background-color: transparent; */
@@ -270,7 +270,7 @@
         width: 100%;
         flex-direction: column;
         align-items: center;
-        margin-top: -1.5em;
+        margin-top: -2.8em;
     }
 
     .input-header {
@@ -279,11 +279,12 @@
     }
 
     .input-container {
-        width: 90%;
-        font-size: 1em;
-        padding: 8px;
-        line-height: 1;
+        width: 100%;
+        font-size: 1.3em;
+        padding: 0.4em 0.5em;
+        /* line-height: 1.5; */
         margin-top: 2.2em;
+        /* height: 100%; */
     }
 
     .suggestion {

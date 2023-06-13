@@ -63,7 +63,7 @@
 }
 
 @media (max-width: 768px) {
-    .view-switcher-container {
+    .view-switcher-container-special {
         position: absolute;
         top: .6em;
         right: .6em;
@@ -72,6 +72,7 @@
         padding: 5px 10px;
         gap: 25px;
         overflow: hidden;
+        /* margin-bottom: 10px; */
     }
 
     .view-switcher-box {

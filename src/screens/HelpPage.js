@@ -29,7 +29,7 @@ const HelpPage = ({ loggedIn }) => {
                             <p className="help-header-desc-text"> Buddy is your friendly writing co-pilot, here to make your text writing experience a breeze. Whether you're crafting an essay, composing an email, or brainstorming ideas, our AI-powered buddy is here to help you find the perfect words and phrases effortlessly. </p>
                             {/* <p className="help-header-desc-text"> Buddy is an AI co-writer that interacts with you in two modes: Side by Side and Regular. Side by Side lets you type with Buddy restructuring and enhancing your text in real-time. Regular mode shows suggestions as you type, which you can accept by clicking or using the tab key. Both modes provide access to synonyms, and Regular mode adds tools for text formalization, enhancement, and AI content queries.</p> */}
                             
-                            <h2 className="help-sub-header-text"> Getting Started </h2>
+                            {/* <h2 className="help-sub-header-text"> Getting Started </h2> */}
                             <div className="help-view-switch">
                                 <p className="help-view-switch-text">{view ? "Side by Side" : "Regular"}</p>
                                 <ViewSwitcher handleViewSwitch={handleViewSwitch} view={view} />

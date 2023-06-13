@@ -146,7 +146,7 @@
 
 .button-inside {
     position: absolute;
-    right: .35em;
+    right: .2em;
     top: 50%;
     transform: translateY(-50%);
     background-color: #555;
@@ -197,6 +197,11 @@
     .flat-small-btn {
         padding: 6px 8px;
         font-size: 1em;
+    }
+
+    .input-field-with-button {
+        margin-top: 1em;
+        width: 80%;
     }
 }
 

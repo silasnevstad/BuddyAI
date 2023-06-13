@@ -58,22 +58,16 @@ const InputButtons = ({ text, responseText, setText, setResponseText, isLoading,
     return (
         <div className="input-buttons-container">
             {/* <div className="input-buttons-container-left"> */}
+            <div className="input-buttons-container-left">
                 <button className="input-button input-buttons-text" onClick={() => setHeadstartModalOpen(true)} disabled={isLoading}>Headstart</button>
                 <button className="input-button input-buttons-text" onClick={handleFormalize} disabled={isLoading}>Improve</button>
                 <button className="input-button input-buttons-text" onClick={() => setSourceModalOpen(true)} disabled={isLoading}>Sources</button>
-                {/* <input className="input-field" type="text" placeholder="Make simpler..." disabled={isLoading} value={requestPrompt} onChange={(e) => setRequestPrompt(e.target.value)} /> */}
-                <div class="input-field-with-button">
-                    <input type="text" placeholder="Make simpler..." disabled={isLoading} value={requestPrompt} onChange={(e) => setRequestPrompt(e.target.value)} />
-                    <button class="button-inside" onClick={handleModify} disabled={isLoading}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                </div>
-                {/* show a synoym button if its on mobile */}
-                {/* {window.innerWidth <= 768 && <button className="transparent-button" onClick={() => { }} disabled={isLoading}>Synonym</button>} */}
-            {/* </div> */}
-
-            <div className="input-buttons-container-right">
-                
+            </div>
+            <div class="input-field-with-button">
+                <input type="text" placeholder="Make simpler..." disabled={isLoading} value={requestPrompt} onChange={(e) => setRequestPrompt(e.target.value)} />
+                <button class="button-inside" onClick={handleModify} disabled={isLoading}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
             </div>
         </div>
     );

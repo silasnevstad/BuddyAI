@@ -44,7 +44,7 @@ function AccountPage({ userId, loggedIn }) {
         <Background>
             <div className="App">
                 <header className="App-header">
-                    <Title loggedIn={loggedIn} />
+                    <Title loggedIn={loggedIn} hideMobile={true} />
                     <HeaderNav currentPage={'/'} loggedIn={loggedIn} />
                 </header>
                 <main className="App-main">

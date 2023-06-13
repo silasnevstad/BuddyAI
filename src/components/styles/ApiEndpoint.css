@@ -200,14 +200,16 @@
 
 @media screen and (max-width: 768px) {
     .api-endpoint-container {
-        width: 80%; 
+        width: 85%; 
     }
 
     .api-endpoint-container-closed {
         position: relative;
         flex-direction: column;
         align-items: flex-start;
+        margin: 0em;
         padding: 0em;
+        width: 100%;
     }
 
     .api-endpoint-title {
@@ -223,7 +225,7 @@
     .api-endpoint-container .chevron {
         position: absolute;
         top: .1em;
-        right: 0em;
+        right: -.75em;
     }
 
     .api-endpoint-code-container {
