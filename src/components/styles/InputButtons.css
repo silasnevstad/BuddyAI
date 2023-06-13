@@ -11,7 +11,7 @@
     margin: 1em 0;
     background-color: #444;
     border-radius: 5em;
-    padding: .4em;
+    padding: 0em;
     padding-right: 1em;
     gap: 0.5em;
 }
@@ -45,6 +45,7 @@
         flex-direction: column;
         border-radius: 2em;
         gap: .1em;
+        padding: .5em;
         padding-right: 0em;
     }
 
@@ -68,6 +69,6 @@
 
 @media (prefers-color-scheme: light) {
     .input-buttons-container {
-        background-color: #819ABF;
+        background-color: #9dbbe7;
     }
 }
