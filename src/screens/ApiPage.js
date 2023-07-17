@@ -113,7 +113,7 @@ const ApiPage = ({ userId }) => {
                             <p className="online-text mobile-green"><span className="semibold">Online</span></p>
                         </div>
                         {/* <p className="api-info mobile-green"><span className="semibold">Online</span></p> */}
-                        <p className="api-info"><span className="semibold">Base URL</span> apibuddy.herokuapp.com </p>
+                        <p className="api-info"><span className="semibold">Base URL</span> buddy.herokuapp.com </p>
                         {apiKey ? 
                             <p className="api-info" style={{cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px'}} onClick={() => setShowKey(!showKey)}>
                                 <span className="semibold">API Key</span> 
